@@ -1,0 +1,455 @@
+[
+  {
+    "requested_artist": "Radiohead",
+    "requested_album": "OK Computer",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "b1392450-e666-3926-a536-22c65f834433",
+      "title": "OK Computer",
+      "artist": "Radiohead",
+      "artist_mbids": [
+        "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+      ],
+      "year": "1997",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "https://coverartarchive.org/release/30702389-5c67-4438-9ea0-2351c8de0f1d/43287476628.png"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "alternative rock",
+        "alternative",
+        "1997",
+        "rock",
+        "favourite albums",
+        "art rock",
+        "90s",
+        "Masterpiece",
+        "experimental",
+        "electronic"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "found",
+      "count": 2,
+      "reviews": [
+        {
+          "id": "dfa30f54-2729-45aa-bf22-0fc8fad11664",
+          "language": "en",
+          "source": null,
+          "source_url": null,
+          "license": null,
+          "text_length": 308
+        },
+        {
+          "id": "c508a8ec-1bd0-4f92-bcd8-581a2cd2e75f",
+          "language": "en",
+          "source": "BBC",
+          "source_url": "http://www.bbc.co.uk/music/reviews/wcp2",
+          "license": null,
+          "text_length": 2069
+        }
+      ]
+    }
+  },
+  {
+    "requested_artist": "Björk",
+    "requested_album": "Homogenic",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "810272e0-aef1-3d85-b2d3-e512e87fc38c",
+      "title": "Homogenic",
+      "artist": "Björk",
+      "artist_mbids": [
+        "87c5dedd-371d-4a53-9f7f-80522fb7f3cb"
+      ],
+      "year": "1997",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "https://coverartarchive.org/release/9eb06b8b-73af-4e4f-815c-1a0e459af1c4/42643046619.png"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "electronic",
+        "art pop",
+        "1997",
+        "alternative",
+        "experimental",
+        "90s",
+        "favourite albums",
+        "electronica",
+        "trip-hop",
+        "trip hop"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "missing",
+      "count": 0,
+      "reviews": []
+    }
+  },
+  {
+    "requested_artist": "Miles Davis",
+    "requested_album": "Kind of Blue",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "8e8a594f-2175-38c7-a871-abb68ec363e7",
+      "title": "Kind of Blue",
+      "artist": "Miles Davis",
+      "artist_mbids": [
+        "561d854a-6a28-4aa7-8c99-323e6ce46c2a"
+      ],
+      "year": "1959",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "http://coverartarchive.org/release/e7ba3cb7-a074-45ee-870f-3baeb6d3e8bf/12708426541.jpg"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "jazz",
+        "cool jazz",
+        "modal jazz",
+        "1959",
+        "miles davis",
+        "50s",
+        "instrumental",
+        "trumpet",
+        "1001 Albums You Must Hear Before You Die",
+        "john coltrane"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "found",
+      "count": 1,
+      "reviews": [
+        {
+          "id": "c1f4d036-edef-428d-8997-da0f49d19413",
+          "language": "en",
+          "source": "BBC",
+          "source_url": "http://www.bbc.co.uk/music/reviews/fr25",
+          "license": null,
+          "text_length": 2279
+        }
+      ]
+    }
+  },
+  {
+    "requested_artist": "Kendrick Lamar",
+    "requested_album": "To Pimp a Butterfly",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "d9103c72-3807-4378-9ce7-b6f3e8fdd547",
+      "title": "To Pimp a Butterfly",
+      "artist": "Kendrick Lamar",
+      "artist_mbids": [
+        "381086ea-f511-4aba-bdf9-71c753dc5077"
+      ],
+      "year": "2015",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "https://coverartarchive.org/release/b4d6e526-4195-49bc-b660-b6df4c27686e/45334112812.jpg"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "jazz rap",
+        "2015",
+        "funk",
+        "funky",
+        "Conscious Hip Hop",
+        "west coast hip hop",
+        "hardcore hip hop",
+        "Neo Soul",
+        "Political Hip Hop",
+        "Hip-Hop"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "found",
+      "count": 1,
+      "reviews": [
+        {
+          "id": "963931a7-3beb-4ffc-8e81-2f0ca919ddad",
+          "language": "en",
+          "source": null,
+          "source_url": null,
+          "license": null,
+          "text_length": 6938
+        }
+      ]
+    }
+  },
+  {
+    "requested_artist": "Daft Punk",
+    "requested_album": "Discovery",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "48117b90-a16e-34ca-a514-19c702df1158",
+      "title": "Discovery",
+      "artist": "Daft Punk",
+      "artist_mbids": [
+        "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+      ],
+      "year": "2001",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "https://coverartarchive.org/release/6cd30d99-4923-4d5e-8e51-9d87506976f1/43702618964.jpg"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "electronic",
+        "House",
+        "2001",
+        "dance",
+        "electronica",
+        "french house",
+        "french",
+        "favourite albums",
+        " french house",
+        "Daft Punk"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "found",
+      "count": 1,
+      "reviews": [
+        {
+          "id": "0acbf681-9f1b-4253-a548-defa53c5592c",
+          "language": "en",
+          "source": "BBC",
+          "source_url": "http://www.bbc.co.uk/music/reviews/jh3n",
+          "license": null,
+          "text_length": 2282
+        }
+      ]
+    }
+  },
+  {
+    "requested_artist": "宇多田ヒカル",
+    "requested_album": "Fantôme",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "8e8aead9-812e-4f95-ac65-186cf1b5d465",
+      "title": "Fantôme",
+      "artist": "宇多田ヒカル",
+      "artist_mbids": [
+        "b539e453-c4fe-47e3-8a07-8517eac74429"
+      ],
+      "year": "2016",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "http://coverartarchive.org/release/dbb2b550-f757-4d24-a411-8de82f0ec133/20318393560.jpg"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "j-pop",
+        "japanese",
+        "female vocalists",
+        "JPop",
+        "rnb",
+        "best of 2016",
+        "utada hikaru",
+        "hikki",
+        "2016",
+        "soul pop"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "missing",
+      "count": 0,
+      "reviews": []
+    }
+  },
+  {
+    "requested_artist": "王菲",
+    "requested_album": "浮躁",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "91f42713-b8e0-3a7b-981c-fddd20823d74",
+      "title": "浮躁",
+      "artist": "王菲",
+      "artist_mbids": [
+        "692e367d-2846-442d-b13d-1177c3681c65"
+      ],
+      "year": "1996",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "https://coverartarchive.org/release/de2d47ed-a201-463c-a9c9-930f3f8b7bf6/43036256605.jpg"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "dream pop",
+        "Chinese Pop",
+        "ambient",
+        "rock",
+        "mandopop",
+        "1996",
+        "folk",
+        "emotional",
+        "faye",
+        "chinese"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "missing",
+      "count": 0,
+      "reviews": []
+    }
+  },
+  {
+    "requested_artist": "Fishmans",
+    "requested_album": "Long Season",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "fc38cdba-ea52-328c-aa3d-41edf8811a0c",
+      "title": "LONG SEASON",
+      "artist": "Fishmans",
+      "artist_mbids": [
+        "d0f25f16-7782-42e8-8047-c16a1cb2b450"
+      ],
+      "year": "1996",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "http://coverartarchive.org/release/1fc167e1-7c11-438f-a9c1-9dcb5c4bd72e/34734114059.jpg"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "dream pop",
+        "Neo-Psychedelia",
+        "Progressive Pop",
+        "post-rock",
+        "1996",
+        "ambient pop",
+        "dub",
+        "psychedelic",
+        "Psychedelia",
+        "pop"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "missing",
+      "count": 0,
+      "reviews": []
+    }
+  },
+  {
+    "requested_artist": "Cocteau Twins",
+    "requested_album": "Heaven or Las Vegas",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "12fab6b9-4eaf-33b0-963e-cae03ac332fe",
+      "title": "Heaven or Las Vegas",
+      "artist": "Cocteau Twins",
+      "artist_mbids": [
+        "000fc734-b7e1-4a01-92d1-f544261b43f5"
+      ],
+      "year": "1990",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "http://coverartarchive.org/release/8d8bd2c6-f879-48a2-b632-fcce973df5f6/24106329469.jpg"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "dream pop",
+        "1990",
+        "shoegaze",
+        "ethereal",
+        "90s",
+        "ethereal wave",
+        "favourite albums",
+        "4ad",
+        "alternative",
+        "baggy"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "missing",
+      "count": 0,
+      "reviews": []
+    }
+  },
+  {
+    "requested_artist": "Burial",
+    "requested_album": "Untrue",
+    "musicbrainz": {
+      "status": "found",
+      "mbid": "fddedc4f-7a2e-3d7d-9ec5-1705c416f3f4",
+      "title": "Untrue",
+      "artist": "Burial",
+      "artist_mbids": [
+        "9ddce51c-2b75-4b3e-ac8c-1db09e7c89c6"
+      ],
+      "year": "2007",
+      "score": 100
+    },
+    "cover_art_archive": {
+      "status": "found",
+      "url": "http://coverartarchive.org/release/e685c54d-196c-47bd-9a75-74dafe4c43b7/24820081496.jpg"
+    },
+    "lastfm": {
+      "status": "enough",
+      "count": 10,
+      "tags": [
+        "dubstep",
+        "ambient",
+        "electronic",
+        "2007",
+        "future garage",
+        "alternative",
+        "atmospheric",
+        "2-step",
+        "dabeat",
+        "UK Garage"
+      ]
+    },
+    "critiquebrainz": {
+      "status": "found",
+      "count": 1,
+      "reviews": [
+        {
+          "id": "8a1c3419-4e3b-4926-9df3-9b0faca798ad",
+          "language": "en",
+          "source": "BBC",
+          "source_url": "http://www.bbc.co.uk/music/reviews/c2w6",
+          "license": null,
+          "text_length": 1748
+        }
+      ]
+    }
+  }
+]
