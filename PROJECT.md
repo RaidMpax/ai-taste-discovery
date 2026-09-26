@@ -28,9 +28,9 @@ Python, SQLite, SQL, embeddings, vector search, an LLM API, explicit RAG
 orchestration, structured output, and a later Streamlit UI. V0.1 deliberately
 does not use LangChain, LlamaIndex, agents, or a large dataset.
 
-## Current milestone: Day 1
+## Current milestone: Day 3
 
-Validate whether the four external data sources provide enough coverage for a
-small test catalogue. Do not build the database, retrieval, recommendation,
-RAG, or UI layers yet.
-
+Ingest the confirmed 10-album test catalogue into SQLite with transparent
+source status reporting, idempotent writes, and safe handling of partial API
+failures. Embeddings, retrieval, recommendation, RAG, and UI are not part of
+this milestone.

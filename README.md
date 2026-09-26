@@ -47,3 +47,32 @@ Day 2 includes:
 - `day2_checks.sql`: read-only `JOIN`, `GROUP BY`, coverage, and integrity checks
 - `DATA_MODEL.md`: decisions and known limitations
 - `taste.db`: the generated local test database
+
+## Day 3: data ingestion
+
+`ingest.py` reads the confirmed release-group MBIDs in `test_albums.json`,
+fetches the four external sources, and writes the cleaned catalogue to the
+local SQLite database.
+
+Put the Last.fm key in a local `.env` file (which Git ignores):
+
+```text
+LASTFM_API_KEY=your-key
+```
+
+Run one album first, then the full sample:
+
+```powershell
+python ingest.py --limit 1
+python ingest.py
+```
+
+The import is idempotent: rerunning an album updates its current data instead
+of inserting duplicates. A failed child-source request preserves previously
+stored tags or cover data. Only CritiqueBrainz reviews with a non-empty license
+are stored.
+
+The current 10-album run produced 10 artists, 10 albums, 10 artist credits,
+100 Last.fm tags, and 6 licensed CritiqueBrainz reviews. The pipeline first
+uses the review list to discover IDs, then fetches fuller review records so
+that license information is validated before a review is stored.

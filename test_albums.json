@@ -1,13 +1,12 @@
 [
-  {"artist": "Radiohead", "album": "OK Computer"},
-  {"artist": "Björk", "album": "Homogenic"},
-  {"artist": "Miles Davis", "album": "Kind of Blue"},
-  {"artist": "Kendrick Lamar", "album": "To Pimp a Butterfly"},
-  {"artist": "Daft Punk", "album": "Discovery"},
-  {"artist": "宇多田ヒカル", "album": "Fantôme"},
-  {"artist": "王菲", "album": "浮躁"},
-  {"artist": "Fishmans", "album": "Long Season"},
-  {"artist": "Cocteau Twins", "album": "Heaven or Las Vegas"},
-  {"artist": "Burial", "album": "Untrue"}
+  {"artist": "Radiohead", "album": "OK Computer", "release_group_mbid": "b1392450-e666-3926-a536-22c65f834433"},
+  {"artist": "Björk", "album": "Homogenic", "release_group_mbid": "810272e0-aef1-3d85-b2d3-e512e87fc38c"},
+  {"artist": "Miles Davis", "album": "Kind of Blue", "release_group_mbid": "8e8a594f-2175-38c7-a871-abb68ec363e7"},
+  {"artist": "Kendrick Lamar", "album": "To Pimp a Butterfly", "release_group_mbid": "d9103c72-3807-4378-9ce7-b6f3e8fdd547"},
+  {"artist": "Daft Punk", "album": "Discovery", "release_group_mbid": "48117b90-a16e-34ca-a514-19c702df1158"},
+  {"artist": "宇多田ヒカル", "album": "Fantôme", "release_group_mbid": "8e8aead9-812e-4f95-ac65-186cf1b5d465"},
+  {"artist": "王菲", "album": "浮躁", "release_group_mbid": "91f42713-b8e0-3a7b-981c-fddd20823d74"},
+  {"artist": "Fishmans", "album": "Long Season", "release_group_mbid": "fc38cdba-ea52-328c-aa3d-41edf8811a0c"},
+  {"artist": "Cocteau Twins", "album": "Heaven or Las Vegas", "release_group_mbid": "12fab6b9-4eaf-33b0-963e-cae03ac332fe"},
+  {"artist": "Burial", "album": "Untrue", "release_group_mbid": "fddedc4f-7a2e-3d7d-9ec5-1705c416f3f4"}
 ]
-
