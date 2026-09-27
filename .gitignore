@@ -5,6 +5,7 @@ venv/
 .env
 .DS_Store
 .pytest_cache/
+.cache/
 *.db
 *.db-journal
 *.db-wal

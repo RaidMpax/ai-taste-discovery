@@ -1,0 +1,4 @@
+fastembed==0.8.1
+google-genai==2.25.0
+python-dotenv==1.2.3
+streamlit==1.64.0

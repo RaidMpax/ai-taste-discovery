@@ -28,6 +28,7 @@ USER_AGENT = os.getenv(
 )
 MUSICBRAINZ_DELAY_SECONDS = 1.1
 TAG_ALIASES = {
+    "inide": "indie",
     "jpop": "j-pop",
     "trip hop": "trip-hop",
 }
@@ -515,6 +516,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--database", type=Path, default=DEFAULT_DATABASE)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     parser.add_argument(
+        "--offset",
+        type=int,
+        default=0,
+        help="Skip the first N albums before processing.",
+    )
+    parser.add_argument(
         "--limit",
         type=int,
         help="Process only the first N albums for staged validation.",
@@ -527,12 +534,15 @@ def main() -> int:
         sys.stdout.reconfigure(encoding="utf-8")
 
     args = parse_args()
+    if args.offset < 0:
+        raise SystemExit("--offset cannot be negative")
     if args.limit is not None and args.limit < 1:
         raise SystemExit("--limit must be at least 1")
 
     lastfm_api_key = get_lastfm_api_key()
 
     seeds = json.loads(args.input.read_text(encoding="utf-8"))
+    seeds = seeds[args.offset :]
     if args.limit is not None:
         seeds = seeds[: args.limit]
 
@@ -540,6 +550,8 @@ def main() -> int:
         "started_at": datetime.now(timezone.utc).isoformat(),
         "input": str(args.input),
         "database": str(args.database),
+        "offset": args.offset,
+        "limit": args.limit,
         "albums": [],
     }
 
