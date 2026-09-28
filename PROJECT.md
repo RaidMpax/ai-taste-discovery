@@ -2,8 +2,8 @@
 
 ## V0.1 goal
 
-Build a small music discovery prototype from 30–50 albums. Given albums or
-artists a user likes, it will create a Taste Profile and return three kinds of
+Build a small music discovery prototype from 30–50 albums. Given albums a user
+likes, it creates a session-only Taste Profile and returns three kinds of
 recommendations:
 
 - **Safe**: close to the user's current taste.
@@ -20,16 +20,18 @@ must be visible.
 - Cover Art Archive: album covers
 - Last.fm: community tags
 - CritiqueBrainz: review text and review metadata
-- SQLite: curated work and user data (not created during Day 1)
+- SQLite: curated catalogue data; V0.1 user choices remain in the UI session
 
 ## Technical approach
 
 Python, SQLite, SQL, embeddings, vector search, an LLM API, explicit RAG
-orchestration, structured output, and a later Streamlit UI. V0.1 deliberately
+orchestration, structured output, and a Streamlit UI. V0.1 deliberately
 does not use LangChain, LlamaIndex, agents, or a large dataset.
 
-## Current milestone: Day 7
+## Current milestone: V0.1 finalization
 
-Split licensed reviews into sentence-aware chunks, retrieve evidence only from
-the relevant candidate and favorite, and build a source-preserving RAG context.
-LLM generation and UI are not part of this milestone yet.
+The 30-album prototype now covers ingestion, SQLite storage, local embeddings,
+Taste Profile construction, deterministic recommendation tiers, licensed review
+retrieval, Gemini structured explanations, source validation, evaluation, and a
+minimal Streamlit UI. Remaining work is final documentation, regression review,
+and presentation cleanup rather than new product scope.

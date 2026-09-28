@@ -1,15 +1,57 @@
 # AI Taste Discovery
 
-An educational V0.1 music recommendation project. The product will model a
-listener's current taste, suggest Safe / Explore / Wildcard discoveries, and
-explain each suggestion with retrieved source evidence.
+An educational V0.1 music recommendation project. The product models a
+listener's current taste, suggests Safe / Explore / Wildcard discoveries, and
+explains each suggestion with retrieved source evidence.
+
+## Quick start
+
+Requirements: Python 3.10+.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+Copy-Item .env.example .env
+```
+
+Open `.env` and add `LASTFM_API_KEY` before importing data. Add
+`GEMINI_API_KEY` only if you want to generate **Why This?** explanations.
+MusicBrainz, Cover Art Archive, and CritiqueBrainz do not require API keys for
+this prototype. Never commit the local `.env` file.
+
+Build the local catalogue and start the app:
+
+```powershell
+.\.venv\Scripts\python.exe ingest.py
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
+
+`ingest.py` creates `taste.db` and its tables automatically from `schema.sql`.
+The first semantic search or app start downloads the local FastEmbed model, so
+it can take longer than later runs.
+
+## V0.1 boundaries and known limitations
+
+- Input is by album, not artist. Artist metadata is stored, but artist-based
+  selection and profiles are deferred.
+- The catalogue is a curated 30-album sample, so recommendations only rank
+  albums inside that small collection.
+- CritiqueBrainz coverage is sparse because only reviews with a declared
+  license are stored. When candidate review evidence is missing, the system
+  falls back to structured metadata and tags and states that limitation.
+- Favorites and the generated Taste Profile live only in the current
+  Streamlit session; there is no account or persistent user-profile system.
+- Recommendations still work without Gemini. Explanation generation depends
+  on the Gemini API and can be unavailable or rate-limited on the free tier.
+- Evaluation is a small qualitative regression set, not a recommendation
+  quality benchmark.
 
 ## Day 1: data feasibility
 
 The current code only checks whether a 10-album sample can be resolved across
 MusicBrainz, Cover Art Archive, Last.fm, and CritiqueBrainz.
 
-Requirements: Python 3.10+; no third-party Python packages are needed.
+This standalone feasibility script needs no third-party Python packages.
 
 Last.fm requires a free API key. Set it only in your shell (never commit it):
 
@@ -80,7 +122,7 @@ so that license information is validated before a review is stored. Use
 
 ## Day 4: minimal semantic retrieval
 
-Create an isolated environment and install the one direct dependency:
+Create an isolated environment and install the project dependencies:
 
 ```powershell
 python -m venv .venv
@@ -169,7 +211,12 @@ Start the local app:
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Choose one to five favorite albums, inspect the Safe / Explore / Wildcard
-recommendations, and generate `Why This?` only for the items you want to
-explain. Explanation requests use the local `.env` Gemini key; album and review
-retrieval remains local and sources are shown separately from model output.
+Choose one to four favorite albums, select up to eight results per tier, and
+inspect the Safe / Explore / Wildcard recommendations. Generate `Why This?`
+only for the items you want to explain. Explanation requests use
+`GEMINI_API_KEY` from the local `.env`; album and review retrieval remains local
+and sources are shown separately from model output.
+
+The UI caches the local embedding models and vectors until `taste.db` changes.
+Recommendation tiers remain deterministic Python rules; Gemini only turns the
+retrieved evidence into a structured explanation.

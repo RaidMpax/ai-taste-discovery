@@ -2,6 +2,8 @@
 
 Evaluation date: 2026-09-27
 
+Final regression: 2026-09-28
+
 This is a small qualitative check, not a recommendation benchmark. The test
 profile contains one favorite album, Radiohead's *OK Computer*, and uses the
 current 30-album catalogue.
@@ -62,6 +64,19 @@ three retrieved source IDs; source URLs remained application-owned data.
 - Review source IDs returned by Gemini must exist in the retrieved context.
 - URLs are resolved by the application; Gemini does not generate source URLs.
 - Omitting --generate makes no Gemini API request.
+
+## Final regression
+
+- Python dependency and syntax checks passed.
+- SQLite foreign-key check returned no errors.
+- Catalogue counts remained 30 artists, 30 albums, 292 tags, and 18 reviews.
+- A two-favorite profile produced 5 Safe, 6 Explore, and 7 Wildcard candidates
+  with no cross-tier duplicates and no favorite album returned as a candidate.
+- Candidate-scoped RAG retrieved two licensed *Dummy* review chunks for the
+  *Homogenic* to *Dummy* case without borrowing evidence from another album.
+- The UI passed default-state and four-favorite / eight-result tests with no
+  Streamlit exceptions. The generated explanation state can be collapsed and
+  cleared without another Gemini request.
 
 ## Bad cases and follow-ups
 
