@@ -16,14 +16,15 @@ This file is a study guide, not a set of prepared interview answers.
 ### Current Implementation
 
 - `catalog_artists.json` contains the small, confirmed artist seed set.
-- `discover_catalog.py` gets popular album candidates from Last.fm.
-- `classify_match()` applies deterministic acceptance rules to MusicBrainz results.
+- `discover_catalog.py` gets popular album candidates from Last.fm, then browses
+  the confirmed artist's MusicBrainz album discography once.
+- `classify_discography_match()` applies deterministic acceptance rules locally.
 - The output manifest preserves source rank, playcount, match metadata, and rejection reasons.
 - `tests/test_discover_catalog.py` checks the matching rules without making network requests.
 
 ### Interview Questions
 
-1. Why is a MusicBrainz search score of 100 insufficient by itself?
+1. Why is an artist-MBID-constrained discography safer than a global title search?
 2. What false positives can appear when album titles are used without artist MBIDs?
 3. How would you measure precision before importing hundreds of auto-accepted matches?
 4. What should happen if discovery succeeds but a later metadata API fails?

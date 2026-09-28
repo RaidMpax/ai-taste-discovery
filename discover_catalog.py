@@ -20,7 +20,6 @@ from ingest import (
 ROOT = Path(__file__).parent
 DEFAULT_ARTISTS = ROOT / "catalog_artists.json"
 DEFAULT_OUTPUT = ROOT / "catalog_manifest.json"
-MIN_AUTO_ACCEPT_SCORE = 95
 BLOCKED_SECONDARY_TYPES = {
     "audio drama",
     "audiobook",
@@ -42,12 +41,6 @@ def normalize_title(value: str) -> str:
     return "".join(character for character in normalized if character.isalnum())
 
 
-def escape_lucene_phrase(value: str) -> str:
-    """Escape characters that have special meaning in a Lucene phrase."""
-    special = set('+-&|!(){}[]^"~*?:\\/')
-    return "".join(f"\\{character}" if character in special else character for character in value)
-
-
 def artist_ids(release_group: dict) -> set[str]:
     return {
         credit["artist"]["id"]
@@ -63,24 +56,27 @@ def artist_credit_text(release_group: dict) -> str:
     )
 
 
-def classify_match(
+def classify_discography_match(
     requested_title: str,
     artist_mbid: str,
     release_groups: list[dict],
 ) -> dict:
-    """Classify the best MusicBrainz result without silently trusting it."""
-    if not release_groups:
+    """Match one Last.fm title inside a MusicBrainz artist discography."""
+    exact_matches = [
+        release_group
+        for release_group in release_groups
+        if normalize_title(requested_title)
+        == normalize_title(release_group.get("title", ""))
+    ]
+    if not exact_matches:
         return {
             "status": "unmatched",
-            "match_reasons": ["MusicBrainz returned no release group"],
+            "match_method": "artist_discography_exact_title",
+            "match_reasons": ["no exact normalized title in artist discography"],
         }
 
     evaluated = []
-    for release_group in release_groups:
-        score = int(release_group.get("score", 0))
-        title_matches = normalize_title(requested_title) == normalize_title(
-            release_group.get("title", "")
-        )
+    for release_group in exact_matches:
         artist_matches = artist_mbid in artist_ids(release_group)
         primary_type = (release_group.get("primary-type") or "").casefold()
         secondary_types = {
@@ -91,10 +87,6 @@ def classify_match(
         )
 
         reasons = []
-        if score < MIN_AUTO_ACCEPT_SCORE:
-            reasons.append(f"score below {MIN_AUTO_ACCEPT_SCORE}")
-        if not title_matches:
-            reasons.append("normalized title differs")
         if not artist_matches:
             reasons.append("seed artist MBID is absent from artist credit")
         if primary_type != "album":
@@ -109,20 +101,29 @@ def classify_match(
                 "matched_title": release_group.get("title"),
                 "matched_artist": artist_credit_text(release_group),
                 "first_release_date": release_group.get("first-release-date") or None,
-                "score": score,
+                "score": None,
                 "primary_type": release_group.get("primary-type"),
                 "secondary_types": release_group.get("secondary-types", []),
+                "match_method": "artist_discography_exact_title",
                 "match_reasons": reasons
-                or ["high-confidence exact artist/title match"],
+                or ["exact title inside confirmed artist MBID discography"],
             }
         )
 
-    # Search ranking is useful, but an exact validated result in the top five is
-    # safer than blindly trusting only the first result.
-    return next(
-        (result for result in evaluated if result["status"] == "accepted"),
-        evaluated[0],
-    )
+    accepted = [result for result in evaluated if result["status"] == "accepted"]
+    if len(accepted) == 1:
+        return accepted[0]
+    if len(accepted) > 1:
+        result = dict(accepted[0])
+        result["status"] = "needs_review"
+        result["match_reasons"] = [
+            "multiple exact release groups exist for this artist and title"
+        ]
+        result["alternative_release_group_mbids"] = [
+            item["release_group_mbid"] for item in accepted
+        ]
+        return result
+    return evaluated[0]
 
 
 def fetch_top_albums(artist: dict, api_key: str, limit: int) -> list[dict]:
@@ -154,20 +155,34 @@ def fetch_top_albums(artist: dict, api_key: str, limit: int) -> list[dict]:
     ]
 
 
-def search_release_groups(title: str, artist_mbid: str) -> list[dict]:
-    query = (
-        f'releasegroup:"{escape_lucene_phrase(title)}" '
-        f"AND arid:{artist_mbid} AND primarytype:album"
-    )
-    try:
-        data = get_json(
-            "https://musicbrainz.org/ws/2/release-group/",
-            {"query": query, "fmt": "json", "limit": 5},
-        )
-        return data.get("release-groups", [])
-    finally:
-        # MusicBrainz allows an average of one request per second.
-        time.sleep(MUSICBRAINZ_DELAY_SECONDS)
+def fetch_artist_discography(artist_mbid: str) -> list[dict]:
+    """Browse canonical album release groups with a few paginated requests."""
+    release_groups = []
+    offset = 0
+    while True:
+        try:
+            data = get_json(
+                "https://musicbrainz.org/ws/2/release-group/",
+                {
+                    "artist": artist_mbid,
+                    "type": "album",
+                    "release-group-status": "website-default",
+                    "inc": "artist-credits",
+                    "fmt": "json",
+                    "limit": 100,
+                    "offset": offset,
+                },
+            )
+        finally:
+            # MusicBrainz allows an average of one request per second.
+            time.sleep(MUSICBRAINZ_DELAY_SECONDS)
+
+        batch = data.get("release-groups", [])
+        release_groups.extend(batch)
+        offset += len(batch)
+        total = int(data.get("release-group-count", len(release_groups)))
+        if not batch or offset >= total:
+            return release_groups
 
 
 def summarize(candidates: list[dict], artists_processed: list[str]) -> dict:
@@ -205,12 +220,12 @@ def save_manifest(path: Path, manifest: dict) -> None:
 
 def new_manifest(args: argparse.Namespace) -> dict:
     return {
-        "version": 1,
+        "version": 2,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "settings": {
             "artists_file": str(args.artists),
             "albums_per_artist": args.albums_per_artist,
-            "minimum_auto_accept_score": MIN_AUTO_ACCEPT_SCORE,
+            "matching_method": "artist_discography_exact_title",
         },
         "processed_artist_mbids": [],
         "artist_errors": [],
@@ -277,6 +292,7 @@ def main() -> int:
             top_albums = fetch_top_albums(
                 artist, api_key, args.albums_per_artist
             )
+            discography = fetch_artist_discography(artist_mbid)
         except Exception as error:
             manifest["artist_errors"].append(
                 {
@@ -301,8 +317,10 @@ def main() -> int:
                 "source_url": album["lastfm_url"],
             }
             try:
-                groups = search_release_groups(album["title"], artist_mbid)
-                candidate = {**base, **classify_match(album["title"], artist_mbid, groups)}
+                match = classify_discography_match(
+                    album["title"], artist_mbid, discography
+                )
+                candidate = {**base, **match}
             except Exception as error:
                 artist_had_error = True
                 candidate = {
