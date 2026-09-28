@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import sys
 import sqlite3
 from collections import Counter
 from pathlib import Path
@@ -226,6 +227,9 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+
     args = parse_args()
     if args.top_k < 1:
         raise SystemExit("--top-k must be at least 1")

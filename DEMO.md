@@ -1,0 +1,73 @@
+# V0.1 Demo Guide
+
+Target length: 3–5 minutes. Use `OK Computer` and `Homogenic` as the favorite
+albums and display three recommendations per tier.
+
+## Before the demo
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
+
+Confirm that album covers load and that `.env` contains `GEMINI_API_KEY` if the
+live **Why This?** generation will be shown. Do not display `.env` on screen.
+
+## Demo route
+
+1. **Problem — 20 seconds**
+   Explain that ordinary recommendation lists say what to play, but rarely show
+   where the connection comes from. This prototype exposes both the familiar
+   bridge and the new direction.
+
+2. **Taste Profile — 45 seconds**
+   Select `OK Computer` and `Homogenic`. Point out that the profile is built by
+   averaging their normalized album embeddings and separately displaying their
+   recurring community tags. The profile is a current-session summary, not a
+   permanent verdict about the listener.
+
+3. **Three distances — 90 seconds**
+   Set the result count to 3 and compare the tiers:
+
+   - Safe: `Dummy` retains 90s, electronic, and trip-hop signals.
+   - Explore: `Discovery` keeps electronic/electronica while adding dance,
+     French, and French house.
+   - Wildcard: `Untrue` keeps an alternative/electronic bridge while adding
+     2-step, ambient, atmospheric, and dubstep.
+
+   State clearly that Python rules assign these tiers. Gemini does not choose
+   or rank the albums.
+
+4. **Why This? — 60 seconds**
+   Return to Safe and open `Dummy`. Explain the visible pipeline:
+
+   `candidate + favorites → retrieve licensed review chunks → build context → Gemini → validate citations`
+
+   Show the explanation, limitations, and source section. Point out that source
+   URLs and IDs come from the application, not from the model.
+
+5. **Limitations — 30 seconds**
+   The catalogue contains 30 curated albums, licensed reviews are sparse,
+   artist input is not implemented, and the evaluation is qualitative. These
+   are explicit V0.1 boundaries rather than claims of production readiness.
+
+## If Gemini is unavailable
+
+The recommendation system still works. Show the bridge and new tags in the UI,
+then run this local retrieval command if evidence retrieval needs to be
+demonstrated without an LLM call:
+
+```powershell
+.\.venv\Scripts\python.exe rag.py `
+  --favorite "Homogenic" `
+  --candidate "Dummy" `
+  --top-k 2
+```
+
+This prints the exact RAG context and sources without using Gemini.
+
+## One-sentence architecture
+
+MusicBrainz, Cover Art Archive, Last.fm, and licensed CritiqueBrainz data are
+cleaned into SQLite; local embeddings and transparent rules retrieve and rank
+candidates; Gemini only explains retrieved evidence through validated
+structured output.

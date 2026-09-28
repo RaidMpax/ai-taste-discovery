@@ -77,6 +77,8 @@ three retrieved source IDs; source URLs remained application-owned data.
 - The UI passed default-state and four-favorite / eight-result tests with no
   Streamlit exceptions. The generated explanation state can be collapsed and
   cleared without another Gemini request.
+- Windows CLI output is forced to UTF-8; Chinese artist names and names such as
+  Björk now render without mojibake or `UnicodeEncodeError`.
 
 ## Bad cases and follow-ups
 
@@ -89,3 +91,4 @@ three retrieved source IDs; source URLs remained application-owned data.
 | Last.fm tag inide | Fixed: normalize to indie while retaining the raw tag |
 | Opaque Last.fm tag dabeat | Fixed: retain it in SQLite but exclude it from taste signals |
 | Embeddings recomputed for every CLI run | Fixed for the UI with `st.cache_resource`; the database modification time invalidates stale vectors |
+| Windows CLI crashed on non-GBK artist names | Fixed by configuring the recommendation, semantic-search, and RAG entry points for UTF-8 output |
