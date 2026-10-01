@@ -1457,9 +1457,10 @@ def main() -> None:
             behavior_persistent = True
         except (SupabaseBehaviorError, ValueError) as error:
             behavior_store = None
+            detail = str(error).strip() or type(error).__name__
             st.warning(
                 "匿名数据存储暂不可用；推荐仍可使用，本次反馈不会保存。"
-                f"（{type(error).__name__}）"
+                f"（{detail}）"
             )
     elif consent_given and behavior_mode == "session":
         st.info(
@@ -1589,9 +1590,10 @@ def main() -> None:
                     except (sqlite3.Error, SupabaseBehaviorError) as error:
                         behavior_persistent = False
                         profile_event_id = None
+                        detail = str(error).strip() or type(error).__name__
                         st.warning(
                             "无法保存本次专辑选择；推荐仍可使用，后续交互只暂存在本次访问。"
-                            f"（{type(error).__name__}）"
+                            f"（{detail}）"
                         )
             else:
                 profile_event_id = None
