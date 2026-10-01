@@ -485,19 +485,22 @@ possible exploration directions, evidence claims, and limitations.
 """.strip()
 
     client = _create_gemini_client(api_key)
+    response_format = {
+        "type": "text",
+        "mime_type": "application/json",
+        "schema": TASTE_ANALYSIS_SCHEMA,
+    }
     interaction = None
+    active_model = None
     last_transient_error = None
     for model_name in GEMINI_MODELS:
         try:
             interaction = client.interactions.create(
                 model=model_name,
                 input=prompt,
-                response_format={
-                    "type": "text",
-                    "mime_type": "application/json",
-                    "schema": TASTE_ANALYSIS_SCHEMA,
-                },
+                response_format=response_format,
             )
+            active_model = model_name
             break
         except Exception as error:
             error_text = str(error).casefold()
@@ -519,8 +522,32 @@ possible exploration directions, evidence claims, and limitations.
             "Please try again later."
         ) from last_transient_error
 
-    result = json.loads(interaction.output_text)
-    return validate_generated_result(result, allowed_source_ids)
+    try:
+        result = json.loads(interaction.output_text)
+        return validate_generated_result(result, allowed_source_ids)
+    except (json.JSONDecodeError, ValueError) as first_error:
+        repair_prompt = f"""
+The previous JSON draft failed validation and must be rewritten. Return only a
+new JSON object matching the schema. Do not reuse unsupported consensus wording,
+popularity claims, or generalizations about listeners or critics. Every claim
+must be grounded in the supplied album, year, tag, deterministic profile, or
+explicitly cited review evidence. If no licensed review evidence is available,
+set evidence to []. Keep limitations explicit and keep the analysis concise.
+
+{prompt}
+""".strip()
+        repaired_interaction = client.interactions.create(
+            model=active_model or GEMINI_MODELS[0],
+            input=repair_prompt,
+            response_format=response_format,
+        )
+        try:
+            repaired_result = json.loads(repaired_interaction.output_text)
+            return validate_generated_result(repaired_result, allowed_source_ids)
+        except (json.JSONDecodeError, ValueError) as second_error:
+            raise ValueError(
+                "Gemini failed structured/content validation after one repair attempt."
+            ) from second_error
 
 
 def validate_generated_result(
