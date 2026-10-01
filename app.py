@@ -5,6 +5,7 @@ from __future__ import annotations
 from concurrent.futures import ThreadPoolExecutor
 from html import escape
 import hashlib
+from json import JSONDecodeError
 import logging
 import os
 import sqlite3
@@ -698,6 +699,21 @@ def render_album_shelf(albums: list[dict]) -> None:
 def format_gemini_error(error: Exception) -> str:
     """Turn provider/network failures into safe, actionable UI copy."""
     message = str(error).casefold()
+    if isinstance(error, JSONDecodeError):
+        return (
+            "Gemini 返回的结构化内容无法解析，已安全跳过这次品味分析。"
+            "结构化品味档案和推荐仍可使用，可以稍后重试。"
+        )
+    if "unknown source ids" in message:
+        return (
+            "Gemini 返回了检索结果中不存在的引用，来源校验已拦截这次品味分析。"
+            "结构化品味档案和推荐仍可使用，可以稍后重试。"
+        )
+    if "unsupported consensus language" in message:
+        return (
+            "Gemini 使用了当前证据无法支持的概括性表述，内容校验已拦截这次品味分析。"
+            "结构化品味档案和推荐仍可使用，可以稍后重试。"
+        )
     if "winerror 10013" in message or "10013" in message:
         return (
             "当前运行环境的网络策略拒绝了 Gemini API 连接（WinError 10013）。"
@@ -713,6 +729,11 @@ def format_gemini_error(error: Exception) -> str:
         return "Gemini 免费额度或请求频率暂时受限。稍后可以重试；推荐仍可使用。"
     if "timeout" in message or "timed out" in message:
         return "连接 Gemini 超时。稍后重试即可；结构化品味档案和推荐仍可使用。"
+    if isinstance(error, ValueError):
+        return (
+            "Gemini 返回内容未通过结构化或来源校验，已安全跳过这次品味分析。"
+            "结构化品味档案和推荐仍可使用，可以稍后重试。"
+        )
     return (
         f"Gemini 暂时无法生成说明（{type(error).__name__}）。"
         "结构化品味档案和推荐仍可使用，可以稍后重试。"
@@ -1755,3 +1776,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
