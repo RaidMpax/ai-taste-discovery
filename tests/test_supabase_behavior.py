@@ -35,7 +35,7 @@ class SupabaseBehaviorStoreTests(unittest.TestCase):
             SupabaseBehaviorStore("https://example.supabase.co", " ")
 
     @patch("supabase_behavior.urlopen", return_value=FakeResponse())
-    def test_session_write_uses_upsert_and_server_side_key(self, mock_urlopen):
+    def test_session_write_uses_plain_insert_and_server_side_key(self, mock_urlopen):
         session_id = str(uuid4())
 
         self.store.create_session(session_id, "consent-test")
@@ -44,12 +44,12 @@ class SupabaseBehaviorStoreTests(unittest.TestCase):
         self.assertEqual(request.get_method(), "POST")
         self.assertEqual(
             request.full_url,
-            "https://example.supabase.co/rest/v1/sessions?on_conflict=session_id",
+            "https://example.supabase.co/rest/v1/sessions",
         )
         self.assertEqual(request.get_header("Apikey"), "sb_secret_test_value")
         self.assertEqual(
             request.get_header("Prefer"),
-            "resolution=ignore-duplicates,return=minimal",
+            "return=minimal",
         )
         self.assertEqual(
             json.loads(request.data),
@@ -59,6 +59,18 @@ class SupabaseBehaviorStoreTests(unittest.TestCase):
                 "app_version": "v2-beta",
             },
         )
+
+    @patch("supabase_behavior.urlopen")
+    def test_duplicate_session_is_treated_as_already_registered(self, mock_urlopen):
+        mock_urlopen.side_effect = HTTPError(
+            "https://example.supabase.co/rest/v1/sessions",
+            409,
+            "duplicate session",
+            None,
+            BytesIO(b"private database response"),
+        )
+
+        self.store.create_session(str(uuid4()))
 
     @patch("supabase_behavior.urlopen")
     def test_http_error_does_not_expose_response_or_secret(self, mock_urlopen):
