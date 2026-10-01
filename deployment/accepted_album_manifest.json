@@ -1,0 +1,2124 @@
+{
+  "albums": [
+    {
+      "release_group_mbid": "00054665-89fa-33d5-a8f0-1728ea8c32c3",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "016d0958-01da-4d16-8da1-8328f891a3a1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "017f2a37-a78f-3578-9611-fa40408e5d90",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "02a544b3-0459-42c7-bd9c-047162e7b67a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "02f9b57e-5b01-42f5-bd34-a6f0d2489ac0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "03381bd9-19b5-4240-b6dd-ea7e1a6b31fc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0441b1b2-de57-4a9a-b007-1f6e159921d5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "04e94ca1-0245-48b4-b2e9-0556f8cbad95",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "05c73df7-423f-4dab-b600-afdc7d453e4e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "05c8e133-ba85-48cc-82c3-afcf0cc9e9ff",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "064949d8-ab8f-43e7-b755-ece98dafc212",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0663bcbd-e202-4aeb-b003-6d49f0a4d152",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "06e1f743-b02e-4162-a9bb-d7cdb478a308",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "06e9ba8d-6920-3a47-aa3a-6fa63224ef3f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "06fda337-5c4b-42e0-a96c-a349c786965f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "07727bea-6c08-4eea-bb77-c55a6f3c1555",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "07ed12d0-57e2-4624-a3c0-37562c538319",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0837aca2-319e-3f2f-a2d3-c525802068d6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "088b3adf-bbda-488d-8b8d-f873093548a9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "08aa7a6c-3e43-4459-87b2-e47faf3a088a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "08e1a593-cbce-3943-8a90-79c4d8c2b693",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0a54ad88-dcc4-4099-abc4-24c7bb529aba",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0af7f21b-34f8-499e-af71-7ad34c05bf5d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0b232453-8666-361f-b1db-2578fc4a9f97",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0b38362a-654d-41f8-be7a-c97b71094d6b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0b6c2da8-ac60-4663-beae-bd3dc6dea94a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0b7306c9-16d4-434a-ad8d-890333359710",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0b8e14e1-d44d-3770-8617-5c6137a444a8",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0c308741-7b98-4a36-b44e-1ba437b4e2c4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0c482acd-35a2-466b-b833-ef5f2f1297d4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0c9900ce-bd21-4361-9f9a-d161a21dfd98",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0da340a0-6ad7-4fc2-a272-6f94393a7831",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0dcc84fb-c592-46e9-ba92-a52bb44dd553",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0dd6fad4-a0ad-4872-beb2-3e98e71ef186",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0e68df76-a5fc-4d70-9ff6-e71e2ad83330",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0ea78701-127c-3b47-8ade-1708108b0b97",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0f1b9e07-b38b-4bba-9794-55e0924d7177",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "0fa5e3d1-22b1-4232-adca-0ec05c4c69e7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1104c27c-31ad-4ea8-b86c-b780a339773d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "11a7c281-a260-4f77-a1d5-1ff2d4c917eb",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1250f621-64df-4b3a-ac75-fad7db1123f3",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1272d44e-9483-4e65-bf4c-57aa63d14d0a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1273cb92-8775-404b-bc1b-4381a8c6a5b1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "12d66726-482c-40ce-9336-44c34cebc07e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "12fab6b9-4eaf-33b0-963e-cae03ac332fe",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1339f18d-220a-4405-8ae9-e52993b1ef70",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "14165569-4114-43ca-b040-140898f5855d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1646286a-d0ad-4288-bfab-34b0fb7b22c1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1668c806-5c28-4655-89a2-f1f7bc786084",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "16cc9dfc-594d-3fb9-b789-3e1bfcb6f9f8",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "16ff7f10-0809-41f8-be5a-343103acb92a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "17a64abf-6d31-473f-a740-38ffa548f225",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "17d74d52-c92b-3b8d-9f87-218ab2d1c4a0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "18564a20-d557-4f7c-81e7-8d1d40a1be55",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "18cdc08c-03a1-4e55-9624-b7f9dbb968f5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "192a95dc-d993-4768-9f77-4496b6460400",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1a19e11b-106c-45fc-8452-387216ed18f7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1a272023-10d3-38ee-bab3-317b55fcc21d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1aa41b19-5a72-341b-bd91-4cf61d1dab6b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1ac986f6-8ae1-4e59-8946-320ed8f1ae23",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1b7a3352-b0a8-424b-979c-d27383d3b363",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1c1b50ec-828b-3d7c-9b1b-54cb1fe97d55",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1c288979-ce2f-4e4b-90e4-845908cf7ffc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1c4770b3-b7a3-4d44-a7a9-8e2dbb74b85a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1ce57f6a-62c8-4017-ad38-3339f542faae",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1e151a63-e906-4903-b108-b3ecf21218b4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1e9db573-5671-301f-87fc-846a605fe35b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1f0a3090-ae8c-4fbd-9b70-b4371961ef11",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1f0e58a9-4a63-3fb4-a95e-ec6feebeb571",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1f428f20-2d3b-4535-a11d-85d28aa37203",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1f75a8df-176c-3d23-8f1f-b0c8935682ec",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "1fd18f5b-9a92-41fd-a590-da6b5cc60d85",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2080236e-64c7-4a47-8d03-08c7aeba4f58",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "20aaac17-e4e8-373c-99cc-211321b82832",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "20b4c8b3-e922-44a3-90e8-fa00acad8ed4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "20bbd8b3-35fa-4a29-9a94-13f4f01bf9ca",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2115a6f9-9c00-4a96-90aa-8f13771845fb",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "217f8621-5905-48eb-a837-000aeb7b7500",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "21869386-169d-4f43-ae44-972e49f89ed1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2219f553-4557-46c6-8f44-117194a795f2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "22d131b0-4de5-4cd8-a07f-e30555769934",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "22e0eb99-d2a6-4a2a-bdc1-def28bbc1eb6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "22e24512-bb0c-4c93-b2b1-dbf6868b9965",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "22f502bb-631f-4b4c-8e53-c1b7cdf3c959",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "23a9b1c2-3dd1-408e-89cb-ca0b81429176",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "23f9bb2e-c6a9-40ec-9202-922220e5015e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "242741bf-182e-45d9-9276-5af8d1b31ad9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "24769a99-8189-3d8c-947e-dbc8574dad5c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "247ec1bd-06a6-4faa-af47-f64d7caa1f71",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "24d64f7e-3840-4345-9d64-826914a66afa",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "24fd0887-9e83-42e3-b27e-e7f89ead4c03",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "25bdfd28-72ca-3d1f-88fc-dcf67df91720",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2608483d-0c8e-48a7-a42f-139944fbfd8f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "271faeb3-fdd1-3ebb-80aa-97b3116e9341",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2792f195-0c21-4c87-95cc-15878467d3b9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "28298e2c-4d70-3eed-a0f5-a3280c662b3d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "28438e4f-3710-459f-a332-a1eba9dd1f26",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2894de99-aa85-490b-be38-5f5aaca034df",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "299a1b9f-7cdd-46da-a5ea-77571ce04009",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "29ab8602-82ee-392e-b75f-5f36a7d35625",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "29c86bed-ba04-414e-baf0-19718e7e5dbc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2ae2e504-7116-4b4f-b632-9748bb18ccd2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2b1d5578-60d7-4a6c-9cfb-fedf72924641",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2b837d13-b456-4c0c-98d6-afe4aeda417b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2c385052-5083-43a2-b1e5-36566d2ae3c0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2c5de955-68c8-426b-bcc4-31f71d192e18",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2c9d0799-ee08-4988-a096-689955210d22",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2d7c4c68-1e99-41b2-b200-5a6ae41a5a51",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2e3b231b-ab9f-4d85-950a-48708a1cc2fb",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2e52bd6a-53e6-325c-925b-19eaa449db44",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "2ed28096-25bd-450a-a340-f75f950bdb14",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "30e9785b-7b50-4d29-b3d1-96fb55e3397f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "32cb822c-a14e-49ce-a169-f209c5f31e0f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "33101a28-ae05-3a69-873c-684e336fe2df",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "331a7ba1-fae2-4881-b434-554f46c13746",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3344452a-3da9-4b4f-8954-ae23a86c2ecf",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "350340d1-0121-4881-a6fb-97801e64d261",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "359726a0-3d49-4a9a-8fba-4a92e1bfe38d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "35eae658-4243-4bf5-91d6-5a391bbb3699",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "360147b4-ca02-427d-b07a-a37b40084ec0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3607f069-61cb-4e4a-b450-863ad0cf7f95",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "364c7a46-1812-4a2b-b979-a6c6c992cef8",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3653ac94-589e-414c-82f4-c363b0559d29",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "36e5c63b-be92-4717-acfe-a70e58e448c8",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "36f4c763-a09f-4527-9bb3-ae425f8ee0aa",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "378fe5ec-3270-48d1-a91c-2cb58ba656c4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "38204997-b295-4d09-a946-f7e119725031",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3873f5a4-e3e2-3e88-ae7e-c2ea5de1a5ba",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "38b46e05-894f-432a-97cb-a3a1219c14bd",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "38d0e2a3-06a0-4c2e-ac5d-faf1b2d7e563",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3a86f3a6-2fa7-34b7-8ffc-6714cbbd46ac",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3ac5236a-3bd8-44c6-ab60-69b013594ae6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3b13fa4c-36b8-46b5-bfa1-b9345491565b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3bd19e28-698e-3b7e-a8ec-f872bf001651",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3c18308c-9072-4810-b26e-0c573e46fb07",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3c203b82-de6f-445f-91b4-fdf0da53baf0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3c687a27-af46-4d2d-8981-dc8dc8241af9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3cc55d86-0df6-4721-9502-ac0822935202",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3d3ff0b9-5858-33f3-9d67-8ba5977899a8",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3ec17787-1d35-4d05-ac06-5294c99a8d4e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "3f5eba8d-4dc1-4599-a936-21f501787f8e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "40ef5f61-a3f8-4624-834b-39290ee47ab2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "4114f899-a9d2-48a8-b597-8a5ca8bb6847",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "416bb5e5-c7d1-3977-8fd7-7c9daf6c2be6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "4174e53c-90e8-4630-993f-1f7466178398",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "41acc8d9-e4de-4191-a989-7c89faf93758",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "42352def-1aab-3000-b548-895ebd869cb6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "42d725fb-a8b7-388c-8866-3b02789af326",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "448bf766-1101-4554-9b23-2d3b254a984d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "45536412-c62c-34fc-9524-0bac1d2542c1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "45a68d94-6923-38c1-a6dd-4cfc1cdc193a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "45c6de75-bea5-4dd9-a912-55fb9497c3fc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "45f8261c-e781-4a8f-b1f6-ca6616bd1dfe",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "46482030-ef12-319c-9c5a-5d04c39d574b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "46b396ea-dee3-4c62-b8db-2bd84bc70b08",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "46dc2b09-a6b1-4271-bf1d-01f3b3b95c23",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "46feff2b-8218-3432-8a01-a6082b4c93d4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "47809021-4515-4215-beea-db3f5dfb6267",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "48117b90-a16e-34ca-a514-19c702df1158",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "48140466-cff6-3222-bd55-63c27e43190d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "4829e3a6-b240-4eec-b1a5-2f3da9686b6e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "485d3241-ef02-49a4-88df-a03eaa86d9cd",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "48e4a94a-7fe5-4764-8880-b23a91bd7ee3",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "494bf606-d2f7-36d0-8340-eadad8601d2b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "499c19c8-0dab-4824-884b-6191d145e95b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "4b16a1bc-8644-48ae-9b3e-8ae36aa30cfc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "4b721f14-89f3-42b1-a1cc-9662a601914e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "4c358d1f-aa05-443c-8fe8-4500d5c2b4c9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "4e323ee3-3ce6-4fd3-91ee-e87c20988f51",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "4ea0f788-5ee6-409b-9054-05b58ca97d25",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "4f52c1f5-ccc8-4ead-9197-436feac507b0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "503bb581-ecf1-4794-9746-aa896c3a89e3",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "50827cae-43e7-46f8-a724-f72c193d0165",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "50a42f98-c94f-4805-bbac-ec35a5b1d5ab",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "50f9a5ca-588c-459a-8a11-f51f73beea60",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "50fe703f-173e-496a-9155-b2a495d704e5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "521f21bc-6169-483e-98d5-48f4c108baf7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "529f87a1-1081-48a4-8ee1-3c08de229858",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "53dd291e-372f-4f76-844b-1b5b42df6832",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5413753c-9404-4cb7-af0c-f3957a91487d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "57561634-f7bb-4e27-aa14-16d0ff79a001",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5807cfc1-387e-4dd5-bfe9-b53d312c7e82",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "584fe437-9e6e-40f8-b61c-1f437139226b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "58afd5f5-a3cb-43c4-a0dc-fd15fbfe33bf",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "58c43a7b-cd9e-4bc3-b521-68b74de798ff",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5995738d-4b6f-4db6-847b-310a9dc67085",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "59eda79b-6975-490e-873e-12790e4bda01",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5acba13f-0e96-4119-856a-6cd561ccd694",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5bb501c6-2e78-393d-bcac-27d7d1b44a27",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5bed2109-60ce-4c13-804a-fc04946ba7f7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5c0e582c-c6e4-4125-9f94-1f9270b6d7fd",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5cbd9d7b-597a-3c5e-bfd1-c2b364215560",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5d4d0f2d-9be7-4922-bc9a-cbd2880b12c2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5d4f8f19-23cf-34cf-b225-8cd0339c37de",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5d6e21e1-deb5-428e-bb42-c2a567f3619b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5d78819e-18b5-4d1a-a286-d816ce868044",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5d9bd827-0d3f-45f9-aa04-62e5218c6ca8",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5e725997-55dc-4f9c-b8e6-7762f021ba17",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5eace9f1-f371-4557-8f98-f2d01e0a6638",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5fdd6ba8-83c1-3a87-b378-d5f61dec5ddd",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "5ff627e4-b8a0-43af-8ee2-4d84adf4541f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "60db66ba-34f8-4a1d-b91a-67e85cfcb269",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6181bd87-8df0-4c2b-8b6c-28fb336bc628",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6309c5f9-8700-44b8-b61f-20b888371047",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "631a2966-25f3-4bd5-b250-2e09b3c45d42",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "64749a80-1c91-4936-b984-ba3ef202b072",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "64b9807d-ed23-47a3-a388-41c82bfd8069",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "650abe5d-5766-4825-a49c-f68ae6405a26",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "65435725-fb6c-4a72-a239-3971e2254956",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "655bf671-0d66-4aab-ad15-39f8347908d8",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "65c2b18c-453b-4251-9899-3ee88176eeea",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "65f38054-d312-4e87-995f-5814247d1fd8",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "660fd111-0d68-4d0e-8b83-ff5ca450bfa3",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "668e80e0-b35e-4471-9788-0a3d797fe42c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "67727253-f1c0-4243-9270-f9f1401c3b8c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6842c81d-ea77-3dfd-abf7-4323add3f4d4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "68cd3faf-6df2-451f-8e19-395269159076",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "68d79778-aceb-486c-88a7-0abb3665344b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "68f8c63d-3e54-4f26-8ce3-41a7bc1ca7fd",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6ab2d1f5-1730-499d-a814-6fe6eb9ec1f0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6b620afe-09ed-4723-a511-4c3b18a55b21",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6bd70eee-bd46-4738-851a-f50c19d8d6db",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6c90cb91-e615-4545-854b-6d6f10c5cb6d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6c9ae3dd-32ad-472c-96be-69d0a3536261",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6c9c4985-3628-3070-b956-b538f30c9bea",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6e335887-60ba-38f0-95af-fae7774336bf",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6e924cee-9945-4a1b-b4c6-3445f846c01f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6f9f6899-c0d3-311d-ae87-a10ae6bc53a9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6fb46378-9cb7-4693-b76d-a62f2cc09214",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "6fe82196-df5d-4938-aa39-920df5b4517d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "70410894-5005-4fac-a254-c82912a069cc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "71641af7-d122-326a-b0bb-f76a8d09810c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "71c3eed6-466c-4aef-ad12-65a36d19467a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "72375978-a9a1-4254-b957-85565c716b7e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "723dcf4d-800e-3479-87fb-ba5b9594e375",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "72ff5e97-05c4-493a-8aea-3bad435a6fd0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "73b8f504-93e5-483d-918d-1006ca3a315c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "740deb04-b811-4a06-b8c5-3f36113dbb99",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7474e67b-55d6-4cf8-a8f2-c998b9067e58",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "75415453-4f60-47d2-82e9-7d2ff7820673",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "75c1375c-1311-4cd0-b5cd-182c42e357e7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "776a71f8-2071-3743-aab4-83436df1b366",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "778df416-4baa-49dc-82d6-ede642f5ddab",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "778e2320-736e-4634-ae65-354d408c40e9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "77cc6415-1abf-487a-a8b7-e56061cba518",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "78570bea-2a26-467c-a3db-c52723ceb394",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "798e5814-9f96-46b2-a72a-408d67267661",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7a360dbb-9773-4d5a-9a24-cce8203f1428",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7a7d42ce-73e2-433d-a774-148eb8727e0a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7b143940-bf87-4a9d-8748-f6430b6aa57b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7c27628e-ed9c-456e-8c2e-a009038f7fbd",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7c5bb286-ac24-443c-81cc-4f5f6261c343",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7c6de97d-bf6a-4793-82f5-f142baed33e6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7ccbf18c-541c-45d1-8cb6-8afffc9b8d9e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7d5a684e-73a3-325c-a59c-34c9a941d8d6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7e2a48d4-35d1-43b3-bd27-5cff0d633630",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7e48f018-b774-32e6-a68b-b42db04535c0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "7eaadc60-127b-4b87-81bf-ba294697e584",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8018fc24-6a55-45b0-8b34-19650522550a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "810272e0-aef1-3d85-b2d3-e512e87fc38c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "811ce8bf-30b5-478d-abbc-185acd6d3e0c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8152d854-3461-41d2-acb3-3c40a4a673c1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8183834a-6c8a-39ef-a7bc-a82f79b929e9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8216c4a1-367e-405e-8d67-9457f6e76c22",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8240b45e-5e5c-4c47-a96c-0a0d2c556c08",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "83920a38-e749-4bbf-a7f6-8aaf77cb9475",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "83a065ef-475e-4635-b263-6dccc563ada2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8409ea9b-5f9d-4954-88b7-a9ae77a1814c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "84444c7d-ef0e-433e-b649-72f71c054eb6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "84d79dbe-7ac1-3ebc-9b36-238ddfb8229c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8596171e-23b2-4bdd-8f1c-11960df0ecbe",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8691d12c-abd8-385c-b1eb-d841190124f7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "86fdc55b-464f-4f6a-bcf7-86acf2964e87",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "871503b4-da86-4c80-8371-58f6888f03a2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "87a6e8de-1604-4158-824d-9a4acaa0ec93",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "87ef0dea-df13-49ef-98e7-b2a9ddbdd005",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "882db6d8-e28b-46ba-8a30-277e86fbddf7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "88e46272-f172-42ad-ae4a-6df5dbfb5ae0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "88f4f8e5-ee88-4050-84ad-cf73f7c2b19a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8964ae5f-ecb7-4d9c-ba0b-94b5a5d48b5d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "89e62982-7ab4-488d-9223-3c42ada5c0ba",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8a01217e-6947-3927-a39b-6691104694f1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8b6120f2-ff54-4b7f-964f-0da436b089d2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8bddc517-1322-40a9-b33b-c65248b52b54",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8c471a20-f7fe-4ccd-bfd8-045cde85ad18",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8ccd818c-a4af-4365-a3d1-14c6f083e246",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8d121c9d-f67c-3bce-828d-1df52635b08e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8e8a1db7-1d43-44d3-9796-fd69f12730cb",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8f892c1b-0709-4cf4-9711-493892a9eb9b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "8fd54a87-a6df-4046-a9f6-7f2f171301ba",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "90718403-7634-3786-84bf-2053a7bd4f4c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "912ac95c-3a2f-45cd-a08d-9af5a4ef406d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "91ee3856-0ee6-467d-b01d-9d529affc9f4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "91f42713-b8e0-3a7b-981c-fddd20823d74",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "923db16c-6620-3e44-ba00-a20745c6a957",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "92b095c1-3bbf-456f-9425-2078ad4e9504",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9605c075-c64c-366b-ad7f-ec98523fc162",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "964773ee-faec-4c35-a8fb-b2ac15617d91",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "97ee3a0f-183b-4830-aa5c-45507a084d37",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9ac43ae5-c0de-42f6-8365-b68de4966833",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9ae7e7e9-ac40-4874-bd43-d77a9bb9b617",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9b426d58-c37e-4be7-a901-1c7ca085977f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9b64e8f7-2599-42ac-80a9-3d9abf07ae7f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9ba97882-489e-41c1-a0b4-a7c7749716e7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9bbc8220-9f72-4595-a0f7-55dfdbab569a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9c0498ff-d6b5-4eaf-90c8-88649d721e20",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9c710cb4-6b20-47d7-a31a-5adb064c6c6b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9ce4d1c9-31d4-410b-98cf-207b85086e89",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9d9b3ac3-e630-4644-92c7-fb14d4d68d86",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9dde8e62-7159-415f-9a54-74f170e2a4aa",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9e54b383-0428-4acb-b5e6-8e051d02fa75",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9e7a4cb0-cb33-431a-ae7f-4ff969388fb7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9eae5bc4-4c1c-4a6c-9aeb-145eb02f2a03",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9facb475-4c5f-369b-9b93-1280e6669090",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "9ff8a8fe-6aa7-473a-ae93-8488051e3f2d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a0087f36-55b1-4394-8708-58e6d248f46b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a014859d-a6ed-393c-bf77-f545d5a15b85",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a09cac39-38c3-4973-8302-7f8210dcbcc7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a0ad316d-89a2-4f49-b439-8296ca98be01",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a0d3725b-18cb-4189-b968-14bdf8948c04",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a0f0cb15-7873-44f4-a0d5-89f4f11e61fc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a100260d-0576-372f-a07b-4b22db1a77e2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a1ceb373-b802-4889-a20f-2039dab9c5ce",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a1ee0d2c-2c29-43d0-836f-53a26ff422dc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a2499c0a-6c87-413c-9f4f-f08a67ab4441",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a2ba3c58-0d5d-43b3-81aa-d0a72e9e262b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a32980ce-a8cd-4472-9e3c-0101236f21a1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a348ba2f-f8b3-4686-b928-e63d8d94d543",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a3734ef9-80a8-40e0-8718-9eb39860ff4a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a392a1a8-8d91-4a79-82a4-0f7e894eb435",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a4591f67-48d9-36ae-bc68-2deb954d0a15",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a4a3ea49-8ece-4f3b-8440-a300e482ff5c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a695e424-ab39-33e6-9fb9-8a5ef8282cb1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a77018ca-5db9-45ed-918a-a04a30e8136b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a903a977-5932-4cc2-a064-57a596658b3d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "a9c80acf-5017-4301-8da0-2d6dfb502400",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "aa0b4e86-358e-4c92-aecd-94f5f59233f7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "aa2f908a-5aba-40c1-a198-3d0ad4f43486",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "aa366795-92d7-4d67-91fa-6741f82a4858",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "aa997ea0-2936-40bd-884d-3af8a0e064dc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "aab57d48-aa8f-48ed-bba0-c8dc56aba8ab",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ab0e510a-a8de-3bd6-83cd-93d7716edd12",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ab1c1fd8-f769-4d78-90bc-4677f8ad8c22",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ab1db314-a2c4-4043-8937-4741ed3fc703",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ab570ccb-b06b-3746-8147-4903163ba895",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "abaa13d8-14ef-4d82-80d2-53ba2c0c9d38",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ac94c394-60af-44dd-be4e-8d8fae38ba74",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "acb83f7a-3d6e-45d1-aad9-345fb798675f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "accd791c-5948-4414-8ae2-16b71f487863",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ad1dd3b1-5e29-487c-9578-1cd619d6308d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ad20ce4b-6596-4335-b170-64452181fa1b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "add6cf16-f4c1-3d50-9b28-633b35ca8189",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ae1ff272-3682-4e39-8f9b-2a9eb30eddc3",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ae229bdd-2179-440c-bc78-acf0952914d4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ae268385-3eb9-45ea-8221-b5269750c8b0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ae655e0b-e6fd-4e5d-bc5f-72364d60c4f1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b002f5a0-5687-41b5-9042-e455489ca041",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b0864c80-2726-4761-bf66-a97610162a2c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b0b44108-b4d7-363a-9417-bfaaf0ce9f3f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b0bf2b77-b8cf-32f6-8893-9741d757b400",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b1392450-e666-3926-a536-22c65f834433",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b21b5309-90b0-4ddb-9ea1-0c7870b10341",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b2a6e057-087d-3ae5-a6e5-7f5fa39808ff",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b30447b9-8e32-4e98-a128-9c18d9378e8d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b3073a10-2d7c-484c-b387-e49ae629da3d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b3b5da6a-74e4-4478-8acf-bdcbcaa8f9df",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b3bbc65f-ab11-4620-938b-9b8c3ac05ad5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b3d96626-4d46-4012-b6cb-e8d8b192a4f1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b4c6beb0-f694-4ce3-b37f-a4bfb192df02",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b4de57ea-0970-4b54-9290-35b6d239ddaa",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b5779d28-c0a4-480c-9cfc-fb8944305f3e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b6923fdb-2f07-49f0-9adc-3dc2275af0da",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b7234418-f054-495d-9aa7-efcba9454b32",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b745c43d-3abf-48a3-8caf-81c25d40d100",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b7cf92f5-a814-4e4c-9906-97a2af67f357",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b812527c-30ac-4f38-82ce-85b971727248",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b88655ba-7469-48b8-a296-b9011ab73ef3",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "b93a7c47-a6d4-33f2-9034-53fdd991f4ba",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ba1d0c2a-bb07-38bc-835c-a880f76f1309",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bb3ec118-57df-4eb9-a8fe-a26a70a7dbe0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bb525db3-81e4-4c05-b529-23fa05f35c12",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bb623651-209f-406e-b13e-4b910ec632aa",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bc8868e9-dda3-477d-ab89-b62d82cd7ea7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bcdc25a0-7c27-4a77-80fa-f5feb8f49733",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bd62a5df-6643-3aef-b129-9d4e6e296022",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bd6cfcaf-605f-44ff-8d1f-52833306e30c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bdeb7a5c-c628-4346-b886-842fc86d7250",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "be1d9f08-297f-4832-99cc-015003e051ae",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bf89cc4c-ab8b-4283-8b6a-948a40d342cb",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bf97fd42-a269-4191-9942-c901c6efa34c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "bfffa46d-0192-4000-b0b8-4622492e550a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c0704c7d-dc5b-43cd-b372-8056a3bf7bb2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c1125856-5eaa-4e76-9f63-2fd1f72281a6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c1bb54cc-751d-300c-ba29-d7502d571c2d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c1be618a-18a0-4c40-8f85-0a9e0637a355",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c1f22e07-7bdf-4a4f-8b50-7747c1091ef6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c274479c-df3f-4566-b09f-04a82063219c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c358634d-b58d-4635-aca3-246cee2577f0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c3733436-fcba-3c08-b082-d548df5c5139",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c390b47b-71c0-461d-b563-e5344b4f84e5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c3b6435c-2698-4909-9879-d80439e180fe",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c418cb3c-047e-32c1-b899-54cbce4be8e8",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c51761fc-9f1b-486e-9ff2-74aafb5b70ea",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c57886d1-02eb-4345-b831-5137f8070620",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c6031a86-26ad-479c-8a42-3dea1b4d0408",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c60fcd45-9420-30aa-98e5-2bffb894021a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c6106d68-3fd7-4dc3-ad97-865e8a47f9b7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c65de046-7a48-4269-b4e5-4db0ed328f47",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c6c371d5-0214-4378-985b-1be9f9156b12",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c89e9cff-c0c9-4e34-95e7-185056956caf",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c8bea388-c195-4177-bf9b-7469f6e695a1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c9018967-1382-47e4-87ac-486a824cd81d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c91d9596-dfa8-482d-b3ab-706e937fd3ec",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c9752675-a342-4031-b1d9-3aad84a4a570",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "c9db1003-a83a-49b7-b04c-237e05260969",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ca06c853-e71c-4a73-ba5f-633442ec0b54",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ca6d37f2-b478-4317-b529-8f0ac0e351a9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cad0949d-e2cc-4794-b4f0-1439907c1cbe",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cb12f6df-8008-4fc6-a9e0-022413a8a8e3",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cb76227e-3ac0-3002-9a10-615a5b73cc59",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cb93e87f-5d21-3447-a6e8-22d44f9b0d7a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cbbe5df6-08b8-4181-8aae-461a6ae9790d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cbbf75b8-057d-4038-a43f-3167b7e8bc1e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cbf8fc77-e2f0-4e73-9740-19cd6c0624a4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ce85f83c-62d4-4605-88dc-7db15537f7e5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cebbae42-8612-4c33-9d1c-ac1319794ec4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cf2eaaeb-e472-3b2a-a643-a01efd24c4e5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cf688036-4ffa-36f5-ab81-9c7efecf63cd",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cf75fd5a-ca84-4371-94d7-27410360f06b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "cfc67890-7a0a-465a-b817-d506f57b9058",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d147e89b-90ca-35b6-9f7b-3e34b8edf63f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d20fb182-da98-47dc-91af-b55899a9eb6e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d28777fc-f135-3394-a033-eafb9ebcffb4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d2a139bb-26ec-4ee9-b277-ab5bcd0d1127",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d2b0e110-fe62-4c91-9504-5dbfbedf1374",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d2e4838d-90e1-471c-bda0-fd816dabb2d4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d35d2779-d4c7-4210-92fe-d0d65289adf4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d35ed94d-8134-40b3-989a-6d1c5af9657b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d53be2e5-fe7c-4681-85f3-960493aa02b5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d622ed70-ccc3-4658-8a0a-b7a2d577c28d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d705a3ed-be7a-459c-ac74-58cddaf98576",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d73daa13-b571-41dd-8dfd-740fde3fda7d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d87d8f5d-4d89-45e1-b86d-2f9241db0edc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d8a99910-33c2-481d-9b96-085ece5545f6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d8b9555e-9dc4-4e5c-b5b6-18a6bb7fbe03",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d8f742d1-0759-43f7-bf36-4e513df46e61",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d9103c72-3807-4378-9ce7-b6f3e8fdd547",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "d94ff8c3-bcf9-4ba9-90d8-74eac12b8e0c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "da216e7b-9ce3-4347-8f59-bc758dca2da1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "dab91701-347d-43ef-a7d6-8935c8c2e6f7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "dbe2ef7a-c16d-4469-ade6-57f49ff3b6e5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "dc396430-1e1c-4f0b-8b05-d69603d7fb12",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "dd2012b3-3a21-4150-aff1-fcff86b409c9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "dd5657d7-3286-4cb8-9006-a97df3e2b8d2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "de3537cf-8dac-475a-b456-42227e314d7e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "de63344e-b5eb-4e79-abe1-7c82f40801d9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "deca614f-7b89-4546-b77e-2dbeccfe0c75",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "dee9395f-96d0-4a36-bffb-4a1e6a172a74",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "df7081e0-aa0f-408a-9ec4-57ab52d79d50",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e0f6cb1b-acaa-44d5-904d-aad0bece9eaf",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e0fdb431-0109-420d-8a37-f99eaeb4d671",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e11aa3a6-9820-483c-98f8-603b5823178b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e1c47142-1cfb-4d7b-8593-82105eda6bff",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e1dd240c-7bf2-3216-82c2-5f2d5d7707a5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e20e0bc0-4660-461b-8ac7-14ad2459cda6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e248e931-c26c-4c94-aba2-2f89ce583901",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e279319c-2121-44c5-a93a-204492bfe7a6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e27e2c64-8e49-43d2-8468-c3b484cf11f0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e4174758-d333-4a8e-a31f-dd0edd51518e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e43d0cec-a73b-424e-a15c-25ea5e775f61",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e47e1a1f-5060-3ec2-9444-f93c2212ec49",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e4a67add-6aab-390c-bb82-53939fb9cd0a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e5c6c6d9-c473-42ad-b336-1584c48ee090",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e62dd650-9203-46cc-8d9e-9dcc4e12f136",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e6779ab2-1152-4688-aed9-788effce3488",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e6c9fd37-0211-48a2-8927-d7ef284218c4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e6f8d52b-3b24-4546-b86d-99d79b0df209",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e86d6219-f5a2-4edd-bf2b-3f9eab190ae0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e8e2d824-dd32-3b24-9c7c-24619fbe86a9",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e95de3f4-84db-4d24-8d06-fd970576a6ef",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "e992b449-141b-4aea-b07b-9b2a478a8570",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ea3f1c31-c376-4a6b-a022-0a0b7c5717a2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "eac07d92-86b1-4fa7-906d-ec3177f8ebc2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "eb143c5a-9a85-4bce-a78c-f7faf72c0169",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "eb655897-6cc5-3fc1-b9ed-5008eb80c682",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ebd19544-9af0-317a-a2d3-f0c57ddd79f7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ebe6e41d-3f9e-4633-b5b9-8752e31ceec7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ec84ab32-eb41-3d91-a099-7a01c72f21d2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ecd7a38f-4ffc-4489-903b-955fdd6dec0f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ed11d125-88e2-45ce-a540-eb2edc0eada6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "eda0f5d3-44eb-42cf-bcfd-5c9f93e05c7a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "edaa59f9-7474-4f2e-bb36-4f48d1514d6d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ee2d901b-5a23-4d45-82ce-4e245a5a3ac1",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "efea26d1-a016-30f6-b8e2-bc8c02336b0a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f060c8fd-bec9-426e-800e-8efc040a71e6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f1390eec-a192-4d96-9943-bbc42a819588",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f1ba2f4a-1c21-457b-85ff-a4c39f1f9ccd",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f1d08326-c23b-4b43-be3b-20b33ab10bf6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f2ce706f-f28d-4062-95f8-f0104efcea2e",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f3cc68be-95b8-4738-8496-fd83891bc635",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f455f658-dd55-4790-8cd3-99c7c273018a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f480ab60-a5c1-4472-8789-393d0b0e4a7a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f4ccbdf3-1d77-4f56-b77f-5d0f3888271c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f4e55ff9-2fe6-417c-a631-f4cf528edc61",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f5093c06-23e3-404f-aeaa-40f72885ee3a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f5bb4c2f-35ae-40dc-908e-0e92774b621f",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f5dd91f3-b96e-4cc6-95b4-df98486f251b",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f6a46f72-4ed2-4595-8698-045e334a6716",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f6a51281-56c4-3538-b915-65a9d4eb29b5",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f6b1b900-6108-32f0-abbd-2855af9151eb",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f7479a73-66a7-41be-9f77-9e70828a5809",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f795f30b-8054-4c1e-af64-dc468e3fd2dc",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f7c02dc1-24e2-3790-b454-d71335820c25",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f8f4167d-897c-4b25-a171-638374d1dfa4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f99a6b54-900b-4f17-bdcf-451639873b5d",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "f9aa9b53-2c89-4901-926e-e992f1e4d8c0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fa4bbf26-8f97-48d6-add2-4e7c028d39af",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fa566e7b-254a-4fab-8aa5-ebcb7592d7f2",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fb992c06-9807-4ffd-90d8-115db5d513f6",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fbdd1a42-b8fe-47a6-8bf4-927b61e567f0",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fc38cdba-ea52-328c-aa3d-41edf8811a0c",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fc97b087-221c-4ea4-9dd9-5277a52eb84a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fd817615-3d43-4f07-9509-d0a46b2bc278",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fda72ebb-16e5-4a19-8be5-8e41906e3c86",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fddedc4f-7a2e-3d7d-9ec5-1705c416f3f4",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "fe9bf6c3-dbe7-3170-baf4-ebe31d2b40d7",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ff49d7d5-9867-4309-8d5a-b534486ea575",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ff7b68e9-ba2f-4a11-8004-52f1f358856a",
+      "status": "accepted"
+    },
+    {
+      "release_group_mbid": "ffe90330-8efd-49ec-b3dd-5edf11348eea",
+      "status": "accepted"
+    }
+  ]
+}
