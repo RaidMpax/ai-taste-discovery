@@ -468,9 +468,13 @@ Write in clear Simplified Chinese; preserve album and tag names as given.
 Do not infer personality, identity, age, or life story. Do not recommend albums
 or assign Safe, Explore, or Wildcard tiers. Distinguish observed signals from
 interpretation, and lower certainty when the seed set or evidence is small.
-Treat each review as one review, not community consensus. Do not add musical
-facts absent from this context. If reviews are absent, rely only on the listed
-albums, years, tags, and deterministic profile signals. Keep each list concise.
+Do not claim what listeners, fans, or critics generally think, and do not make
+claims about popularity, influence, reputation, or consensus. Avoid these terms
+entirely: often, widely, commonly, 常被, 经常, 广泛, 普遍. Treat each review as
+one review, not community consensus. Do not add musical facts absent from this
+context. If reviews are absent, make every interpretation explicitly about the
+selected albums and listed tags; do not generalize beyond this small sample.
+Keep each list concise.
 Allowed review source IDs: {source_instruction}
 {evidence_instruction}
 
