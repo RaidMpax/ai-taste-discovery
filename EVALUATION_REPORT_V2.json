@@ -1,0 +1,730 @@
+{
+  "generated_at": "2026-09-29T22:19+08:00",
+  "catalogue_size": 530,
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "profile": {
+    "favorite_titles": [
+      "OK Computer"
+    ],
+    "aggregation_method": "mean_of_l2_normalized_seed_vectors_then_l2_normalize"
+  },
+  "settings": {
+    "per_tier": 3,
+    "baseline_result_limit": 9
+  },
+  "quality_labels_available": false,
+  "interpretation_limit": "These are ranking diagnostics, not evidence of user preference or recommendation accuracy. Review the listed albums manually and use Taste Battle feedback for future exploratory analysis.",
+  "tier_separation": {
+    "mean_embedding_similarity_by_tier": {
+      "Safe": 0.8307682673136393,
+      "Explore": 0.7550943891207377,
+      "Wildcard": 0.6275711456934611
+    },
+    "safe_ge_explore_ge_wildcard": true
+  },
+  "methods": {
+    "embedding_only": {
+      "definition": "Rank all non-seed albums by cosine similarity to the Taste Profile.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 8,
+        "top_primary_artist_share": 0.2222222222222222,
+        "mean_profile_similarity": 0.7865434885025024,
+        "mean_pairwise_cosine_distance": 0.2586316333876716
+      },
+      "overlap_with_embedding_only": 1.0,
+      "items": [
+        {
+          "release_group_mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+          "title": "Kid A",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.8973047733306885,
+          "embedding_similarity": 0.8973047733306885,
+          "bridge_similarity": 0.8973045945167542,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "experimental",
+            "rock"
+          ],
+          "new_tags": [
+            "ambient",
+            "experimental rock"
+          ]
+        },
+        {
+          "release_group_mbid": "6e335887-60ba-38f0-95af-fae7774336bf",
+          "title": "In Rainbows",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.8420059680938721,
+          "embedding_similarity": 0.8420059680938721,
+          "bridge_similarity": 0.8420059680938721,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "00s",
+            "best of 2007",
+            "indie"
+          ]
+        },
+        {
+          "release_group_mbid": "cbbe5df6-08b8-4181-8aae-461a6ae9790d",
+          "title": "The 1975",
+          "artists": [
+            "The 1975"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.7878159284591675,
+          "embedding_similarity": 0.7878159284591675,
+          "bridge_similarity": 0.7878159284591675,
+          "bridge_tags": [],
+          "new_tags": [
+            "best of 2013",
+            "indie pop",
+            "indie rock",
+            "indietronica",
+            "new wave",
+            "pop",
+            "pop rock",
+            "synthpop",
+            "vinyl"
+          ]
+        },
+        {
+          "release_group_mbid": "e43d0cec-a73b-424e-a15c-25ea5e775f61",
+          "title": "Suntub",
+          "artists": [
+            "ML Buch"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.767664909362793,
+          "embedding_similarity": 0.767664909362793,
+          "bridge_similarity": 0.767664909362793,
+          "bridge_tags": [
+            "experimental"
+          ],
+          "new_tags": [
+            "ambient",
+            "denmark",
+            "dream pop",
+            "indie rock",
+            "listen",
+            "neo-psychedelia",
+            "post-rock",
+            "slowcore"
+          ]
+        },
+        {
+          "release_group_mbid": "923db16c-6620-3e44-ba00-a20745c6a957",
+          "title": "無罪モラトリアム",
+          "artists": [
+            "椎名林檎"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.7623400092124939,
+          "embedding_similarity": 0.7623400092124939,
+          "bridge_similarity": 0.7623399496078491,
+          "bridge_tags": [
+            "90s",
+            "alternative rock",
+            "rock"
+          ],
+          "new_tags": [
+            "art pop",
+            "j-pop",
+            "j-rock",
+            "japanese",
+            "pop rock",
+            "record collection"
+          ]
+        },
+        {
+          "release_group_mbid": "89e62982-7ab4-488d-9223-3c42ada5c0ba",
+          "title": "FROOT",
+          "artists": [
+            "Marina and the Diamonds"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.760283887386322,
+          "embedding_similarity": 0.760283887386322,
+          "bridge_similarity": 0.7602839469909668,
+          "bridge_tags": [
+            "alternative"
+          ],
+          "new_tags": [
+            "2010s",
+            "disco",
+            "indie",
+            "indie pop",
+            "pop",
+            "pop rock",
+            "synth pop",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "1aa41b19-5a72-341b-bd91-4cf61d1dab6b",
+          "title": "Doolittle",
+          "artists": [
+            "Pixies"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.7575643062591553,
+          "embedding_similarity": 0.7575643062591553,
+          "bridge_similarity": 0.7575642466545105,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "rock"
+          ],
+          "new_tags": [
+            "4ad",
+            "80s",
+            "indie",
+            "indie rock",
+            "noise pop"
+          ]
+        },
+        {
+          "release_group_mbid": "e62dd650-9203-46cc-8d9e-9dcc4e12f136",
+          "title": "Wallsocket",
+          "artists": [
+            "underscores"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.7529940605163574,
+          "embedding_similarity": 0.7529940605163574,
+          "bridge_similarity": 0.7529940605163574,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "electropop",
+            "indie pop",
+            "indie rock",
+            "indietronica",
+            "pop"
+          ]
+        },
+        {
+          "release_group_mbid": "00054665-89fa-33d5-a8f0-1728ea8c32c3",
+          "title": "Homework",
+          "artists": [
+            "Daft Punk"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.7509175539016724,
+          "embedding_similarity": 0.7509175539016724,
+          "bridge_similarity": 0.7509174942970276,
+          "bridge_tags": [
+            "90s",
+            "electronic"
+          ],
+          "new_tags": [
+            "daft punk",
+            "dance",
+            "electronica",
+            "french",
+            "french house",
+            "house",
+            "techno"
+          ]
+        }
+      ]
+    },
+    "embedding_plus_tags": {
+      "definition": "Rank all non-seed albums by the existing Safe score: 0.70 × profile similarity + 0.20 × bridge similarity + 0.10 × tag familiarity.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 7,
+        "top_primary_artist_share": 0.2222222222222222,
+        "mean_profile_similarity": 0.7759306828180949,
+        "mean_pairwise_cosine_distance": 0.2884610378079944
+      },
+      "overlap_with_embedding_only": 0.5555555555555556,
+      "items": [
+        {
+          "release_group_mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+          "title": "Kid A",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.9075742602348327,
+          "embedding_similarity": 0.8973047733306885,
+          "bridge_similarity": 0.8973045945167542,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "experimental",
+            "rock"
+          ],
+          "new_tags": [
+            "ambient",
+            "experimental rock"
+          ]
+        },
+        {
+          "release_group_mbid": "6e335887-60ba-38f0-95af-fae7774336bf",
+          "title": "In Rainbows",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.8578053712844848,
+          "embedding_similarity": 0.8420059680938721,
+          "bridge_similarity": 0.8420059680938721,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "00s",
+            "best of 2007",
+            "indie"
+          ]
+        },
+        {
+          "release_group_mbid": "923db16c-6620-3e44-ba00-a20745c6a957",
+          "title": "無罪モラトリアム",
+          "artists": [
+            "椎名林檎"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.7861059963703155,
+          "embedding_similarity": 0.7623400092124939,
+          "bridge_similarity": 0.7623399496078491,
+          "bridge_tags": [
+            "90s",
+            "alternative rock",
+            "rock"
+          ],
+          "new_tags": [
+            "art pop",
+            "j-pop",
+            "j-rock",
+            "japanese",
+            "pop rock",
+            "record collection"
+          ]
+        },
+        {
+          "release_group_mbid": "1aa41b19-5a72-341b-bd91-4cf61d1dab6b",
+          "title": "Doolittle",
+          "artists": [
+            "Pixies"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.7818078637123108,
+          "embedding_similarity": 0.7575643062591553,
+          "bridge_similarity": 0.7575642466545105,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "rock"
+          ],
+          "new_tags": [
+            "4ad",
+            "80s",
+            "indie",
+            "indie rock",
+            "noise pop"
+          ]
+        },
+        {
+          "release_group_mbid": "e62dd650-9203-46cc-8d9e-9dcc4e12f136",
+          "title": "Wallsocket",
+          "artists": [
+            "underscores"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.7776946544647216,
+          "embedding_similarity": 0.7529940605163574,
+          "bridge_similarity": 0.7529940605163574,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "electropop",
+            "indie pop",
+            "indie rock",
+            "indietronica",
+            "pop"
+          ]
+        },
+        {
+          "release_group_mbid": "7d5a684e-73a3-325c-a59c-34c9a941d8d6",
+          "title": "Another Green World",
+          "artists": [
+            "Brian Eno"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.7731248140335082,
+          "embedding_similarity": 0.7479164600372314,
+          "bridge_similarity": 0.7479164600372314,
+          "bridge_tags": [
+            "art rock",
+            "electronic",
+            "experimental",
+            "rock"
+          ],
+          "new_tags": [
+            "70s",
+            "ambient",
+            "atmospheric",
+            "brian eno",
+            "experimental rock"
+          ]
+        },
+        {
+          "release_group_mbid": "efea26d1-a016-30f6-b8e2-bc8c02336b0a",
+          "title": "Is This It",
+          "artists": [
+            "The Strokes"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.7708409905433655,
+          "embedding_similarity": 0.745378851890564,
+          "bridge_similarity": 0.7453789710998535,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "rock"
+          ],
+          "new_tags": [
+            "00s",
+            "garage rock",
+            "garage rock revival",
+            "indie",
+            "indie rock"
+          ]
+        },
+        {
+          "release_group_mbid": "810272e0-aef1-3d85-b2d3-e512e87fc38c",
+          "title": "Homogenic",
+          "artists": [
+            "Björk"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.7697620749473572,
+          "embedding_similarity": 0.7441800832748413,
+          "bridge_similarity": 0.7441800832748413,
+          "bridge_tags": [
+            "90s",
+            "alternative",
+            "electronic",
+            "experimental"
+          ],
+          "new_tags": [
+            "art pop",
+            "electronica",
+            "trip-hop"
+          ]
+        },
+        {
+          "release_group_mbid": "59eda79b-6975-490e-873e-12790e4bda01",
+          "title": "fishmonger",
+          "artists": [
+            "underscores"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.7603224694728851,
+          "embedding_similarity": 0.7336916327476501,
+          "bridge_similarity": 0.7336916327476501,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "emo rock",
+            "hyperpop",
+            "indie pop",
+            "indie rock",
+            "pop"
+          ]
+        }
+      ]
+    },
+    "full_ranking": {
+      "definition": "Use the current Safe / Explore / Wildcard eligibility rules and tier-specific score; show up to the requested limit per tier.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 8,
+        "top_primary_artist_share": 0.2222222222222222,
+        "mean_profile_similarity": 0.737811267375946,
+        "mean_pairwise_cosine_distance": 0.33269601232475704
+      },
+      "overlap_with_embedding_only": 0.5555555555555556,
+      "items": [
+        {
+          "release_group_mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+          "title": "Kid A",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": "Safe",
+          "rank": 1,
+          "ranking_score": 0.9075742602348327,
+          "embedding_similarity": 0.8973047733306885,
+          "bridge_similarity": 0.8973045945167542,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "experimental",
+            "rock"
+          ],
+          "new_tags": [
+            "ambient",
+            "experimental rock"
+          ]
+        },
+        {
+          "release_group_mbid": "6e335887-60ba-38f0-95af-fae7774336bf",
+          "title": "In Rainbows",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": "Safe",
+          "rank": 2,
+          "ranking_score": 0.8578053712844848,
+          "embedding_similarity": 0.8420059680938721,
+          "bridge_similarity": 0.8420059680938721,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "00s",
+            "best of 2007",
+            "indie"
+          ]
+        },
+        {
+          "release_group_mbid": "e62dd650-9203-46cc-8d9e-9dcc4e12f136",
+          "title": "Wallsocket",
+          "artists": [
+            "underscores"
+          ],
+          "tier": "Safe",
+          "rank": 3,
+          "ranking_score": 0.7776946544647216,
+          "embedding_similarity": 0.7529940605163574,
+          "bridge_similarity": 0.7529940605163574,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "electropop",
+            "indie pop",
+            "indie rock",
+            "indietronica",
+            "pop"
+          ]
+        },
+        {
+          "release_group_mbid": "923db16c-6620-3e44-ba00-a20745c6a957",
+          "title": "無罪モラトリアム",
+          "artists": [
+            "椎名林檎"
+          ],
+          "tier": "Explore",
+          "rank": 1,
+          "ranking_score": 0.8192549949884415,
+          "embedding_similarity": 0.7623400092124939,
+          "bridge_similarity": 0.7623399496078491,
+          "bridge_tags": [
+            "90s",
+            "alternative rock",
+            "rock"
+          ],
+          "new_tags": [
+            "art pop",
+            "j-pop",
+            "j-rock",
+            "japanese",
+            "pop rock",
+            "record collection"
+          ]
+        },
+        {
+          "release_group_mbid": "1aa41b19-5a72-341b-bd91-4cf61d1dab6b",
+          "title": "Doolittle",
+          "artists": [
+            "Pixies"
+          ],
+          "tier": "Explore",
+          "rank": 2,
+          "ranking_score": 0.8144232177734375,
+          "embedding_similarity": 0.7575643062591553,
+          "bridge_similarity": 0.7575642466545105,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "rock"
+          ],
+          "new_tags": [
+            "4ad",
+            "80s",
+            "indie",
+            "indie rock",
+            "noise pop"
+          ]
+        },
+        {
+          "release_group_mbid": "efea26d1-a016-30f6-b8e2-bc8c02336b0a",
+          "title": "Is This It",
+          "artists": [
+            "The Strokes"
+          ],
+          "tier": "Explore",
+          "rank": 3,
+          "ranking_score": 0.8052841627597809,
+          "embedding_similarity": 0.745378851890564,
+          "bridge_similarity": 0.7453789710998535,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "rock"
+          ],
+          "new_tags": [
+            "00s",
+            "garage rock",
+            "garage rock revival",
+            "indie",
+            "indie rock"
+          ]
+        },
+        {
+          "release_group_mbid": "9eae5bc4-4c1c-4a6c-9aeb-145eb02f2a03",
+          "title": "All Born Screaming",
+          "artists": [
+            "St. Vincent"
+          ],
+          "tier": "Wildcard",
+          "rank": 1,
+          "ranking_score": 0.6419465988874435,
+          "embedding_similarity": 0.6129769682884216,
+          "bridge_similarity": 0.6129770874977112,
+          "bridge_tags": [
+            "alternative rock",
+            "art rock",
+            "rock"
+          ],
+          "new_tags": [
+            "art pop",
+            "glam rock",
+            "indie rock",
+            "industrial rock",
+            "neo-psychedelia",
+            "progressive rock"
+          ]
+        },
+        {
+          "release_group_mbid": "9d9b3ac3-e630-4644-92c7-fb14d4d68d86",
+          "title": "Ultraviolence",
+          "artists": [
+            "Lana Del Rey"
+          ],
+          "tier": "Wildcard",
+          "rank": 2,
+          "ranking_score": 0.5619450430075327,
+          "embedding_similarity": 0.6351895332336426,
+          "bridge_similarity": 0.635189414024353,
+          "bridge_tags": [
+            "alternative",
+            "rock"
+          ],
+          "new_tags": [
+            "art pop",
+            "best of 2014",
+            "chamber pop",
+            "dream pop",
+            "epic",
+            "indie",
+            "psychedelic rock"
+          ]
+        },
+        {
+          "release_group_mbid": "c6106d68-3fd7-4dc3-ad97-865e8a47f9b7",
+          "title": "Hypnos",
+          "artists": [
+            "Ravyn Lenae"
+          ],
+          "tier": "Wildcard",
+          "rank": 3,
+          "ranking_score": 0.5618486801783243,
+          "embedding_similarity": 0.6345469355583191,
+          "bridge_similarity": 0.6345468759536743,
+          "bridge_tags": [
+            "alternative",
+            "electronic"
+          ],
+          "new_tags": [
+            "alternative rnb",
+            "contemporary rnb",
+            "downtempo",
+            "neo-soul",
+            "rhythm and blues",
+            "rnb",
+            "soul"
+          ]
+        }
+      ]
+    }
+  }
+}

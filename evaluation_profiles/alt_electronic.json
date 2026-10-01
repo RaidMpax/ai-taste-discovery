@@ -1,0 +1,722 @@
+{
+  "generated_at": "2026-09-29T23:48+08:00",
+  "catalogue_size": 530,
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "profile": {
+    "favorite_titles": [
+      "OK Computer",
+      "Homogenic",
+      "Untrue"
+    ],
+    "aggregation_method": "mean_of_l2_normalized_seed_vectors_then_l2_normalize"
+  },
+  "settings": {
+    "per_tier": 3,
+    "baseline_result_limit": 9
+  },
+  "quality_labels_available": false,
+  "interpretation_limit": "These are ranking diagnostics, not evidence of user preference or recommendation accuracy. Review the listed albums manually and use Taste Battle feedback for future exploratory analysis.",
+  "tier_separation": {
+    "mean_embedding_similarity_by_tier": {
+      "Safe": 0.8302148977915446,
+      "Explore": 0.8022659023602804,
+      "Wildcard": 0.6895575324694315
+    },
+    "safe_ge_explore_ge_wildcard": true
+  },
+  "methods": {
+    "embedding_only": {
+      "definition": "Rank all non-seed albums by cosine similarity to the Taste Profile.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 8,
+        "top_primary_artist_share": 0.2222222222222222,
+        "mean_profile_similarity": 0.8194579482078552,
+        "mean_pairwise_cosine_distance": 0.28959617846541935
+      },
+      "overlap_with_embedding_only": 1.0,
+      "items": [
+        {
+          "release_group_mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+          "title": "Kid A",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.8495289087295532,
+          "embedding_similarity": 0.8495289087295532,
+          "bridge_similarity": 0.8973045945167542,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "experimental",
+            "rock"
+          ],
+          "new_tags": [
+            "experimental rock"
+          ]
+        },
+        {
+          "release_group_mbid": "b2a6e057-087d-3ae5-a6e5-7f5fa39808ff",
+          "title": "Post",
+          "artists": [
+            "Björk"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.8279149532318115,
+          "embedding_similarity": 0.8279149532318115,
+          "bridge_similarity": 0.842373788356781,
+          "bridge_tags": [
+            "90s",
+            "alternative",
+            "art pop",
+            "electronic",
+            "experimental",
+            "trip-hop"
+          ],
+          "new_tags": [
+            "female vocalists",
+            "icelandic"
+          ]
+        },
+        {
+          "release_group_mbid": "48140466-cff6-3222-bd55-63c27e43190d",
+          "title": "Dummy",
+          "artists": [
+            "Portishead"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.8275582194328308,
+          "embedding_similarity": 0.8275582194328308,
+          "bridge_similarity": 0.7545604109764099,
+          "bridge_tags": [
+            "90s",
+            "electronic",
+            "trip-hop"
+          ],
+          "new_tags": [
+            "acid jazz",
+            "chillout",
+            "downtempo",
+            "female vocalists"
+          ]
+        },
+        {
+          "release_group_mbid": "e43d0cec-a73b-424e-a15c-25ea5e775f61",
+          "title": "Suntub",
+          "artists": [
+            "ML Buch"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.8137738108634949,
+          "embedding_similarity": 0.8137738108634949,
+          "bridge_similarity": 0.767664909362793,
+          "bridge_tags": [
+            "experimental"
+          ],
+          "new_tags": [
+            "denmark",
+            "dream pop",
+            "indie rock",
+            "listen",
+            "neo-psychedelia",
+            "post-rock",
+            "slowcore"
+          ]
+        },
+        {
+          "release_group_mbid": "271faeb3-fdd1-3ebb-80aa-97b3116e9341",
+          "title": "Vespertine",
+          "artists": [
+            "Björk"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.813200831413269,
+          "embedding_similarity": 0.813200831413269,
+          "bridge_similarity": 0.8376809358596802,
+          "bridge_tags": [
+            "alternative",
+            "art pop",
+            "electronic",
+            "electronica",
+            "experimental"
+          ],
+          "new_tags": [
+            "00s",
+            "ambient pop",
+            "glitch pop"
+          ]
+        },
+        {
+          "release_group_mbid": "6842c81d-ea77-3dfd-abf7-4323add3f4d4",
+          "title": "Selected Ambient Works 85–92",
+          "artists": [
+            "Aphex Twin"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.812195360660553,
+          "embedding_similarity": 0.812195360660553,
+          "bridge_similarity": 0.7389965057373047,
+          "bridge_tags": [
+            "90s",
+            "electronic",
+            "electronica",
+            "experimental"
+          ],
+          "new_tags": [
+            "ambient techno",
+            "chillout",
+            "idm",
+            "techno"
+          ]
+        },
+        {
+          "release_group_mbid": "1c288979-ce2f-4e4b-90e4-845908cf7ffc",
+          "title": "Kindred",
+          "artists": [
+            "Burial"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.8107134103775024,
+          "embedding_similarity": 0.8107134103775024,
+          "bridge_similarity": 0.8375380635261536,
+          "bridge_tags": [
+            "ambient",
+            "dubstep",
+            "electronic",
+            "future garage"
+          ],
+          "new_tags": [
+            "best of 2012",
+            "chillout",
+            "drone",
+            "yes"
+          ]
+        },
+        {
+          "release_group_mbid": "ed11d125-88e2-45ce-a540-eb2edc0eada6",
+          "title": "Good Lies",
+          "artists": [
+            "Overmono"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.8106038570404053,
+          "embedding_similarity": 0.8106038570404053,
+          "bridge_similarity": 0.7709270119667053,
+          "bridge_tags": [
+            "ambient",
+            "electronic",
+            "uk garage"
+          ],
+          "new_tags": [
+            "breakbeat",
+            "garage",
+            "hardcore",
+            "techno",
+            "trance",
+            "united kingdom"
+          ]
+        },
+        {
+          "release_group_mbid": "364c7a46-1812-4a2b-b979-a6c6c992cef8",
+          "title": "Three",
+          "artists": [
+            "Four Tet"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.8096321821212769,
+          "embedding_similarity": 0.8096321821212769,
+          "bridge_similarity": 0.7242735624313354,
+          "bridge_tags": [
+            "ambient",
+            "electronic"
+          ],
+          "new_tags": [
+            "chillout",
+            "downtempo",
+            "folktronica",
+            "house",
+            "instrumental",
+            "london",
+            "microhouse"
+          ]
+        }
+      ]
+    },
+    "embedding_plus_tags": {
+      "definition": "Rank all non-seed albums by the existing Safe score: 0.70 × profile similarity + 0.20 × bridge similarity + 0.10 × tag familiarity.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 7,
+        "top_primary_artist_share": 0.2222222222222222,
+        "mean_profile_similarity": 0.8163262340757582,
+        "mean_pairwise_cosine_distance": 0.3041071891784668
+      },
+      "overlap_with_embedding_only": 0.7777777777777778,
+      "items": [
+        {
+          "release_group_mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+          "title": "Kid A",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.874131155014038,
+          "embedding_similarity": 0.8495289087295532,
+          "bridge_similarity": 0.8973045945167542,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "experimental",
+            "rock"
+          ],
+          "new_tags": [
+            "experimental rock"
+          ]
+        },
+        {
+          "release_group_mbid": "b2a6e057-087d-3ae5-a6e5-7f5fa39808ff",
+          "title": "Post",
+          "artists": [
+            "Björk"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.8480152249336242,
+          "embedding_similarity": 0.8279149532318115,
+          "bridge_similarity": 0.842373788356781,
+          "bridge_tags": [
+            "90s",
+            "alternative",
+            "art pop",
+            "electronic",
+            "experimental",
+            "trip-hop"
+          ],
+          "new_tags": [
+            "female vocalists",
+            "icelandic"
+          ]
+        },
+        {
+          "release_group_mbid": "271faeb3-fdd1-3ebb-80aa-97b3116e9341",
+          "title": "Vespertine",
+          "artists": [
+            "Björk"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.8367767691612243,
+          "embedding_similarity": 0.813200831413269,
+          "bridge_similarity": 0.8376809358596802,
+          "bridge_tags": [
+            "alternative",
+            "art pop",
+            "electronic",
+            "electronica",
+            "experimental"
+          ],
+          "new_tags": [
+            "00s",
+            "ambient pop",
+            "glitch pop"
+          ]
+        },
+        {
+          "release_group_mbid": "1c288979-ce2f-4e4b-90e4-845908cf7ffc",
+          "title": "Kindred",
+          "artists": [
+            "Burial"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.8350069999694824,
+          "embedding_similarity": 0.8107134103775024,
+          "bridge_similarity": 0.8375380635261536,
+          "bridge_tags": [
+            "ambient",
+            "dubstep",
+            "electronic",
+            "future garage"
+          ],
+          "new_tags": [
+            "best of 2012",
+            "chillout",
+            "drone",
+            "yes"
+          ]
+        },
+        {
+          "release_group_mbid": "48140466-cff6-3222-bd55-63c27e43190d",
+          "title": "Dummy",
+          "artists": [
+            "Portishead"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.8302028357982635,
+          "embedding_similarity": 0.8275582194328308,
+          "bridge_similarity": 0.7545604109764099,
+          "bridge_tags": [
+            "90s",
+            "electronic",
+            "trip-hop"
+          ],
+          "new_tags": [
+            "acid jazz",
+            "chillout",
+            "downtempo",
+            "female vocalists"
+          ]
+        },
+        {
+          "release_group_mbid": "6e335887-60ba-38f0-95af-fae7774336bf",
+          "title": "In Rainbows",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.8245897829532624,
+          "embedding_similarity": 0.794555127620697,
+          "bridge_similarity": 0.8420059680938721,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "00s",
+            "best of 2007",
+            "indie"
+          ]
+        },
+        {
+          "release_group_mbid": "ed11d125-88e2-45ce-a540-eb2edc0eada6",
+          "title": "Good Lies",
+          "artists": [
+            "Overmono"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.8216081023216247,
+          "embedding_similarity": 0.8106038570404053,
+          "bridge_similarity": 0.7709270119667053,
+          "bridge_tags": [
+            "ambient",
+            "electronic",
+            "uk garage"
+          ],
+          "new_tags": [
+            "breakbeat",
+            "garage",
+            "hardcore",
+            "techno",
+            "trance",
+            "united kingdom"
+          ]
+        },
+        {
+          "release_group_mbid": "6842c81d-ea77-3dfd-abf7-4323add3f4d4",
+          "title": "Selected Ambient Works 85–92",
+          "artists": [
+            "Aphex Twin"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.816336053609848,
+          "embedding_similarity": 0.812195360660553,
+          "bridge_similarity": 0.7389965057373047,
+          "bridge_tags": [
+            "90s",
+            "electronic",
+            "electronica",
+            "experimental"
+          ],
+          "new_tags": [
+            "ambient techno",
+            "chillout",
+            "idm",
+            "techno"
+          ]
+        },
+        {
+          "release_group_mbid": "e62dd650-9203-46cc-8d9e-9dcc4e12f136",
+          "title": "Wallsocket",
+          "artists": [
+            "underscores"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.8110646188259124,
+          "embedding_similarity": 0.8006654381752014,
+          "bridge_similarity": 0.7529940605163574,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "electropop",
+            "indie pop",
+            "indie rock",
+            "indietronica",
+            "pop"
+          ]
+        }
+      ]
+    },
+    "full_ranking": {
+      "definition": "Use the current Safe / Explore / Wildcard eligibility rules and tier-specific score; show up to the requested limit per tier.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 8,
+        "top_primary_artist_share": 0.2222222222222222,
+        "mean_profile_similarity": 0.7740127775404189,
+        "mean_pairwise_cosine_distance": 0.3580603185627196
+      },
+      "overlap_with_embedding_only": 0.4444444444444444,
+      "items": [
+        {
+          "release_group_mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+          "title": "Kid A",
+          "artists": [
+            "Radiohead"
+          ],
+          "tier": "Safe",
+          "rank": 1,
+          "ranking_score": 0.874131155014038,
+          "embedding_similarity": 0.8495289087295532,
+          "bridge_similarity": 0.8973045945167542,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "art rock",
+            "electronic",
+            "experimental",
+            "rock"
+          ],
+          "new_tags": [
+            "experimental rock"
+          ]
+        },
+        {
+          "release_group_mbid": "b2a6e057-087d-3ae5-a6e5-7f5fa39808ff",
+          "title": "Post",
+          "artists": [
+            "Björk"
+          ],
+          "tier": "Safe",
+          "rank": 2,
+          "ranking_score": 0.8480152249336242,
+          "embedding_similarity": 0.8279149532318115,
+          "bridge_similarity": 0.842373788356781,
+          "bridge_tags": [
+            "90s",
+            "alternative",
+            "art pop",
+            "electronic",
+            "experimental",
+            "trip-hop"
+          ],
+          "new_tags": [
+            "female vocalists",
+            "icelandic"
+          ]
+        },
+        {
+          "release_group_mbid": "271faeb3-fdd1-3ebb-80aa-97b3116e9341",
+          "title": "Vespertine",
+          "artists": [
+            "Björk"
+          ],
+          "tier": "Safe",
+          "rank": 3,
+          "ranking_score": 0.8367767691612243,
+          "embedding_similarity": 0.813200831413269,
+          "bridge_similarity": 0.8376809358596802,
+          "bridge_tags": [
+            "alternative",
+            "art pop",
+            "electronic",
+            "electronica",
+            "experimental"
+          ],
+          "new_tags": [
+            "00s",
+            "ambient pop",
+            "glitch pop"
+          ]
+        },
+        {
+          "release_group_mbid": "ed11d125-88e2-45ce-a540-eb2edc0eada6",
+          "title": "Good Lies",
+          "artists": [
+            "Overmono"
+          ],
+          "tier": "Explore",
+          "rank": 1,
+          "ranking_score": 0.847517523765564,
+          "embedding_similarity": 0.8106038570404053,
+          "bridge_similarity": 0.7709270119667053,
+          "bridge_tags": [
+            "ambient",
+            "electronic",
+            "uk garage"
+          ],
+          "new_tags": [
+            "breakbeat",
+            "garage",
+            "hardcore",
+            "techno",
+            "trance",
+            "united kingdom"
+          ]
+        },
+        {
+          "release_group_mbid": "00054665-89fa-33d5-a8f0-1728ea8c32c3",
+          "title": "Homework",
+          "artists": [
+            "Daft Punk"
+          ],
+          "tier": "Explore",
+          "rank": 2,
+          "ranking_score": 0.8299824541807175,
+          "embedding_similarity": 0.7982717156410217,
+          "bridge_similarity": 0.7171650528907776,
+          "bridge_tags": [
+            "90s",
+            "electronic",
+            "electronica"
+          ],
+          "new_tags": [
+            "daft punk",
+            "dance",
+            "french",
+            "french house",
+            "house",
+            "techno"
+          ]
+        },
+        {
+          "release_group_mbid": "02f9b57e-5b01-42f5-bd34-a6f0d2489ac0",
+          "title": "Powders",
+          "artists": [
+            "Eartheater"
+          ],
+          "tier": "Explore",
+          "rank": 3,
+          "ranking_score": 0.8187237882614136,
+          "embedding_similarity": 0.7979221343994141,
+          "bridge_similarity": 0.6680830717086792,
+          "bridge_tags": [
+            "art pop",
+            "electronic",
+            "trip-hop"
+          ],
+          "new_tags": [
+            "alternative pop",
+            "alternative rnb",
+            "folktronica",
+            "psychedelic folk",
+            "uk bass"
+          ]
+        },
+        {
+          "release_group_mbid": "33101a28-ae05-3a69-873c-684e336fe2df",
+          "title": "Trans Europa Express",
+          "artists": [
+            "Kraftwerk"
+          ],
+          "tier": "Wildcard",
+          "rank": 1,
+          "ranking_score": 0.6575773239135743,
+          "embedding_similarity": 0.6826263666152954,
+          "bridge_similarity": 0.6941449642181396,
+          "bridge_tags": [
+            "electronic",
+            "electronica",
+            "experimental"
+          ],
+          "new_tags": [
+            "70s",
+            "german",
+            "kraftwerk",
+            "krautrock",
+            "progressive electronic",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "08e1a593-cbce-3943-8a90-79c4d8c2b693",
+          "title": "It’s Blitz!",
+          "artists": [
+            "Yeah Yeah Yeahs"
+          ],
+          "tier": "Wildcard",
+          "rank": 2,
+          "ranking_score": 0.6542197704315186,
+          "embedding_similarity": 0.6938262581825256,
+          "bridge_similarity": 0.6941503286361694,
+          "bridge_tags": [
+            "alternative",
+            "alternative rock",
+            "electronic",
+            "rock"
+          ],
+          "new_tags": [
+            "best of 2009",
+            "female vocalists",
+            "indie rock",
+            "new wave",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "cb93e87f-5d21-3447-a6e8-22d44f9b0d7a",
+          "title": "Ray of Light",
+          "artists": [
+            "Madonna"
+          ],
+          "tier": "Wildcard",
+          "rank": 3,
+          "ranking_score": 0.6531217008829117,
+          "embedding_similarity": 0.6922199726104736,
+          "bridge_similarity": 0.690639317035675,
+          "bridge_tags": [
+            "90s",
+            "art pop",
+            "electronic",
+            "trip-hop"
+          ],
+          "new_tags": [
+            "dance",
+            "downtempo",
+            "madonna",
+            "pop"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "overrides": [
+    {
+      "requested_artist": "Isabella Lovestory",
+      "requested_title": "Vanity",
+      "release_group_mbid": "7ccbf18c-541c-45d1-8cb6-8afffc9b8d9e",
+      "canonical_title": "Vanity",
+      "canonical_year": 2025,
+      "primary_type": "Album",
+      "reason": "Editorial replacement: Amor Intro is a track, while Vanity is a verified album release group."
+    },
+    {
+      "requested_artist": "Miley Cyrus",
+      "requested_title": "Plastic Hearts",
+      "release_group_mbid": "0663bcbd-e202-4aeb-b003-6d49f0a4d152",
+      "canonical_title": "Plastic Hearts",
+      "canonical_year": 2020,
+      "primary_type": "Album",
+      "reason": "Reviewed exact album; automatic browse result was incomplete."
+    },
+    {
+      "requested_artist": "Miley Cyrus",
+      "requested_title": "Something Beautiful",
+      "release_group_mbid": "a2ba3c58-0d5d-43b3-81aa-d0a72e9e262b",
+      "canonical_title": "Something Beautiful",
+      "canonical_year": 2025,
+      "primary_type": "Album",
+      "reason": "Reviewed exact album; automatic browse result was incomplete."
+    },
+    {
+      "requested_artist": "LOONA",
+      "requested_title": "[X X]",
+      "release_group_mbid": "5e725997-55dc-4f9c-b8e6-7762f021ba17",
+      "canonical_title": "[+ +]",
+      "canonical_year": 2018,
+      "primary_type": "EP",
+      "reason": "MusicBrainz groups the 2019 [x x] repackage under the 2018 [+ +] release group."
+    },
+    {
+      "requested_artist": "Kraftwerk",
+      "requested_title": "The Man-Machine",
+      "release_group_mbid": "d147e89b-90ca-35b6-9f7b-3e34b8edf63f",
+      "canonical_title": "Die Mensch·Maschine",
+      "canonical_year": 1978,
+      "primary_type": "Album",
+      "reason": "English display title maps to the canonical German release-group title."
+    },
+    {
+      "requested_artist": "Ryuichi Sakamoto",
+      "requested_title": "Thousand Knives of Ryuichi Sakamoto",
+      "release_group_mbid": "e47e1a1f-5060-3ec2-9444-f93c2212ec49",
+      "canonical_title": "千のナイフ",
+      "canonical_year": 1978,
+      "primary_type": "Album",
+      "reason": "English release title maps to the canonical Japanese release-group title."
+    },
+    {
+      "requested_artist": "CA7RIEL & Paco Amoroso",
+      "requested_title": "BAÑO MARÍA",
+      "release_group_mbid": "4c358d1f-aa05-443c-8fe8-4500d5c2b4c9",
+      "artist_credit_mbids": [
+        "a5aa915d-1696-4387-8b1b-58425539942a",
+        "d069bf52-d213-49ac-8f9c-31841405bc9d"
+      ],
+      "canonical_title": "Baño María",
+      "canonical_year": 2024,
+      "primary_type": "Album",
+      "reason": "Reviewed exact joint-artist album; capitalization differs."
+    },
+    {
+      "requested_artist": "梅艷芳",
+      "requested_title": "似水流年",
+      "release_group_mbid": "8d121c9d-f67c-3bce-828d-1df52635b08e",
+      "canonical_title": "梅艷芳",
+      "canonical_year": 1985,
+      "primary_type": "Album",
+      "reason": "The original 1985 release is titled after the artist; later reissues use 似水流年."
+    },
+    {
+      "requested_artist": "Elephant Gym",
+      "requested_title": "Underwater",
+      "release_group_mbid": "14165569-4114-43ca-b040-140898f5855d",
+      "canonical_title": "水底",
+      "canonical_year": 2018,
+      "primary_type": "Album",
+      "reason": "English release title maps to the canonical Chinese release-group title."
+    },
+    {
+      "requested_artist": "Fiona Apple",
+      "requested_title": "When the Pawn…",
+      "release_group_mbid": "3d3ff0b9-5858-33f3-9d67-8ba5977899a8",
+      "canonical_title": "When the Pawn Hits the Conflicts He Thinks Like a King What He Knows Throws the Blows When He Goes to the Fight and He'll Win the Whole Thing 'fore He Enters the Ring There's No Body to Batter When Your Mind Is Your Might So When You Go Solo, You Hold Your Own Hand and Remember That Depth Is the Greatest of Heights and If You Know Where You Stand, Then You Know Where to Land and If You Fall It Won't Matter, 'cause You'll Know That You're Right",
+      "canonical_year": 1999,
+      "primary_type": "Album",
+      "reason": "The editorial title is the conventional abbreviation of MusicBrainz's full canonical title."
+    },
+    {
+      "requested_artist": "David Bowie",
+      "requested_title": "Blackstar",
+      "release_group_mbid": "1fd18f5b-9a92-41fd-a590-da6b5cc60d85",
+      "canonical_title": "★",
+      "canonical_year": 2016,
+      "primary_type": "Album",
+      "reason": "Blackstar is the spoken/display alias of the canonical star-symbol title."
+    },
+    {
+      "requested_artist": "Prince",
+      "requested_title": "Sign o' the Times",
+      "release_group_mbid": "90718403-7634-3786-84bf-2053a7bd4f4c",
+      "canonical_title": "Sign “☮︎” the Times",
+      "canonical_year": 1987,
+      "primary_type": "Album",
+      "reason": "Conventional ASCII title maps to the canonical symbol-styled album title; verified not to be the single."
+    },
+    {
+      "requested_artist": "ARTMS",
+      "requested_title": "<Club Icarus>",
+      "release_group_mbid": "46b396ea-dee3-4c62-b8db-2bd84bc70b08",
+      "canonical_title": "<Club Icarus>",
+      "canonical_year": 2025,
+      "primary_type": "EP",
+      "reason": "Reviewed exact release group; editorial type should be EP."
+    },
+    {
+      "requested_artist": "Red Velvet",
+      "requested_title": "The ReVe Festival: Finale",
+      "release_group_mbid": "2b1d5578-60d7-4a6c-9cfb-fedf72924641",
+      "canonical_title": "The ReVe Festival: Finale",
+      "canonical_year": 2019,
+      "primary_type": "Album",
+      "secondary_types": ["Compilation"],
+      "reason": "Reviewed exact repackage; MusicBrainz models it as Album + Compilation."
+    },
+    {
+      "requested_artist": "COBRAH",
+      "requested_title": "SUCCUBUS",
+      "release_group_mbid": "58c43a7b-cd9e-4bc3-b521-68b74de798ff",
+      "canonical_title": "SUCCUBUS",
+      "canonical_year": 2023,
+      "primary_type": "Album",
+      "reason": "Reviewed exact release group; MusicBrainz models this seven-track project as Album."
+    },
+    {
+      "requested_artist": "Kim Petras",
+      "requested_title": "Clarity",
+      "release_group_mbid": "dbe2ef7a-c16d-4469-ade6-57f49ff3b6e5",
+      "canonical_title": "Clarity",
+      "canonical_year": 2019,
+      "primary_type": "Album",
+      "secondary_types": ["Mixtape/Street"],
+      "reason": "Reviewed album-length release group rather than the title-track single."
+    },
+    {
+      "requested_artist": "That Kid",
+      "requested_title": "Superstar",
+      "release_group_mbid": "cb12f6df-8008-4fc6-a9e0-022413a8a8e3",
+      "canonical_title": "Superstar",
+      "canonical_year": 2022,
+      "primary_type": "Album",
+      "secondary_types": ["Mixtape/Street"],
+      "reason": "Reviewed exact project; editorial year 2024 was incorrect."
+    },
+    {
+      "requested_artist": "Kraftwerk",
+      "requested_title": "Trans-Europe Express",
+      "release_group_mbid": "33101a28-ae05-3a69-873c-684e336fe2df",
+      "canonical_title": "Trans Europa Express",
+      "canonical_year": 1977,
+      "primary_type": "Album",
+      "reason": "English display title maps to the canonical German release-group title."
+    },
+    {
+      "requested_artist": "Madvillain",
+      "requested_title": "Madvillainy",
+      "release_group_mbid": "ab570ccb-b06b-3746-8147-4903163ba895",
+      "canonical_title": "Madvillainy",
+      "canonical_year": 2002,
+      "primary_type": "Album",
+      "reason": "Reviewed exact album; MusicBrainz first-release metadata predates the widely cited 2004 commercial release."
+    },
+    {
+      "requested_artist": "Feid",
+      "requested_title": "FERXXOCALIPSIS",
+      "release_group_mbid": "2080236e-64c7-4a47-8d03-08c7aeba4f58",
+      "canonical_title": "FERXXOCALIPSIS",
+      "canonical_year": 2023,
+      "primary_type": "Album",
+      "reason": "Reviewed exact release group; MusicBrainz models the project as Album."
+    }
+  ]
+}

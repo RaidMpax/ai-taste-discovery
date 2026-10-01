@@ -1,8 +1,16 @@
 # AI Taste Discovery
 
-An educational V0.1 music recommendation project. The product models a
-listener's current taste, suggests Safe / Explore / Wildcard discoveries, and
-explains each suggestion with retrieved source evidence.
+An educational music-discovery project preparing for a V2 friends-and-family
+Beta. It models a listener's current taste, suggests Safe / Explore / Wildcard
+albums, and explains each suggestion using retrieved evidence.
+
+The current catalogue contains 530 accepted albums. V2 also includes an
+optional Gemini Taste Analysis, anonymous feedback, Taste Battle, and offline
+ranking diagnostics. The earlier V1 friends-and-family demo is live at
+https://ai-taste-discovery-irdp3eamhnzuofrm7tbkqr.streamlit.app/. The V2
+candidate in this branch has not yet been published to that hosted app. The
+public catalogue snapshot excludes Last.fm-derived tags and CritiqueBrainz
+reviews; see `DEPLOYMENT_READINESS.md` for the current release status.
 
 ## Quick start
 
@@ -14,37 +22,73 @@ python -m venv .venv
 Copy-Item .env.example .env
 ```
 
-Open `.env` and add `LASTFM_API_KEY` before importing data. Add
-`GEMINI_API_KEY` only if you want to generate **Why This?** explanations.
-MusicBrainz, Cover Art Archive, and CritiqueBrainz do not require API keys for
-this prototype. Never commit the local `.env` file.
+Add `GEMINI_API_KEY` to `.env` only if you want Taste Analysis or **Why This?**
+generation. MusicBrainz tags are the active/default tag source and need no API
+key. `LASTFM_API_KEY` is optional; if present, ingestion also retains Last.fm
+tags as candidate data, but the app does not need the key or call Last.fm.
+Cover Art Archive and CritiqueBrainz do not require API keys for this prototype.
+Never commit `.env` or `.streamlit/secrets.toml`.
 
-Build the local catalogue and start the app:
+Start the app:
 
 ```powershell
-.\.venv\Scripts\python.exe ingest.py
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-`ingest.py` creates `taste.db` and its tables automatically from `schema.sql`.
+If no local database is configured, the app downloads the pinned
+MusicBrainz-only catalogue snapshot from the GitHub Release and verifies its
+SHA-256 before using it. SQLite files are intentionally Git-ignored. Set
+`AI_TASTE_DATABASE_PATH` as an environment variable to use an existing local or
+host-mounted database instead.
+
+The ingestion and deployment-export scripts are for the curator workspace and
+require the accepted album manifest, which is not distributed with the public
+demo. The public app does not need a fresh API import to start.
+
+In the curator workspace, a deployment preview can be rebuilt with:
+
+```powershell
+.\.venv\Scripts\python.exe prepare_deployment_catalog.py
+```
+
+This writes `deployment/catalog_musicbrainz_only.db` from the accepted manifest
+without making API requests. It exports MusicBrainz tags only, omits reviews
+pending attribution/reuse review, and contains no user behavior rows. The
+verified snapshot is also available as a [GitHub Release asset](https://github.com/RaidMpax/ai-taste-discovery/releases/download/catalogue-musicbrainz-2026-10-01/catalog_musicbrainz_only.db).
+The app uses an existing local `AI_TASTE_DATABASE_PATH` first; if that file is
+missing, it downloads the pinned public snapshot and verifies its SHA-256 before
+using it. The database remains Git-ignored and is not committed to the repo.
+
 The first semantic search or app start downloads the local FastEmbed model, so
 it can take longer than later runs.
 
-## V0.1 boundaries and known limitations
+## Current Beta boundaries and known limitations
 
 - Input is by album, not artist. Artist metadata is stored, but artist-based
   selection and profiles are deferred.
-- The catalogue is a curated 30-album sample, so recommendations only rank
-  albums inside that small collection.
+- The catalogue is a curated set of 530 albums, so recommendations only
+  rank albums inside that collection.
 - CritiqueBrainz coverage is sparse because only reviews with a declared
   license are stored. When candidate review evidence is missing, the system
   falls back to structured metadata and tags and states that limitation.
-- Favorites and the generated Taste Profile live only in the current
-  Streamlit session; there is no account or persistent user-profile system.
+- There is no account system. The app offers an explicit opt-in before it
+  records a random session ID, selected albums, recommendation lists, feedback,
+  or Taste Battle choices. The Supabase schema is ready, but the V2 app and its
+  secrets have not yet been deployed, so remote event collection has not
+  started. Set `AI_TASTE_BEHAVIOR_STORAGE = "supabase"` and the Supabase
+  secrets in Streamlit Community Cloud to retain these events for analysis.
+  The setup is documented in
+  [docs/SUPABASE_BEHAVIOR_SETUP.md](docs/SUPABASE_BEHAVIOR_SETUP.md).
 - Recommendations still work without Gemini. Explanation generation depends
   on the Gemini API and can be unavailable or rate-limited on the free tier.
-- Evaluation is a small qualitative regression set, not a recommendation
-  quality benchmark.
+- Offline ablation metrics describe list properties; they are not a
+  recommendation quality benchmark without real preference labels.
+
+In local persistent mode, anonymous behavior records are stored in `taste.db`.
+In session mode, interaction state stays in the current Streamlit session and
+is not written to a database. Supabase mode writes opt-in analytics to a
+separate Postgres database; these events are not used to train a
+recommendation model.
 
 ## Day 1: data feasibility
 
@@ -74,7 +118,7 @@ The sample can be changed in `test_albums.json`. Matching is intentionally
 visible: inspect MusicBrainz's returned title, artist, score, MBID, and year in
 the generated report before trusting the other source checks.
 
-See [PROJECT.md](PROJECT.md) for the deliberately narrow V0.1 scope.
+See [PROJECT.md](PROJECT.md) for the product goal and current release boundary.
 
 ## Day 2: SQLite data model
 
@@ -92,11 +136,16 @@ Day 2 includes:
 
 ## Day 3: data ingestion
 
-`ingest.py` reads the confirmed release-group MBIDs in `test_albums.json`,
-fetches the four external sources, and writes the cleaned catalogue to the
-local SQLite database.
+`ingest.py` reads the accepted release-group MBIDs in
+`album_match_manifest.json`, fetches MusicBrainz metadata/tags, Cover Art
+Archive covers, and CritiqueBrainz reviews, and writes the cleaned catalogue to
+SQLite. It can optionally fetch Last.fm tags when an API key is available. The
+original 30-album V1 sample is retained in historical files; V2 has 530
+accepted albums.
 
-Put the Last.fm key in a local `.env` file (which Git ignores):
+To retain Last.fm candidate tags, put its key in the local `.env` file (Git
+ignores it). This is optional; without a key the MusicBrainz-based import still
+continues:
 
 ```text
 LASTFM_API_KEY=your-key
@@ -114,11 +163,12 @@ of inserting duplicates. A failed child-source request preserves previously
 stored tags or cover data. Only CritiqueBrainz reviews with a non-empty license
 are stored.
 
-The current 30-album catalogue produced 30 artists, 30 albums, 30 artist
-credits, 292 Last.fm tags, and 18 licensed CritiqueBrainz reviews. The pipeline
-first uses the review list to discover IDs, then fetches fuller review records
-so that license information is validated before a review is stored. Use
-`--offset` and `--limit` to import or retry a selected batch.
+The current selected catalogue has 530 albums, 286 linked artists, 5,139
+MusicBrainz tag rows, 4,834 retained Last.fm candidate-tag rows, and 126
+licensed reviews across 107 albums. The pipeline first uses the review list to
+discover IDs, then fetches fuller review records so that a declared license is
+present before a review is stored. Use `--offset` and `--limit` to import or
+retry a selected batch.
 
 ## Day 4: minimal semantic retrieval
 
@@ -142,10 +192,12 @@ Run a top-k search using an album already in the catalogue:
 ```
 
 Each album is represented by one document containing its title, artists,
-release year, and deduplicated normalized tags. FastEmbed runs the multilingual
-MiniLM model locally and NumPy calculates cosine similarity directly. Reviews
-remain a separate corpus for the later RAG stage so uneven review coverage does
-not distort album-to-album comparisons.
+release year, and deduplicated normalized MusicBrainz tags/genres by default.
+The loader has an explicit `tag_source="lastfm"` option for comparison, but does
+not silently mix providers. FastEmbed runs the multilingual MiniLM model locally
+and NumPy calculates cosine similarity directly. Reviews remain a separate
+corpus for the later RAG stage so uneven review coverage does not distort
+album-to-album comparisons.
 
 Top-k always returns the least-distant candidates even when none is genuinely
 close. Catalogue coverage and supporting evidence must therefore be checked
@@ -211,12 +263,16 @@ Start the local app:
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Choose one to four favorite albums, select up to eight results per tier, and
-inspect the Safe / Explore / Wildcard recommendations. Generate `Why This?`
-only for the items you want to explain. Explanation requests use
-`GEMINI_API_KEY` from the local `.env`; album and review retrieval remains local
-and sources are shown separately from model output.
+Choose one to ten favorite albums and confirm them to build a Taste Profile;
+the selected covers appear in a horizontal shelf. Browse Safe / Explore /
+Wildcard recommendations or switch to a finite Taste Battle that produces a
+winner. Generate `Why This?` only for the items you want to explain. Explanation requests use
+`GEMINI_API_KEY` from the environment, local `.env`, or Streamlit secrets; album
+and review retrieval remains local and sources are shown separately from model
+output.
 
-The UI caches the local embedding models and vectors until `taste.db` changes.
-Recommendation tiers remain deterministic Python rules; Gemini only turns the
-retrieved evidence into a structured explanation.
+The UI caches local embedding models and vectors for the app process. This
+avoids invalidating the cache when anonymous behavior rows are written to the
+same SQLite file. Restart Streamlit after changing the catalogue. Recommendation
+tiers remain deterministic Python rules; Gemini only turns retrieved evidence
+into a structured explanation.

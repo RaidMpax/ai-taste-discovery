@@ -3,6 +3,7 @@ __pycache__/
 .venv/
 venv/
 .env
+.streamlit/secrets.toml
 .DS_Store
 .pytest_cache/
 .cache/
@@ -10,4 +11,19 @@ venv/
 *.db-journal
 *.db-wal
 *.db-shm
+experiments/tag_source_ab_test/musicbrainz_tag_migration_cache.json
+experiments/tag_source_ab_test/musicbrainz_tag_migration_report.json
 ingestion_report.json
+
+# Generated catalogue snapshots and provider-response caches stay local.
+catalog_manifest.json
+album_match_manifest.json
+ingestion_report_v2.json
+ingestion_retry_manifest_v2.json
+ingestion_retry_report_v2.json
+ingestion_smoke_report.json
+experiments/tag_source_ab_test/tag_source_data.json
+experiments/tag_source_ab_test/api_cache.json
+experiments/tag_source_ab_test/recommendation_impact.json
+experiments/tag_source_ab_test/sample_albums.json
+experiments/tag_source_ab_test/RESULTS.md

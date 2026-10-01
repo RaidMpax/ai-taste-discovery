@@ -15,10 +15,17 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+from behavior import initialize_database
+
 
 ROOT = Path(__file__).parent
-DEFAULT_INPUT = ROOT / "test_albums.json"
-DEFAULT_DATABASE = ROOT / "taste.db"
+DEFAULT_INPUT = ROOT / "album_match_manifest.json"
+_database_override = os.getenv("AI_TASTE_DATABASE_PATH", "").strip()
+DEFAULT_DATABASE = (
+    Path(_database_override).expanduser()
+    if _database_override
+    else ROOT / "taste.db"
+)
 DEFAULT_REPORT = ROOT / "ingestion_report.json"
 SCHEMA_PATH = ROOT / "schema.sql"
 
@@ -46,11 +53,14 @@ def read_local_api_key(env_path: Path) -> str | None:
     return None
 
 
-def get_lastfm_api_key() -> str:
-    """Resolve the key from the process, local .env, or an interactive prompt."""
+def get_lastfm_api_key(required: bool = True) -> str | None:
+    """Resolve the optional tag-source key without making it a pipeline blocker."""
     key = os.getenv("LASTFM_API_KEY") or read_local_api_key(ROOT / ".env")
     if key:
         return key
+
+    if not required:
+        return None
 
     if not sys.stdin.isatty():
         raise SystemExit(
@@ -102,16 +112,61 @@ def error_message(error: Exception) -> str:
     return str(error)
 
 
+def load_seeds(input_path: Path) -> list[dict]:
+    """Load either the V2 matching manifest or the legacy seed-list format."""
+    data = json.loads(input_path.read_text(encoding="utf-8"))
+    if isinstance(data, list):
+        seeds = data
+    elif isinstance(data, dict) and isinstance(data.get("albums"), list):
+        seeds = [
+            {
+                "artist": album["requested_artist"],
+                "album": album["requested_title"],
+                "release_group_mbid": album["release_group_mbid"],
+            }
+            for album in data["albums"]
+            if album.get("status") == "accepted"
+        ]
+        expected = data.get("summary", {}).get("album_statuses", {}).get("accepted")
+        if expected is not None and len(seeds) != expected:
+            raise ValueError("manifest accepted-album count does not match its summary")
+    else:
+        raise ValueError("input must be a seed list or an album matching manifest")
+
+    required = {"artist", "album", "release_group_mbid"}
+    for index, seed in enumerate(seeds, start=1):
+        missing = required - seed.keys()
+        if missing:
+            raise ValueError(f"seed {index} is missing fields: {sorted(missing)}")
+    if len({seed["release_group_mbid"] for seed in seeds}) != len(seeds):
+        raise ValueError("input contains duplicate release-group MBIDs")
+    return seeds
+
+
+def get_musicbrainz_json(url: str, params: dict) -> dict:
+    """Retry a MusicBrainz request while preserving its one-request/second limit."""
+    attempts = 3
+    for attempt in range(attempts):
+        try:
+            return get_json(url, params, retries=0)
+        except HTTPError as error:
+            if error.code not in {429, 500, 502, 503, 504} or attempt == attempts - 1:
+                raise
+        except (URLError, TimeoutError, ConnectionError):
+            if attempt == attempts - 1:
+                raise
+        finally:
+            # Each attempt, including retries, gets its own conservative gap.
+            time.sleep(MUSICBRAINZ_DELAY_SECONDS)
+    raise RuntimeError("MusicBrainz request retries exhausted")
+
+
 def fetch_musicbrainz(release_group_mbid: str) -> dict:
-    """Fetch canonical album metadata by confirmed release-group MBID."""
-    try:
-        data = get_json(
-            f"https://musicbrainz.org/ws/2/release-group/{release_group_mbid}",
-            {"inc": "artist-credits", "fmt": "json"},
-        )
-    finally:
-        # MusicBrainz requires clients to remain at or below one request/second.
-        time.sleep(MUSICBRAINZ_DELAY_SECONDS)
+    """Fetch canonical metadata and release-group tags by confirmed MBID."""
+    data = get_musicbrainz_json(
+        f"https://musicbrainz.org/ws/2/release-group/{release_group_mbid}",
+        {"inc": "artist-credits+tags+genres", "fmt": "json"},
+    )
 
     if data.get("id") != release_group_mbid:
         raise ValueError("MusicBrainz returned an unexpected release-group MBID")
@@ -140,6 +195,9 @@ def fetch_musicbrainz(release_group_mbid: str) -> dict:
         "title": data.get("title"),
         "release_year": int(year_text) if year_text.isdigit() else None,
         "artists": credits,
+        "tags": extract_musicbrainz_tags(
+            data.get("tags", []), data.get("genres", [])
+        ),
     }
 
 
@@ -167,6 +225,40 @@ def fetch_cover(release_group_mbid: str) -> dict:
 def normalize_tag(raw_tag: str) -> str:
     normalized = " ".join(raw_tag.strip().lower().split())
     return TAG_ALIASES.get(normalized, normalized)
+
+
+def extract_musicbrainz_tags(tags: list[dict], genres: list[dict]) -> list[dict]:
+    """Normalize MB tags/genres, deduplicate aliases, and rank by vote count."""
+    unique: dict[str, dict] = {}
+    for entry in [*(tags or []), *(genres or [])]:
+        if not isinstance(entry, dict):
+            continue
+        raw_tag = entry.get("name")
+        if not isinstance(raw_tag, str) or not raw_tag.strip():
+            continue
+        normalized_tag = normalize_tag(raw_tag)
+        if not normalized_tag:
+            continue
+
+        count = entry.get("count")
+        if not isinstance(count, (int, float)) or isinstance(count, bool):
+            count = None
+        current = unique.get(normalized_tag)
+        if current is None or (count or 0) > (current["count"] or 0):
+            unique[normalized_tag] = {
+                "raw_tag": raw_tag.strip(),
+                "normalized_tag": normalized_tag,
+                "count": count,
+            }
+
+    ranked = sorted(
+        unique.values(),
+        key=lambda item: (-(item["count"] or 0), item["normalized_tag"]),
+    )
+    return [
+        {**tag, "tag_rank": rank}
+        for rank, tag in enumerate(ranked, start=1)
+    ]
 
 
 def fetch_lastfm(artist: str, album: str, api_key: str) -> dict:
@@ -259,6 +351,13 @@ def fetch_reviews(release_group_mbid: str) -> dict:
         language = detail.get("language") or summary.get("language")
         license_data = detail.get("license") or summary.get("license") or {}
         license_id = license_data.get("id") if isinstance(license_data, dict) else None
+        license_url = (
+            license_data.get("info_url") if isinstance(license_data, dict) else None
+        )
+        reviewer = detail.get("user") or summary.get("user") or {}
+        reviewer_name = (
+            reviewer.get("display_name") if isinstance(reviewer, dict) else None
+        )
 
         if not language or not license_id or not text.strip():
             try:
@@ -274,6 +373,10 @@ def fetch_reviews(release_group_mbid: str) -> dict:
             single_license = single.get("license") or {}
             if isinstance(single_license, dict):
                 license_id = single_license.get("id") or license_id
+                license_url = single_license.get("info_url") or license_url
+            single_reviewer = single.get("user") or {}
+            if isinstance(single_reviewer, dict):
+                reviewer_name = single_reviewer.get("display_name") or reviewer_name
             if single:
                 detail = single
 
@@ -287,7 +390,9 @@ def fetch_reviews(release_group_mbid: str) -> dict:
                 "language": language,
                 "source": detail.get("source") or summary.get("source"),
                 "source_url": detail.get("source_url") or summary.get("source_url"),
+                "reviewer_name": reviewer_name,
                 "license": license_id,
+                "license_url": license_url,
                 "review_text": text,
             }
         )
@@ -301,7 +406,7 @@ def fetch_reviews(release_group_mbid: str) -> dict:
     }
 
 
-def fetch_album(seed: dict, lastfm_api_key: str) -> dict:
+def fetch_album(seed: dict, lastfm_api_key: str | None) -> dict:
     result = {
         "requested_artist": seed["artist"],
         "requested_album": seed["album"],
@@ -325,18 +430,19 @@ def fetch_album(seed: dict, lastfm_api_key: str) -> dict:
         return result
 
     result["cover_art_archive"] = fetch_cover(seed["release_group_mbid"])
-    result["lastfm"] = fetch_lastfm(seed["artist"], seed["album"], lastfm_api_key)
+    result["lastfm"] = (
+        fetch_lastfm(seed["artist"], seed["album"], lastfm_api_key)
+        if lastfm_api_key
+        else {"status": "skipped", "reason": "LASTFM_API_KEY is not configured"}
+    )
     result["critiquebrainz"] = fetch_reviews(seed["release_group_mbid"])
     return result
 
 
 def open_database(database_path: Path) -> sqlite3.Connection:
-    is_new = not database_path.exists()
+    initialize_database(database_path)
     connection = sqlite3.connect(database_path)
     connection.execute("PRAGMA foreign_keys = ON")
-
-    if is_new:
-        connection.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
 
     required_tables = {
         "artists",
@@ -431,6 +537,32 @@ def write_album(connection: sqlite3.Connection, result: dict) -> dict:
             ],
         )
 
+        if "tags" in musicbrainz:
+            connection.execute(
+                """
+                DELETE FROM album_tags
+                WHERE release_group_mbid = ? AND source = 'musicbrainz'
+                """,
+                (release_group_mbid,),
+            )
+            connection.executemany(
+                """
+                INSERT INTO album_tags (
+                    release_group_mbid, raw_tag, normalized_tag, tag_rank, source
+                )
+                VALUES (?, ?, ?, ?, 'musicbrainz')
+                """,
+                [
+                    (
+                        release_group_mbid,
+                        tag["raw_tag"],
+                        tag["normalized_tag"],
+                        tag["tag_rank"],
+                    )
+                    for tag in musicbrainz["tags"]
+                ],
+            )
+
         lastfm = result["lastfm"]
         if lastfm["status"] == "success":
             connection.execute(
@@ -477,10 +609,12 @@ def write_album(connection: sqlite3.Connection, result: dict) -> dict:
                     language,
                     source,
                     source_url,
+                    reviewer_name,
                     license,
+                    license_url,
                     review_text
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 [
                     (
@@ -489,7 +623,9 @@ def write_album(connection: sqlite3.Connection, result: dict) -> dict:
                         review["language"],
                         review["source"],
                         review["source_url"],
+                        review["reviewer_name"],
                         review["license"],
+                        review["license_url"],
                         review["review_text"],
                     )
                     for review in reviews["reviews"]
@@ -507,6 +643,56 @@ def write_album(connection: sqlite3.Connection, result: dict) -> dict:
             "SELECT COUNT(*) FROM reviews WHERE release_group_mbid = ?",
             (release_group_mbid,),
         ).fetchone()[0],
+    }
+
+
+def summarize_report(report: dict) -> dict:
+    albums = report["albums"]
+
+    def count_status(section: str, successful: set[str]) -> int:
+        return sum(
+            album.get(section, {}).get("status") in successful for album in albums
+        )
+
+    return {
+        "total_requested": len(albums),
+        "musicbrainz_success": count_status("musicbrainz", {"success"}),
+        "musicbrainz_with_tags": sum(
+            album.get("musicbrainz", {}).get("status") == "success"
+            and len(album.get("musicbrainz", {}).get("tags", [])) > 0
+            for album in albums
+        ),
+        "musicbrainz_tag_rows": sum(
+            len(album.get("musicbrainz", {}).get("tags", []))
+            for album in albums
+        ),
+        "cover_art_found": count_status("cover_art_archive", {"found"}),
+        "lastfm_success": count_status("lastfm", {"success"}),
+        "lastfm_with_tags": sum(
+            album.get("lastfm", {}).get("status") == "success"
+            and album.get("lastfm", {}).get("count", 0) > 0
+            for album in albums
+        ),
+        "critiquebrainz_success": count_status("critiquebrainz", {"success"}),
+        "critiquebrainz_with_reviews": sum(
+            album.get("critiquebrainz", {}).get("status") == "success"
+            and album.get("critiquebrainz", {}).get("count", 0) > 0
+            for album in albums
+        ),
+        "database_written": count_status("database_write", {"written"}),
+        "albums_with_any_error": sum(
+            any(
+                album.get(section, {}).get("status") == "error"
+                for section in (
+                    "musicbrainz",
+                    "cover_art_archive",
+                    "lastfm",
+                    "critiquebrainz",
+                    "database_write",
+                )
+            )
+            for album in albums
+        ),
     }
 
 
@@ -539,9 +725,11 @@ def main() -> int:
     if args.limit is not None and args.limit < 1:
         raise SystemExit("--limit must be at least 1")
 
-    lastfm_api_key = get_lastfm_api_key()
+    lastfm_api_key = get_lastfm_api_key(required=False)
+    if not lastfm_api_key:
+        print("LASTFM_API_KEY 未配置：跳过 Last.fm；继续使用 MusicBrainz 标签。")
 
-    seeds = json.loads(args.input.read_text(encoding="utf-8"))
+    seeds = load_seeds(args.input)
     seeds = seeds[args.offset :]
     if args.limit is not None:
         seeds = seeds[: args.limit]
@@ -575,6 +763,7 @@ def main() -> int:
         connection.close()
 
     report["finished_at"] = datetime.now(timezone.utc).isoformat()
+    report["summary"] = summarize_report(report)
     args.report.write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
