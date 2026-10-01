@@ -452,6 +452,16 @@ def generate_taste_analysis(
         source["source_id"] for source in context_result["sources"]
     }
     source_instruction = ", ".join(sorted(allowed_source_ids)) or "none"
+    if allowed_source_ids:
+        evidence_instruction = (
+            "For review-based claims, cite only the allowed source IDs. For claims "
+            "based only on structured profile facts, use an empty source_ids list."
+        )
+    else:
+        evidence_instruction = (
+            "No licensed review evidence was retrieved. Return an empty evidence "
+            "array. Do not cite or describe any reviews or reviewers."
+        )
     prompt = f"""
 You analyze music taste from selected albums and supplied profile signals.
 Write in clear Simplified Chinese; preserve album and tag names as given.
@@ -461,8 +471,8 @@ interpretation, and lower certainty when the seed set or evidence is small.
 Treat each review as one review, not community consensus. Do not add musical
 facts absent from this context. If reviews are absent, rely only on the listed
 albums, years, tags, and deterministic profile signals. Keep each list concise.
-For review-based claims, cite only these source IDs: {source_instruction}
-For claims based only on structured profile facts, use an empty source_ids list.
+Allowed review source IDs: {source_instruction}
+{evidence_instruction}
 
 Return an overall taste summary, core tendencies, interesting contrasts,
 possible exploration directions, evidence claims, and limitations.
@@ -707,3 +717,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
