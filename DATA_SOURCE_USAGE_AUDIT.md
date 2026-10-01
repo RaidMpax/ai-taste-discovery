@@ -1,7 +1,7 @@
 # V2 Data-Source Usage Audit
 
-Audit date: 2026-10-01  
-Purpose: record source-use boundaries for the public-Beta catalogue.  
+Audit date: 2026-10-01
+Purpose: record source-use boundaries for the public-Beta catalogue.
 This is a technical risk review, not legal advice. Contact/approval status is
 tracked separately and is not changed by the source migration.
 

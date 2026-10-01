@@ -21,9 +21,9 @@ SCHEMA_REVISION = 3
 def normalize_behavior_storage_mode(value: str | None) -> str:
     """Validate whether behavior events should persist or stay in one session."""
     mode = (value or "persistent").strip().lower()
-    if mode not in {"persistent", "session"}:
+    if mode not in {"persistent", "session", "supabase"}:
         raise ValueError(
-            "AI_TASTE_BEHAVIOR_STORAGE must be 'persistent' or 'session'"
+            "AI_TASTE_BEHAVIOR_STORAGE must be 'persistent', 'session', or 'supabase'"
         )
     return mode
 

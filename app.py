@@ -47,6 +47,7 @@ from semantic_search import (
     embed_documents,
     load_album_documents,
 )
+from supabase_behavior import SupabaseBehaviorError, SupabaseBehaviorStore
 
 
 TIER_DETAILS = {
@@ -88,6 +89,7 @@ PUBLIC_CATALOGUE_SHA256 = (
     "9539cd5516251aeb4bc8dab183bed9f61f459def314fe709f058ba6979c05018"
 )
 MAX_CATALOGUE_DOWNLOAD_BYTES = 25 * 1024 * 1024
+ANALYTICS_CONSENT_VERSION = "beta-2026-10-01"
 
 
 @st.cache_resource
@@ -727,7 +729,7 @@ def get_streamlit_gemini_api_key() -> str | None:
 
 
 def get_behavior_storage_mode() -> str:
-    """Use persistent SQLite locally, or session-only state for the free demo."""
+    """Use local SQLite by default; deployments may select Supabase or session mode."""
     load_dotenv()
     mode = os.getenv("AI_TASTE_BEHAVIOR_STORAGE", "").strip()
     if not mode:
@@ -749,6 +751,17 @@ def get_app_setting(name: str, default: str = "") -> str:
     except Exception:
         value = ""
     return value.strip() if isinstance(value, str) and value.strip() else default
+
+
+def get_supabase_behavior_store() -> SupabaseBehaviorStore:
+    """Create the server-side event writer from private deployment secrets."""
+    project_url = get_app_setting("SUPABASE_URL")
+    secret_key = get_app_setting("SUPABASE_SECRET_KEY")
+    if not project_url or not secret_key:
+        raise SupabaseBehaviorError(
+            "Supabase behavior storage is missing its hosted settings."
+        )
+    return SupabaseBehaviorStore(project_url, secret_key)
 
 
 def get_application_database_path() -> Path:
@@ -825,7 +838,7 @@ def ensure_behavior_schema(database_path: str, schema_revision: int) -> str:
 
 @st.cache_resource(show_spinner="正在加载专辑与 Embedding…")
 def load_resources() -> dict:
-    """Load the static catalogue once; user-event writes share the same SQLite file."""
+    """Load the curated catalogue once; behavior events may use a separate store."""
     deployment_manifest = (
         Path(__file__).resolve().parent
         / "deployment"
@@ -1031,9 +1044,10 @@ def render_taste_battle(
     documents: list[dict],
     candidates: list[dict],
     session_id: str,
-    profile_event_id: int | None,
+    profile_event_id: int | str | None,
     behavior_persistent: bool,
     profile_signature: str,
+    behavior_store: SupabaseBehaviorStore | None = None,
 ) -> None:
     with st.container(key="battle_panel"):
         st.markdown("### Taste Battle / 品味对决")
@@ -1052,9 +1066,31 @@ def render_taste_battle(
 
         history_key = f"battle_choices::{profile_signature}::{strategy}"
         if behavior_persistent and profile_event_id is not None:
-            choices_by_pair = load_battle_choices(
-                APP_DATABASE, profile_event_id, strategy
-            )
+            if behavior_store is not None:
+                try:
+                    choices_by_pair = behavior_store.load_battle_choices(
+                        profile_event_id, strategy
+                    )
+                except SupabaseBehaviorError:
+                    behavior_persistent = False
+                    choices_by_pair = {}
+                    st.warning(
+                        "数据服务暂时不可用；本轮对决选择只保留在当前访问中。"
+                    )
+                for choice in st.session_state.get(history_key, []):
+                    pair_key = tuple(
+                        sorted(
+                            (
+                                choice["album_a_mbid"],
+                                choice["album_b_mbid"],
+                            )
+                        )
+                    )
+                    choices_by_pair[pair_key] = choice["chosen_album_mbid"]
+            else:
+                choices_by_pair = load_battle_choices(
+                    APP_DATABASE, profile_event_id, strategy
+                )
         else:
             session_choices = st.session_state.get(history_key, [])
             choices_by_pair = {}
@@ -1137,18 +1173,46 @@ def render_taste_battle(
                         chosen_mbid = recommendation["release_group_mbid"]
                         if behavior_persistent and profile_event_id is not None:
                             try:
-                                record_battle_choice(
-                                    APP_DATABASE,
-                                    session_id,
-                                    profile_event_id,
-                                    album_a["release_group_mbid"],
-                                    album_b["release_group_mbid"],
-                                    chosen_mbid,
-                                    strategy,
+                                if behavior_store is not None:
+                                    behavior_store.record_battle_choice(
+                                        session_id,
+                                        profile_event_id,
+                                        album_a["release_group_mbid"],
+                                        album_b["release_group_mbid"],
+                                        chosen_mbid,
+                                        strategy,
+                                    )
+                                else:
+                                    record_battle_choice(
+                                        APP_DATABASE,
+                                        session_id,
+                                        profile_event_id,
+                                        album_a["release_group_mbid"],
+                                        album_b["release_group_mbid"],
+                                        chosen_mbid,
+                                        strategy,
+                                    )
+                            except (
+                                ValueError,
+                                sqlite3.Error,
+                                SupabaseBehaviorError,
+                            ) as error:
+                                st.warning(
+                                    "数据服务暂时不可用；这次选择只保留在当前访问中。"
                                 )
-                            except (ValueError, sqlite3.Error) as error:
-                                st.warning(f"暂时无法保存这次选择：{error}")
-                                return
+                                session_choices = list(
+                                    st.session_state.get(history_key, [])
+                                )
+                                session_choices.append(
+                                    {
+                                        "album_a_mbid": album_a["release_group_mbid"],
+                                        "album_b_mbid": album_b["release_group_mbid"],
+                                        "chosen_album_mbid": chosen_mbid,
+                                        "generation_strategy": strategy,
+                                    }
+                                )
+                                st.session_state[history_key] = session_choices
+                                st.rerun()
                         else:
                             session_choices = list(
                                 st.session_state.get(history_key, [])
@@ -1172,7 +1236,9 @@ def show_recommendation(
     resources: dict,
     favorite_titles: list[str],
     session_id: str,
+    profile_event_id: int | str | None,
     behavior_persistent: bool,
+    behavior_store: SupabaseBehaviorStore | None = None,
 ) -> None:
     documents_by_mbid = {
         document["release_group_mbid"]: document for document in resources["documents"]
@@ -1228,17 +1294,26 @@ def show_recommendation(
             )
         selected_feedback = feedback_labels.get(selected_label)
         if selected_feedback and selected_feedback != feedback_value:
-            if behavior_persistent:
+            if behavior_persistent and profile_event_id is not None:
                 try:
-                    record_feedback(
-                        APP_DATABASE,
-                        session_id,
-                        recommendation["release_group_mbid"],
-                        tier,
-                        selected_feedback,
-                    )
-                except sqlite3.Error as error:
-                    st.warning(f"SQLite 暂时无法保存反馈，本次访问仍会暂存：{error}")
+                    if behavior_store is not None:
+                        behavior_store.record_feedback(
+                            session_id,
+                            profile_event_id,
+                            recommendation["release_group_mbid"],
+                            tier,
+                            selected_feedback,
+                        )
+                    else:
+                        record_feedback(
+                            APP_DATABASE,
+                            session_id,
+                            recommendation["release_group_mbid"],
+                            tier,
+                            selected_feedback,
+                        )
+                except (sqlite3.Error, SupabaseBehaviorError) as error:
+                    st.warning(f"暂时无法保存反馈；本次访问仍保留当前选择：{error}")
             st.session_state[feedback_key] = selected_feedback
 
         bridge_tags = recommendation["bridge_tags"][:5]
@@ -1306,9 +1381,9 @@ def main() -> None:
     inject_styles()
     render_hero()
     try:
-        behavior_persistent = get_behavior_storage_mode() == "persistent"
+        behavior_mode = get_behavior_storage_mode()
     except ValueError as error:
-        behavior_persistent = False
+        behavior_mode = "session"
         st.warning(f"行为记录设置无效，已切换为仅本次访问暂存：{error}")
     try:
         ensure_application_database(APP_DATABASE)
@@ -1328,24 +1403,61 @@ def main() -> None:
     if "session_id" not in st.session_state:
         st.session_state["session_id"] = str(uuid.uuid4())
     session_id = st.session_state["session_id"]
-    if behavior_persistent:
+    consent_given = st.checkbox(
+        "我同意匿名记录本次选择、推荐展示和反馈，用于评估与改进推荐。",
+        key="analytics_consent",
+        help=(
+            "行为数据表只记录随机会话 ID 和你在应用内的选择，不写入姓名、邮箱或 IP。"
+            "你可以不勾选，仍可体验推荐；取消勾选会停止后续记录，但不会自动删除此前提交的事件。"
+        ),
+    )
+    behavior_store = None
+    behavior_persistent = False
+    if consent_given and behavior_mode == "persistent":
         try:
             ensure_behavior_schema(str(APP_DATABASE), SCHEMA_REVISION)
             create_session(APP_DATABASE, session_id)
-        except Exception as error:
-            behavior_persistent = False
+            behavior_persistent = True
+        except (sqlite3.Error, OSError) as error:
             st.warning(
-                f"SQLite 行为记录不可用；反馈仅暂存在本次访问中：{error}"
+                f"本地行为数据暂时无法保存；推荐仍可使用：{type(error).__name__}"
             )
-    if behavior_persistent:
-        st.caption(
-            "Beta 说明：无需注册；系统使用随机会话 ID，在本地 SQLite 记录所选专辑、推荐反馈与 Taste Battle 选择，用于评估。"
-        )
-    else:
+    elif consent_given and behavior_mode == "supabase":
+        try:
+            behavior_store = get_supabase_behavior_store()
+            registered_session_id = st.session_state.get(
+                "registered_analytics_session_id"
+            )
+            if registered_session_id != session_id:
+                behavior_store.create_session(
+                    session_id, ANALYTICS_CONSENT_VERSION
+                )
+                st.session_state["registered_analytics_session_id"] = session_id
+            behavior_persistent = True
+        except (SupabaseBehaviorError, ValueError) as error:
+            behavior_store = None
+            st.warning(
+                "匿名数据存储暂不可用；推荐仍可使用，本次反馈不会保存。"
+                f"（{type(error).__name__}）"
+            )
+    elif consent_given and behavior_mode == "session":
         st.info(
-            "本次访问暂存模式：无需注册。推荐反馈和 Taste Battle 只暂存在当前访问；"
-            "关闭页面、应用休眠或重启后不会保留，种子选择和推荐曝光也不会写入 SQLite。"
+            "当前运行模式只暂存本次访问的行为，数据不会写入持久化数据库。"
         )
+    elif not consent_given:
+        st.caption(
+            "未同意数据记录：推荐和 AI 功能仍可使用；选择与反馈只用于当前页面交互，不会写入行为数据库。"
+        )
+
+    if consent_given and behavior_persistent:
+        if behavior_store is not None:
+            st.caption(
+                "匿名 Beta 数据已启用：随机会话 ID、专辑选择、推荐展示、反馈与对决选择会保存，用于评估。"
+            )
+        else:
+            st.caption(
+                "匿名 Beta 数据已启用：本机使用 SQLite 记录专辑选择、推荐展示、反馈与对决选择。"
+            )
 
     try:
         resources = load_resources()
@@ -1441,16 +1553,24 @@ def main() -> None:
             if behavior_persistent:
                 if st.session_state.get("active_profile_mbids") != seed_album_mbids:
                     try:
-                        profile_event_id = record_taste_profile_event(
-                            APP_DATABASE, session_id, seed_album_mbids
-                        )
+                        if behavior_store is not None:
+                            profile_event_id = (
+                                behavior_store.record_taste_profile_event(
+                                    session_id, seed_album_mbids
+                                )
+                            )
+                        else:
+                            profile_event_id = record_taste_profile_event(
+                                APP_DATABASE, session_id, seed_album_mbids
+                            )
                         st.session_state["active_profile_mbids"] = seed_album_mbids
                         st.session_state["profile_event_id"] = profile_event_id
-                    except sqlite3.Error as error:
+                    except (sqlite3.Error, SupabaseBehaviorError) as error:
                         behavior_persistent = False
                         profile_event_id = None
                         st.warning(
-                            f"SQLite 无法记录品味选择；后续交互仅暂存在本次访问中：{error}"
+                            "无法保存本次专辑选择；推荐仍可使用，后续交互只暂存在本次访问。"
+                            f"（{type(error).__name__}）"
                         )
             else:
                 profile_event_id = None
@@ -1520,16 +1640,27 @@ def main() -> None:
             )
             if st.session_state.get("last_impression_signature") != impression_signature:
                 try:
-                    record_recommendation_impressions(
-                        APP_DATABASE,
-                        session_id,
-                        profile_event_id,
-                        selected_tier,
-                        items,
+                    if behavior_store is not None:
+                        behavior_store.record_recommendation_impressions(
+                            session_id,
+                            profile_event_id,
+                            selected_tier,
+                            items,
+                        )
+                    else:
+                        record_recommendation_impressions(
+                            APP_DATABASE,
+                            session_id,
+                            profile_event_id,
+                            selected_tier,
+                            items,
+                        )
+                    st.session_state["last_impression_signature"] = impression_signature
+                except (sqlite3.Error, SupabaseBehaviorError) as error:
+                    st.warning(
+                        f"暂时无法记录推荐展示；稍后操作时会重试。"
+                        f"（{type(error).__name__}）"
                     )
-                except sqlite3.Error as error:
-                    st.warning(f"暂时无法记录推荐曝光：{error}")
-                st.session_state["last_impression_signature"] = impression_signature
 
         st.markdown(
             f'<div class="tier-intro"><div><h2>{escape(selected_tier)} / '
@@ -1553,7 +1684,9 @@ def main() -> None:
                             resources,
                             favorite_titles,
                             session_id,
+                            profile_event_id,
                             behavior_persistent,
+                            behavior_store,
                         )
 
     with battle_tab:
@@ -1564,6 +1697,7 @@ def main() -> None:
             profile_event_id,
             behavior_persistent,
             profile_signature,
+            behavior_store,
         )
 
     with st.expander("排序调试：查看完整候选评分", expanded=False):

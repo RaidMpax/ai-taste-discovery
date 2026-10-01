@@ -1,10 +1,13 @@
 # V2 Beta Deployment Readiness
 
-Audit date: 2026-10-01  
-Status: **Not ready to share a public URL yet.** Streamlit Community Cloud's
-free tier is the intended host, with behavior data set to session-only mode.
-A MusicBrainz-only catalogue snapshot is published as a GitHub Release asset;
-the Streamlit app has not yet been deployed.
+Audit date: 2026-10-01
+Status: **V2 is not yet ready for the public Beta.** Streamlit Community Cloud
+is the selected host and the earlier V1 demo was deployed there, but the V2
+candidate in this branch has not yet been published to that app. The
+MusicBrainz-only catalogue snapshot is published as a GitHub Release asset.
+The Supabase migration is applied and verified (five tables, RLS enabled); the
+hosted secrets are still pending, and no V2 behavior events have been
+collected.
 
 ## Checked and improved
 
@@ -14,9 +17,9 @@ the Streamlit app has not yet been deployed.
 - Gemini now accepts an environment variable, local `.env`, or a Streamlit
   secret. Gemini is only called after an explicit explanation/profile-analysis
   action; recommendation ranking remains available without it.
-- FastEmbed resources are cached for the app process. Anonymous behavior writes
-  share the catalogue SQLite file and no longer invalidate the embedding cache
-  on each interaction.
+- FastEmbed resources are cached for the app process. Local SQLite behavior
+  writes share the catalogue file without invalidating the embedding cache;
+  hosted Supabase events use a separate database.
 - Behavior schema initialization is cached once per app process/revision.
 - The app begins without a preselected favorite and discloses the anonymous
   events it records. Missing covers and reviews remain valid catalogue states.
@@ -30,6 +33,9 @@ the Streamlit app has not yet been deployed.
   missing. Downloads are checked against a SHA-256 digest before installation;
   the URL and expected digest can be overridden together if a new snapshot is
   published.
+- `deployment/accepted_album_manifest.json` contains the 530 public album IDs;
+  the app uses it to keep the loaded document set aligned with the published
+  catalogue rather than relying on the curator-only local selection manifest.
 
 ## Launch blockers and decisions
 
@@ -65,26 +71,28 @@ cover URL, 504 have tags, and zero reviews or behavior rows are present. This
 report does not determine whether the local review records can be used for every
 intended purpose.
 
-### 2. Free hosting mode and behavior data
+### 2. Hosted behavior data
 
-The intended V2 Beta host is Streamlit Community Cloud's free tier. The app
-supports `AI_TASTE_BEHAVIOR_STORAGE = "session"`, configured in Community Cloud
-Secrets. In this mode, seed choices and recommendation impressions are not
-written to SQLite; likes and Taste Battle choices are held only in the current
-Streamlit session and disappear after a session ends, the app sleeps, or it
-restarts. This mode is suitable for a shareable demo, not for collecting a
-durable behavior dataset.
+The V2 Beta uses the separate Supabase Postgres project for opt-in behavior
+events; the catalogue remains the read-only MusicBrainz-only SQLite snapshot.
+The migration has been run and verified in Supabase, including row-level
+security on all five tables. No events have been collected yet because the V2
+code is not deployed and Streamlit secrets are not configured.
 
-Local development defaults to `persistent`, preserving the current SQLite
-logging workflow. `AI_TASTE_DATABASE_PATH` remains available for local or
-future hosted database files. Do not configure a persistent database path for
-the free demo.
+Local development defaults to `persistent`, using SQLite. The app also
+supports `session` mode, which keeps interactions only for the current visit,
+and `supabase` mode for opt-in remote persistence. Do not configure a
+persistent hosted SQLite path for the free demo.
 
 ### 3. Set runtime secrets and resource policy
 
-- Configure `AI_TASTE_BEHAVIOR_STORAGE = "session"` and optionally
-  `GEMINI_API_KEY` in Streamlit Community Cloud Secrets. Gemini is optional for
-  recommendations.
+- Configure `AI_TASTE_BEHAVIOR_STORAGE = "supabase"`, `SUPABASE_URL`, and
+  `SUPABASE_SECRET_KEY` in Streamlit Community Cloud Secrets. Configure
+  `GEMINI_API_KEY` as well to enable the requested Taste Analysis and Why This?
+  experience; deterministic recommendations remain available without Gemini.
+- Never put the Supabase secret key or Gemini key in Git, the browser, or chat.
+  The Supabase writer sends its secret key only in the server-side `apikey`
+  request header. See `docs/SUPABASE_BEHAVIOR_SETUP.md`.
 - `LASTFM_API_KEY` is optional and only collects candidate tags during
   ingestion. The app defaults to locally stored MusicBrainz tags and does not
   need the key or call Last.fm during a request.
@@ -133,7 +141,8 @@ Last.fm tags, artwork, or reviews.
   localhost check, not a deployed-host test.
 - The source-migration verification on 2026-09-30 built finite 530 x 384 album
   vectors and passed recommendation/RAG-context checks for five taste profiles.
-- Full unit suite: 64 tests passed after the source-migration changes.
+- Full unit suite: 71 tests passed on 2026-10-01, including mocked Supabase
+  request tests; no test wrote to the live Supabase project.
 - Python compilation and import checks passed.
 - The source migration changed only provider-specific `album_tags` rows; it did
   not change tables/schema, album/artist metadata, covers, reviews, behavior, or
@@ -150,6 +159,12 @@ Last.fm tags, artwork, or reviews.
   clearance is claimed.
 - Browser/mobile behavior has not yet been tested against a deployed host.
 
-After a host is chosen, finish with a clean-database startup test, missing-key
-test, offline-Gemini test, small-screen check, and a restart test that confirms
-whether anonymous events persist as intended.
+- The Supabase writer has only been tested with mocked HTTP responses. The
+  actual hosted connection cannot be verified until the app's secret key is
+  added in Streamlit Community Cloud and the V2 candidate is deployed.
+
+Before inviting friends, publish the reviewed V2 candidate to the existing
+Streamlit app, add the required hosted secrets, then verify first startup,
+Gemini analysis/explanation, opt-in and opt-out behavior, a small-screen view,
+and that Supabase rows persist after a fresh app session. A local mocked test
+suite cannot replace that final hosted smoke test.

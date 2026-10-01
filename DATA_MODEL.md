@@ -25,7 +25,9 @@ albums ----< album_tags
   separately stored as candidate data.
 - `reviews` stores optional CritiqueBrainz text and its attribution metadata.
 - One release-group cover URL is stored directly on `albums` for V0.1.
-- V2 behavior tables store anonymous sessions, selected seed IDs, visible recommendation impressions, and like/dislike feedback.
+- Local SQLite behavior tables store random sessions, selected seed IDs,
+  recommendation impressions, feedback, and Taste Battle choices. The hosted
+  Beta uses a separate Supabase schema described below.
 
 ## Important decisions
 
@@ -54,7 +56,7 @@ albums ----< album_tags
   adds reviewer and license-link columns to existing review tables; this is not
   a general versioned migration framework.
 
-## V2 anonymous behavior tables
+## Local SQLite behavior tables
 
 - `sessions`: one random `session_id` and its first-seen UTC timestamp.
 - `taste_profile_events`: the profile generation time.
@@ -75,6 +77,22 @@ albums ----< album_tags
 
 All behavior rows reference canonical album MBIDs where applicable. They are
 exploratory evaluation data; they are not used to train a model.
+
+## Supabase behavior analytics
+
+The public Beta is configured to store opt-in events in a separate Supabase
+Postgres project while the catalogue remains in the MusicBrainz-only SQLite
+snapshot. The migration at
+`supabase/migrations/202610010001_behavior_analytics.sql` stores seed album
+MBIDs as an array, preserves feedback changes as separate events, and includes
+ranking signals for later analysis. The migration has been applied and the five
+tables plus row-level security were verified. Hosted app secrets and the V2
+deployment are still pending; no public behavior events have been collected.
+
+The Supabase API has no direct public table access. The Streamlit server uses a
+secret key from Streamlit Secrets; visitors do not receive read access. See
+docs/SUPABASE_BEHAVIOR_SETUP.md for configuration and
+supabase/analysis_queries.sql for example queries.
 
 ## Day 2 files
 

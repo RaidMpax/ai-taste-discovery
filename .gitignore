@@ -25,3 +25,5 @@ ingestion_smoke_report.json
 experiments/tag_source_ab_test/tag_source_data.json
 experiments/tag_source_ab_test/api_cache.json
 experiments/tag_source_ab_test/recommendation_impact.json
+experiments/tag_source_ab_test/sample_albums.json
+experiments/tag_source_ab_test/RESULTS.md

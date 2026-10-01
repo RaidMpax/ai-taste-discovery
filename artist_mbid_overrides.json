@@ -1,0 +1,27 @@
+{
+  "Elephant Gym": {
+    "artist_mbid": "9fdc68d1-98ac-463c-a309-181b58c74aed",
+    "name": "大象體操",
+    "reason": "MusicBrainz canonical name is Chinese; the artist page identifies the English name as Elephant Gym and lists Underwater."
+  },
+  "LISA": {
+    "artist_mbid": "30aeb57f-bb16-47fa-86ca-79fc57b4d12c",
+    "name": "LISA",
+    "reason": "MusicBrainz identifies this artist as the BLACKPINK member and lists Alter Ego (2025)."
+  },
+  "LOONA": {
+    "artist_mbid": "de4feabc-cd21-4568-a09c-2086bfebe2f4",
+    "name": "이달의 소녀",
+    "reason": "MusicBrainz identifies this entity as the South Korean girl group LOONA and lists [+ +] and [12:00]."
+  },
+  "Miley Cyrus": {
+    "artist_mbid": "7e9bd05a-117f-4cce-87bc-e011527a8b18",
+    "name": "Miley Cyrus",
+    "reason": "Reviewed identity: this is the US pop artist whose discography includes Plastic Hearts and Something Beautiful."
+  },
+  "Steve Lacy": {
+    "artist_mbid": "b29020d6-5dbf-4c99-b16f-c009f8a712ff",
+    "name": "Steve Lacy",
+    "reason": "MusicBrainz identifies this artist as The Internet guitarist born in 1998 and lists Apollo XXI and Gemini Rights."
+  }
+}

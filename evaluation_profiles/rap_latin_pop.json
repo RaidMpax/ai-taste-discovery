@@ -1,0 +1,723 @@
+{
+  "generated_at": "2026-09-29T23:48+08:00",
+  "catalogue_size": 530,
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "profile": {
+    "favorite_titles": [
+      "The Pinkprint",
+      "Un verano sin ti",
+      "MOTOMAMI"
+    ],
+    "aggregation_method": "mean_of_l2_normalized_seed_vectors_then_l2_normalize"
+  },
+  "settings": {
+    "per_tier": 3,
+    "baseline_result_limit": 9
+  },
+  "quality_labels_available": false,
+  "interpretation_limit": "These are ranking diagnostics, not evidence of user preference or recommendation accuracy. Review the listed albums manually and use Taste Battle feedback for future exploratory analysis.",
+  "tier_separation": {
+    "mean_embedding_similarity_by_tier": {
+      "Safe": 0.8656959732373556,
+      "Explore": 0.8335674603780111,
+      "Wildcard": 0.6637141307195028
+    },
+    "safe_ge_explore_ge_wildcard": true
+  },
+  "methods": {
+    "embedding_only": {
+      "definition": "Rank all non-seed albums by cosine similarity to the Taste Profile.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 6,
+        "top_primary_artist_share": 0.3333333333333333,
+        "mean_profile_similarity": 0.8515556984477572,
+        "mean_pairwise_cosine_distance": 0.25611988537841374
+      },
+      "overlap_with_embedding_only": 1.0,
+      "items": [
+        {
+          "release_group_mbid": "b3073a10-2d7c-484c-b387-e49ae629da3d",
+          "title": "DeBÍ TiRAR MáS FOToS",
+          "artists": [
+            "Bad Bunny"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.8699952960014343,
+          "embedding_similarity": 0.8699952960014343,
+          "bridge_similarity": 0.9136534929275513,
+          "bridge_tags": [
+            "dembow",
+            "latin",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "caribbean music",
+            "jibaro",
+            "latin electronic",
+            "plena",
+            "salsa"
+          ]
+        },
+        {
+          "release_group_mbid": "016d0958-01da-4d16-8da1-8328f891a3a1",
+          "title": "Pink Friday 2",
+          "artists": [
+            "Nicki Minaj"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.8648516535758972,
+          "embedding_similarity": 0.8648516535758972,
+          "bridge_similarity": 0.8800408244132996,
+          "bridge_tags": [
+            "hip hop",
+            "hip-hop",
+            "rap",
+            "rnb"
+          ],
+          "new_tags": [
+            "cunty",
+            "female rap",
+            "pretentious",
+            "queen",
+            "queen of rap"
+          ]
+        },
+        {
+          "release_group_mbid": "e20e0bc0-4660-461b-8ac7-14ad2459cda6",
+          "title": "YHLQMDLG",
+          "artists": [
+            "Bad Bunny"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.8622409701347351,
+          "embedding_similarity": 0.8622409701347351,
+          "bridge_similarity": 0.9025588035583496,
+          "bridge_tags": [
+            "hip-hop",
+            "latin",
+            "latin pop",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "indie",
+            "latin trap",
+            "male vocals",
+            "trap"
+          ]
+        },
+        {
+          "release_group_mbid": "acb83f7a-3d6e-45d1-aad9-345fb798675f",
+          "title": "DATA",
+          "artists": [
+            "Tainy"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.8616040945053101,
+          "embedding_similarity": 0.8616040945053101,
+          "bridge_similarity": 0.7973724603652954,
+          "bridge_tags": [
+            "alternative rnb",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "chillwave",
+            "pop rap",
+            "puerto rico",
+            "synth wave",
+            "synthpop",
+            "trap"
+          ]
+        },
+        {
+          "release_group_mbid": "ffe90330-8efd-49ec-b3dd-5edf11348eea",
+          "title": "ORQUÍDEAS",
+          "artists": [
+            "Kali Uchis"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.8596125841140747,
+          "embedding_similarity": 0.8596125841140747,
+          "bridge_similarity": 0.8052543997764587,
+          "bridge_tags": [
+            "latin",
+            "latin pop",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "ai",
+            "colombian",
+            "contemporary rnb",
+            "dance-pop",
+            "neo-soul"
+          ]
+        },
+        {
+          "release_group_mbid": "65435725-fb6c-4a72-a239-3971e2254956",
+          "title": "Sin miedo (del amor y otros demonios) ∞",
+          "artists": [
+            "Kali Uchis"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.8420019149780273,
+          "embedding_similarity": 0.8420019149780273,
+          "bridge_similarity": 0.7936760187149048,
+          "bridge_tags": [
+            "latin",
+            "latin pop",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "bedroom pop",
+            "bolero",
+            "neo-soul",
+            "soul"
+          ]
+        },
+        {
+          "release_group_mbid": "68f8c63d-3e54-4f26-8ce3-41a7bc1ca7fd",
+          "title": "X 100PRE",
+          "artists": [
+            "Bad Bunny"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.8360060453414917,
+          "embedding_similarity": 0.8360060453414917,
+          "bridge_similarity": 0.9023396968841553,
+          "bridge_tags": [
+            "reggaeton"
+          ],
+          "new_tags": [
+            "bad bunny",
+            "indie",
+            "latin trap",
+            "pop punk",
+            "pop trap",
+            "spanish",
+            "synthwave",
+            "trap",
+            "urbano"
+          ]
+        },
+        {
+          "release_group_mbid": "b4c6beb0-f694-4ce3-b37f-a4bfb192df02",
+          "title": "Access All Areas",
+          "artists": [
+            "FLO"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.8346126675605774,
+          "embedding_similarity": 0.8346126675605774,
+          "bridge_similarity": 0.7505877614021301,
+          "bridge_tags": [
+            "hip-hop",
+            "pop"
+          ],
+          "new_tags": [
+            "4",
+            "contemporary rnb",
+            "motomano",
+            "neo-soul",
+            "rhythm and blues",
+            "soul"
+          ]
+        },
+        {
+          "release_group_mbid": "bb525db3-81e4-4c05-b529-23fa05f35c12",
+          "title": "EL MAL QUERER",
+          "artists": [
+            "ROSALÍA"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.8330760598182678,
+          "embedding_similarity": 0.8330760598182678,
+          "bridge_similarity": 0.8742572069168091,
+          "bridge_tags": [
+            "alternative rnb",
+            "art pop",
+            "experimental"
+          ],
+          "new_tags": [
+            "best of 2018",
+            "flamenco nuevo",
+            "flamenco pop",
+            "wishlist"
+          ]
+        }
+      ]
+    },
+    "embedding_plus_tags": {
+      "definition": "Rank all non-seed albums by the existing Safe score: 0.70 × profile similarity + 0.20 × bridge similarity + 0.10 × tag familiarity.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 7,
+        "top_primary_artist_share": 0.2222222222222222,
+        "mean_profile_similarity": 0.8484471042950948,
+        "mean_pairwise_cosine_distance": 0.2542933937576082
+      },
+      "overlap_with_embedding_only": 0.7777777777777778,
+      "items": [
+        {
+          "release_group_mbid": "b3073a10-2d7c-484c-b387-e49ae629da3d",
+          "title": "DeBÍ TiRAR MáS FOToS",
+          "artists": [
+            "Bad Bunny"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.8917274057865142,
+          "embedding_similarity": 0.8699952960014343,
+          "bridge_similarity": 0.9136534929275513,
+          "bridge_tags": [
+            "dembow",
+            "latin",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "caribbean music",
+            "jibaro",
+            "latin electronic",
+            "plena",
+            "salsa"
+          ]
+        },
+        {
+          "release_group_mbid": "e20e0bc0-4660-461b-8ac7-14ad2459cda6",
+          "title": "YHLQMDLG",
+          "artists": [
+            "Bad Bunny"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.8840804398059845,
+          "embedding_similarity": 0.8622409701347351,
+          "bridge_similarity": 0.9025588035583496,
+          "bridge_tags": [
+            "hip-hop",
+            "latin",
+            "latin pop",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "indie",
+            "latin trap",
+            "male vocals",
+            "trap"
+          ]
+        },
+        {
+          "release_group_mbid": "016d0958-01da-4d16-8da1-8328f891a3a1",
+          "title": "Pink Friday 2",
+          "artists": [
+            "Nicki Minaj"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.8814043223857879,
+          "embedding_similarity": 0.8648516535758972,
+          "bridge_similarity": 0.8800408244132996,
+          "bridge_tags": [
+            "hip hop",
+            "hip-hop",
+            "rap",
+            "rnb"
+          ],
+          "new_tags": [
+            "cunty",
+            "female rap",
+            "pretentious",
+            "queen",
+            "queen of rap"
+          ]
+        },
+        {
+          "release_group_mbid": "ffe90330-8efd-49ec-b3dd-5edf11348eea",
+          "title": "ORQUÍDEAS",
+          "artists": [
+            "Kali Uchis"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.862779688835144,
+          "embedding_similarity": 0.8596125841140747,
+          "bridge_similarity": 0.8052543997764587,
+          "bridge_tags": [
+            "latin",
+            "latin pop",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "ai",
+            "colombian",
+            "contemporary rnb",
+            "dance-pop",
+            "neo-soul"
+          ]
+        },
+        {
+          "release_group_mbid": "bb525db3-81e4-4c05-b529-23fa05f35c12",
+          "title": "EL MAL QUERER",
+          "artists": [
+            "ROSALÍA"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.8580046832561492,
+          "embedding_similarity": 0.8330760598182678,
+          "bridge_similarity": 0.8742572069168091,
+          "bridge_tags": [
+            "alternative rnb",
+            "art pop",
+            "experimental"
+          ],
+          "new_tags": [
+            "best of 2018",
+            "flamenco nuevo",
+            "flamenco pop",
+            "wishlist"
+          ]
+        },
+        {
+          "release_group_mbid": "65435725-fb6c-4a72-a239-3971e2254956",
+          "title": "Sin miedo (del amor y otros demonios) ∞",
+          "artists": [
+            "Kali Uchis"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.8481365442276001,
+          "embedding_similarity": 0.8420019149780273,
+          "bridge_similarity": 0.7936760187149048,
+          "bridge_tags": [
+            "latin",
+            "latin pop",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "bedroom pop",
+            "bolero",
+            "neo-soul",
+            "soul"
+          ]
+        },
+        {
+          "release_group_mbid": "acb83f7a-3d6e-45d1-aad9-345fb798675f",
+          "title": "DATA",
+          "artists": [
+            "Tainy"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.8292640248934428,
+          "embedding_similarity": 0.8616040945053101,
+          "bridge_similarity": 0.7973724603652954,
+          "bridge_tags": [
+            "alternative rnb",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "chillwave",
+            "pop rap",
+            "puerto rico",
+            "synth wave",
+            "synthpop",
+            "trap"
+          ]
+        },
+        {
+          "release_group_mbid": "ecd7a38f-4ffc-4489-903b-955fdd6dec0f",
+          "title": "HNDRXX",
+          "artists": [
+            "Future"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.8267494320869445,
+          "embedding_similarity": 0.8267829418182373,
+          "bridge_similarity": 0.7400068640708923,
+          "bridge_tags": [
+            "2010s",
+            "hip-hop",
+            "rap"
+          ],
+          "new_tags": [
+            "atlanta",
+            "future",
+            "mc pocahontas",
+            "trap"
+          ]
+        },
+        {
+          "release_group_mbid": "a1ceb373-b802-4889-a20f-2039dab9c5ce",
+          "title": "MAÑANA SERÁ BONITO",
+          "artists": [
+            "KAROL G"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.8236178934574127,
+          "embedding_similarity": 0.8158584237098694,
+          "bridge_similarity": 0.7625849843025208,
+          "bridge_tags": [
+            "latin",
+            "latin pop",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "ai",
+            "album",
+            "best reggaeton",
+            "colombia",
+            "álbuns ✅"
+          ]
+        }
+      ]
+    },
+    "full_ranking": {
+      "definition": "Use the current Safe / Explore / Wildcard eligibility rules and tier-specific score; show up to the requested limit per tier.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 7,
+        "top_primary_artist_share": 0.2222222222222222,
+        "mean_profile_similarity": 0.7876591881116232,
+        "mean_pairwise_cosine_distance": 0.30943936275111306
+      },
+      "overlap_with_embedding_only": 0.5555555555555556,
+      "items": [
+        {
+          "release_group_mbid": "b3073a10-2d7c-484c-b387-e49ae629da3d",
+          "title": "DeBÍ TiRAR MáS FOToS",
+          "artists": [
+            "Bad Bunny"
+          ],
+          "tier": "Safe",
+          "rank": 1,
+          "ranking_score": 0.8917274057865142,
+          "embedding_similarity": 0.8699952960014343,
+          "bridge_similarity": 0.9136534929275513,
+          "bridge_tags": [
+            "dembow",
+            "latin",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "caribbean music",
+            "jibaro",
+            "latin electronic",
+            "plena",
+            "salsa"
+          ]
+        },
+        {
+          "release_group_mbid": "e20e0bc0-4660-461b-8ac7-14ad2459cda6",
+          "title": "YHLQMDLG",
+          "artists": [
+            "Bad Bunny"
+          ],
+          "tier": "Safe",
+          "rank": 2,
+          "ranking_score": 0.8840804398059845,
+          "embedding_similarity": 0.8622409701347351,
+          "bridge_similarity": 0.9025588035583496,
+          "bridge_tags": [
+            "hip-hop",
+            "latin",
+            "latin pop",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "indie",
+            "latin trap",
+            "male vocals",
+            "trap"
+          ]
+        },
+        {
+          "release_group_mbid": "016d0958-01da-4d16-8da1-8328f891a3a1",
+          "title": "Pink Friday 2",
+          "artists": [
+            "Nicki Minaj"
+          ],
+          "tier": "Safe",
+          "rank": 3,
+          "ranking_score": 0.8814043223857879,
+          "embedding_similarity": 0.8648516535758972,
+          "bridge_similarity": 0.8800408244132996,
+          "bridge_tags": [
+            "hip hop",
+            "hip-hop",
+            "rap",
+            "rnb"
+          ],
+          "new_tags": [
+            "cunty",
+            "female rap",
+            "pretentious",
+            "queen",
+            "queen of rap"
+          ]
+        },
+        {
+          "release_group_mbid": "d35d2779-d4c7-4210-92fe-d0d65289adf4",
+          "title": "MEGAN",
+          "artists": [
+            "Megan Thee Stallion"
+          ],
+          "tier": "Explore",
+          "rank": 1,
+          "ranking_score": 0.8379159396886825,
+          "embedding_similarity": 0.8044856190681458,
+          "bridge_similarity": 0.739744246006012,
+          "bridge_tags": [
+            "hip hop",
+            "hip-hop",
+            "rap"
+          ],
+          "new_tags": [
+            "dirty south",
+            "hardcore hip hop",
+            "listen",
+            "southern hip hop",
+            "southern rap",
+            "trap"
+          ]
+        },
+        {
+          "release_group_mbid": "acb83f7a-3d6e-45d1-aad9-345fb798675f",
+          "title": "DATA",
+          "artists": [
+            "Tainy"
+          ],
+          "tier": "Explore",
+          "rank": 2,
+          "ranking_score": 0.8350234107176463,
+          "embedding_similarity": 0.8616040945053101,
+          "bridge_similarity": 0.7973724603652954,
+          "bridge_tags": [
+            "alternative rnb",
+            "reggaeton"
+          ],
+          "new_tags": [
+            "chillwave",
+            "pop rap",
+            "puerto rico",
+            "synth wave",
+            "synthpop",
+            "trap"
+          ]
+        },
+        {
+          "release_group_mbid": "b4c6beb0-f694-4ce3-b37f-a4bfb192df02",
+          "title": "Access All Areas",
+          "artists": [
+            "FLO"
+          ],
+          "tier": "Explore",
+          "rank": 3,
+          "ranking_score": 0.8233211861054103,
+          "embedding_similarity": 0.8346126675605774,
+          "bridge_similarity": 0.7505877614021301,
+          "bridge_tags": [
+            "hip-hop",
+            "pop"
+          ],
+          "new_tags": [
+            "4",
+            "contemporary rnb",
+            "motomano",
+            "neo-soul",
+            "rhythm and blues",
+            "soul"
+          ]
+        },
+        {
+          "release_group_mbid": "1f0e58a9-4a63-3fb4-a95e-ec6feebeb571",
+          "title": "Hard Core",
+          "artists": [
+            "Lil’ Kim"
+          ],
+          "tier": "Wildcard",
+          "rank": 1,
+          "ranking_score": 0.6628810167312622,
+          "embedding_similarity": 0.6879026293754578,
+          "bridge_similarity": 0.7094484567642212,
+          "bridge_tags": [
+            "hip hop",
+            "hip-hop",
+            "rap",
+            "rnb"
+          ],
+          "new_tags": [
+            "90s",
+            "brooklyn",
+            "east coast rap",
+            "female rap",
+            "queen bee"
+          ]
+        },
+        {
+          "release_group_mbid": "499c19c8-0dab-4824-884b-6191d145e95b",
+          "title": "good kid, m.A.A.d city",
+          "artists": [
+            "Kendrick Lamar"
+          ],
+          "tier": "Wildcard",
+          "rank": 2,
+          "ranking_score": 0.6547002971172333,
+          "embedding_similarity": 0.6354541182518005,
+          "bridge_similarity": 0.6563034057617188,
+          "bridge_tags": [
+            "2010s",
+            "hip hop",
+            "hip-hop",
+            "rap"
+          ],
+          "new_tags": [
+            "best of 2012",
+            "conscious hip hop",
+            "gangsta rap",
+            "vinyl",
+            "west coast hip hop"
+          ]
+        },
+        {
+          "release_group_mbid": "b88655ba-7469-48b8-a296-b9011ab73ef3",
+          "title": "DAMN.",
+          "artists": [
+            "Kendrick Lamar"
+          ],
+          "tier": "Wildcard",
+          "rank": 3,
+          "ranking_score": 0.648687106370926,
+          "embedding_similarity": 0.66778564453125,
+          "bridge_similarity": 0.6644951105117798,
+          "bridge_tags": [
+            "hip hop",
+            "hip-hop",
+            "rap"
+          ],
+          "new_tags": [
+            "conscious hip hop",
+            "political hip hop",
+            "pop rap",
+            "trap",
+            "trap rap",
+            "west coast hip hop"
+          ]
+        }
+      ]
+    }
+  }
+}

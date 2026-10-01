@@ -6,8 +6,11 @@ albums, and explains each suggestion using retrieved evidence.
 
 The current catalogue contains 530 accepted albums. V2 also includes an
 optional Gemini Taste Analysis, anonymous feedback, Taste Battle, and offline
-ranking diagnostics. **Public deployment is not configured yet**; see
-[DEPLOYMENT_READINESS.md](DEPLOYMENT_READINESS.md) for remaining decisions.
+ranking diagnostics. The earlier V1 friends-and-family demo is live at
+https://ai-taste-discovery-irdp3eamhnzuofrm7tbkqr.streamlit.app/. The V2
+candidate in this branch has not yet been published to that hosted app. The
+public catalogue snapshot excludes Last.fm-derived tags and CritiqueBrainz
+reviews; see `DEPLOYMENT_READINESS.md` for the current release status.
 
 ## Quick start
 
@@ -26,22 +29,25 @@ tags as candidate data, but the app does not need the key or call Last.fm.
 Cover Art Archive and CritiqueBrainz do not require API keys for this prototype.
 Never commit `.env` or `.streamlit/secrets.toml`.
 
-Build the local catalogue and start the app:
+Start the app:
 
 ```powershell
-.\.venv\Scripts\python.exe ingest.py
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-`ingest.py` reads the accepted entries in `album_match_manifest.json`, then
-creates `taste.db` and its tables automatically from `schema.sql`. It stores
-MusicBrainz tags/genres as `source = 'musicbrainz'`; Last.fm tags, when fetched,
-remain separately attributed. SQLite files are intentionally Git-ignored, so a
-fresh clone needs its own catalogue before the app can start. Set
-`AI_TASTE_DATABASE_PATH` as an environment variable to use a different or
-host-mounted database path.
+If no local database is configured, the app downloads the pinned
+MusicBrainz-only catalogue snapshot from the GitHub Release and verifies its
+SHA-256 before using it. SQLite files are intentionally Git-ignored. Set
+`AI_TASTE_DATABASE_PATH` as an environment variable to use an existing local or
+host-mounted database instead.
 
-For a deployment preview, run:
+The ingestion and deployment-export scripts are curator tools and require the
+private working manifest `album_match_manifest.json`, which is not distributed
+with the public demo. The public app uses the checked-in
+`deployment/accepted_album_manifest.json` plus the pinned database snapshot; it
+does not need a fresh API import to start.
+
+In the curator workspace, a deployment preview can be rebuilt with:
 
 ```powershell
 .\.venv\Scripts\python.exe prepare_deployment_catalog.py
@@ -67,23 +73,24 @@ it can take longer than later runs.
 - CritiqueBrainz coverage is sparse because only reviews with a declared
   license are stored. When candidate review evidence is missing, the system
   falls back to structured metadata and tags and states that limitation.
-- There is no account system. Locally, a random Streamlit session ID connects
-  selected seed albums, visible recommendation impressions, and like/dislike
-  feedback for exploratory evaluation. For the free public demo, set
-  `AI_TASTE_BEHAVIOR_STORAGE = "session"` in Streamlit Community Cloud Secrets;
-  likes and Taste Battle choices then stay in the active browser session and
-  are not written to SQLite.
+- There is no account system. The app offers an explicit opt-in before it
+  records a random session ID, selected albums, recommendation lists, feedback,
+  or Taste Battle choices. The Supabase schema is ready, but the V2 app and its
+  secrets have not yet been deployed, so remote event collection has not
+  started. Set `AI_TASTE_BEHAVIOR_STORAGE = "supabase"` and the Supabase
+  secrets in Streamlit Community Cloud to retain these events for analysis.
+  The setup is documented in
+  [docs/SUPABASE_BEHAVIOR_SETUP.md](docs/SUPABASE_BEHAVIOR_SETUP.md).
 - Recommendations still work without Gemini. Explanation generation depends
   on the Gemini API and can be unavailable or rate-limited on the free tier.
 - Offline ablation metrics describe list properties; they are not a
   recommendation quality benchmark without real preference labels.
 
 In local persistent mode, anonymous behavior records are stored in `taste.db`.
-In free demo session mode, only like/dislike and Taste Battle choices are held
-temporarily in Streamlit session state; selected seeds and recommendation
-impressions are not recorded. These events are not used to train a
-recommendation model. The app discloses the active storage mode before a visitor
-selects favorite albums.
+In session mode, interaction state stays in the current Streamlit session and
+is not written to a database. Supabase mode writes opt-in analytics to a
+separate Postgres database; these events are not used to train a
+recommendation model.
 
 ## Day 1: data feasibility
 
@@ -113,7 +120,7 @@ The sample can be changed in `test_albums.json`. Matching is intentionally
 visible: inspect MusicBrainz's returned title, artist, score, MBID, and year in
 the generated report before trusting the other source checks.
 
-See [PROJECT.md](PROJECT.md) for the deliberately narrow V0.1 scope.
+See [PROJECT.md](PROJECT.md) for the product goal and current release boundary.
 
 ## Day 2: SQLite data model
 

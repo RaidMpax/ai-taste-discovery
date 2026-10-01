@@ -1,0 +1,722 @@
+{
+  "generated_at": "2026-09-29T23:48+08:00",
+  "catalogue_size": 530,
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "profile": {
+    "favorite_titles": [
+      "BRAT",
+      "HIT ME HARD AND SOFT",
+      "30"
+    ],
+    "aggregation_method": "mean_of_l2_normalized_seed_vectors_then_l2_normalize"
+  },
+  "settings": {
+    "per_tier": 3,
+    "baseline_result_limit": 9
+  },
+  "quality_labels_available": false,
+  "interpretation_limit": "These are ranking diagnostics, not evidence of user preference or recommendation accuracy. Review the listed albums manually and use Taste Battle feedback for future exploratory analysis.",
+  "tier_separation": {
+    "mean_embedding_similarity_by_tier": {
+      "Safe": 0.8450931509335836,
+      "Explore": 0.8276878794034322,
+      "Wildcard": 0.6916699210802714
+    },
+    "safe_ge_explore_ge_wildcard": true
+  },
+  "methods": {
+    "embedding_only": {
+      "definition": "Rank all non-seed albums by cosine similarity to the Taste Profile.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 9,
+        "top_primary_artist_share": 0.1111111111111111,
+        "mean_profile_similarity": 0.8449691070450677,
+        "mean_pairwise_cosine_distance": 0.22183629870414734
+      },
+      "overlap_with_embedding_only": 1.0,
+      "items": [
+        {
+          "release_group_mbid": "e6f8d52b-3b24-4546-b86d-99d79b0df209",
+          "title": "how i’m feeling now",
+          "artists": [
+            "Charli xcx"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.8569702506065369,
+          "embedding_similarity": 0.8569702506065369,
+          "bridge_similarity": 0.8862960934638977,
+          "bridge_tags": [
+            "bubblegum bass",
+            "electronic",
+            "electropop",
+            "hyperpop",
+            "pop"
+          ],
+          "new_tags": [
+            "deconstructed club",
+            "glitch pop",
+            "pop rap"
+          ]
+        },
+        {
+          "release_group_mbid": "3ac5236a-3bd8-44c6-ab60-69b013594ae6",
+          "title": "Happier Than Ever",
+          "artists": [
+            "Billie Eilish"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.8521085977554321,
+          "embedding_similarity": 0.8521085977554321,
+          "bridge_similarity": 0.8433640599250793,
+          "bridge_tags": [
+            "alt-pop",
+            "peter",
+            "pop"
+          ],
+          "new_tags": [
+            "alternative",
+            "alternative rnb",
+            "ambient pop",
+            "downtempo"
+          ]
+        },
+        {
+          "release_group_mbid": "36f4c763-a09f-4527-9bb3-ae425f8ee0aa",
+          "title": "MY WORLD",
+          "artists": [
+            "aespa"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.8520530462265015,
+          "embedding_similarity": 0.8520530462265015,
+          "bridge_similarity": 0.8036530017852783,
+          "bridge_tags": [
+            "dance-pop",
+            "electropop"
+          ],
+          "new_tags": [
+            "k-pop"
+          ]
+        },
+        {
+          "release_group_mbid": "ae268385-3eb9-45ea-8221-b5269750c8b0",
+          "title": "<Dall>",
+          "artists": [
+            "ARTMS"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.8455380201339722,
+          "embedding_similarity": 0.8455380201339722,
+          "bridge_similarity": 0.8151735067367554,
+          "bridge_tags": [
+            "pop",
+            "rnb"
+          ],
+          "new_tags": [
+            "best of 2024",
+            "contemporary rnb",
+            "future bass",
+            "k-pop",
+            "loona",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "5e725997-55dc-4f9c-b8e6-7762f021ba17",
+          "title": "[+ +]",
+          "artists": [
+            "이달의 소녀"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.8435865640640259,
+          "embedding_similarity": 0.8435865640640259,
+          "bridge_similarity": 0.8005846738815308,
+          "bridge_tags": [
+            "dance-pop",
+            "electropop"
+          ],
+          "new_tags": [
+            "contemporary rnb",
+            "future bass",
+            "k-pop",
+            "loona",
+            "pop bible",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "ebe6e41d-3f9e-4633-b5b9-8752e31ceec7",
+          "title": "Sexistential",
+          "artists": [
+            "Robyn"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.8394436836242676,
+          "embedding_similarity": 0.8394436836242676,
+          "bridge_similarity": 0.8085569739341736,
+          "bridge_tags": [
+            "dance-pop",
+            "electropop",
+            "pop"
+          ],
+          "new_tags": [
+            "2026 releases",
+            "3-5",
+            "synthpop",
+            "synthwave"
+          ]
+        },
+        {
+          "release_group_mbid": "e62dd650-9203-46cc-8d9e-9dcc4e12f136",
+          "title": "Wallsocket",
+          "artists": [
+            "underscores"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.839171290397644,
+          "embedding_similarity": 0.839171290397644,
+          "bridge_similarity": 0.8205786347389221,
+          "bridge_tags": [
+            "electronic",
+            "electropop",
+            "pop"
+          ],
+          "new_tags": [
+            "alternative",
+            "alternative rock",
+            "indie pop",
+            "indie rock",
+            "indietronica",
+            "rock"
+          ]
+        },
+        {
+          "release_group_mbid": "cb12f6df-8008-4fc6-a9e0-022413a8a8e3",
+          "title": "Superstar",
+          "artists": [
+            "That Kid"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.8386748433113098,
+          "embedding_similarity": 0.8386748433113098,
+          "bridge_similarity": 0.8274644613265991,
+          "bridge_tags": [
+            "bubblegum bass",
+            "electronic",
+            "electropop",
+            "hyperpop",
+            "pop"
+          ],
+          "new_tags": [
+            "dance",
+            "hip hop",
+            "jersey club",
+            "trance"
+          ]
+        },
+        {
+          "release_group_mbid": "de3537cf-8dac-475a-b456-42227e314d7e",
+          "title": "Puberty 2",
+          "artists": [
+            "Mitski"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.8371756672859192,
+          "embedding_similarity": 0.8371756672859192,
+          "bridge_similarity": 0.7056654691696167,
+          "bridge_tags": [
+            "art pop",
+            "singer-songwriter"
+          ],
+          "new_tags": [
+            "10s",
+            "alternative",
+            "dead oceans",
+            "dream pop",
+            "indie",
+            "indie rock",
+            "noise pop"
+          ]
+        }
+      ]
+    },
+    "embedding_plus_tags": {
+      "definition": "Rank all non-seed albums by the existing Safe score: 0.70 × profile similarity + 0.20 × bridge similarity + 0.10 × tag familiarity.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 7,
+        "top_primary_artist_share": 0.3333333333333333,
+        "mean_profile_similarity": 0.8349003725581698,
+        "mean_pairwise_cosine_distance": 0.23493312961525387
+      },
+      "overlap_with_embedding_only": 0.5555555555555556,
+      "items": [
+        {
+          "release_group_mbid": "e6f8d52b-3b24-4546-b86d-99d79b0df209",
+          "title": "how i’m feeling now",
+          "artists": [
+            "Charli xcx"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.8771383941173553,
+          "embedding_similarity": 0.8569702506065369,
+          "bridge_similarity": 0.8862960934638977,
+          "bridge_tags": [
+            "bubblegum bass",
+            "electronic",
+            "electropop",
+            "hyperpop",
+            "pop"
+          ],
+          "new_tags": [
+            "deconstructed club",
+            "glitch pop",
+            "pop rap"
+          ]
+        },
+        {
+          "release_group_mbid": "3ac5236a-3bd8-44c6-ab60-69b013594ae6",
+          "title": "Happier Than Ever",
+          "artists": [
+            "Billie Eilish"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.8651488304138183,
+          "embedding_similarity": 0.8521085977554321,
+          "bridge_similarity": 0.8433640599250793,
+          "bridge_tags": [
+            "alt-pop",
+            "peter",
+            "pop"
+          ],
+          "new_tags": [
+            "alternative",
+            "alternative rnb",
+            "ambient pop",
+            "downtempo"
+          ]
+        },
+        {
+          "release_group_mbid": "bc8868e9-dda3-477d-ab89-b62d82cd7ea7",
+          "title": "Pop 2",
+          "artists": [
+            "Charli xcx"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.8592475771903991,
+          "embedding_similarity": 0.8262006044387817,
+          "bridge_similarity": 0.9045357704162598,
+          "bridge_tags": [
+            "bubblegum bass",
+            "electronic",
+            "electropop",
+            "hyperpop",
+            "pop"
+          ],
+          "new_tags": [
+            "deconstructed club",
+            "pc music",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "dc396430-1e1c-4f0b-8b05-d69603d7fb12",
+          "title": "Charli",
+          "artists": [
+            "Charli xcx"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.8534537732601165,
+          "embedding_similarity": 0.8108596205711365,
+          "bridge_similarity": 0.9292601943016052,
+          "bridge_tags": [
+            "bubblegum bass",
+            "electronic",
+            "electropop",
+            "hyperpop",
+            "pop"
+          ],
+          "new_tags": [
+            "deconstructed club",
+            "pc music",
+            "pop rap",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "cb12f6df-8008-4fc6-a9e0-022413a8a8e3",
+          "title": "Superstar",
+          "artists": [
+            "That Kid"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.8525652825832366,
+          "embedding_similarity": 0.8386748433113098,
+          "bridge_similarity": 0.8274644613265991,
+          "bridge_tags": [
+            "bubblegum bass",
+            "electronic",
+            "electropop",
+            "hyperpop",
+            "pop"
+          ],
+          "new_tags": [
+            "dance",
+            "hip hop",
+            "jersey club",
+            "trance"
+          ]
+        },
+        {
+          "release_group_mbid": "e62dd650-9203-46cc-8d9e-9dcc4e12f136",
+          "title": "Wallsocket",
+          "artists": [
+            "underscores"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.8515356302261352,
+          "embedding_similarity": 0.839171290397644,
+          "bridge_similarity": 0.8205786347389221,
+          "bridge_tags": [
+            "electronic",
+            "electropop",
+            "pop"
+          ],
+          "new_tags": [
+            "alternative",
+            "alternative rock",
+            "indie pop",
+            "indie rock",
+            "indietronica",
+            "rock"
+          ]
+        },
+        {
+          "release_group_mbid": "ebe6e41d-3f9e-4633-b5b9-8752e31ceec7",
+          "title": "Sexistential",
+          "artists": [
+            "Robyn"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.849321973323822,
+          "embedding_similarity": 0.8394436836242676,
+          "bridge_similarity": 0.8085569739341736,
+          "bridge_tags": [
+            "dance-pop",
+            "electropop",
+            "pop"
+          ],
+          "new_tags": [
+            "2026 releases",
+            "3-5",
+            "synthpop",
+            "synthwave"
+          ]
+        },
+        {
+          "release_group_mbid": "8964ae5f-ecb7-4d9c-ba0b-94b5a5d48b5d",
+          "title": "Flamboyant",
+          "artists": [
+            "Dorian Electra"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.8455828249454497,
+          "embedding_similarity": 0.8290354609489441,
+          "bridge_similarity": 0.8262900114059448,
+          "bridge_tags": [
+            "bubblegum bass",
+            "dance-pop",
+            "electronic",
+            "electropop",
+            "hyperpop"
+          ],
+          "new_tags": [
+            "dance",
+            "electro pop",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "6ab2d1f5-1730-499d-a814-6fe6eb9ec1f0",
+          "title": "I Love My Computer",
+          "artists": [
+            "Ninajirachi"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.8430601298809052,
+          "embedding_similarity": 0.8216390013694763,
+          "bridge_similarity": 0.8395641446113586,
+          "bridge_tags": [
+            "bubblegum bass",
+            "edm",
+            "electro house",
+            "electronic",
+            "electropop",
+            "pop"
+          ],
+          "new_tags": [
+            "complextro",
+            "dance",
+            "house"
+          ]
+        }
+      ]
+    },
+    "full_ranking": {
+      "definition": "Use the current Safe / Explore / Wildcard eligibility rules and tier-specific score; show up to the requested limit per tier.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 7,
+        "top_primary_artist_share": 0.2222222222222222,
+        "mean_profile_similarity": 0.7881503171390958,
+        "mean_pairwise_cosine_distance": 0.3377124294638634
+      },
+      "overlap_with_embedding_only": 0.3333333333333333,
+      "items": [
+        {
+          "release_group_mbid": "e6f8d52b-3b24-4546-b86d-99d79b0df209",
+          "title": "how i’m feeling now",
+          "artists": [
+            "Charli xcx"
+          ],
+          "tier": "Safe",
+          "rank": 1,
+          "ranking_score": 0.8771383941173553,
+          "embedding_similarity": 0.8569702506065369,
+          "bridge_similarity": 0.8862960934638977,
+          "bridge_tags": [
+            "bubblegum bass",
+            "electronic",
+            "electropop",
+            "hyperpop",
+            "pop"
+          ],
+          "new_tags": [
+            "deconstructed club",
+            "glitch pop",
+            "pop rap"
+          ]
+        },
+        {
+          "release_group_mbid": "3ac5236a-3bd8-44c6-ab60-69b013594ae6",
+          "title": "Happier Than Ever",
+          "artists": [
+            "Billie Eilish"
+          ],
+          "tier": "Safe",
+          "rank": 2,
+          "ranking_score": 0.8651488304138183,
+          "embedding_similarity": 0.8521085977554321,
+          "bridge_similarity": 0.8433640599250793,
+          "bridge_tags": [
+            "alt-pop",
+            "peter",
+            "pop"
+          ],
+          "new_tags": [
+            "alternative",
+            "alternative rnb",
+            "ambient pop",
+            "downtempo"
+          ]
+        },
+        {
+          "release_group_mbid": "bc8868e9-dda3-477d-ab89-b62d82cd7ea7",
+          "title": "Pop 2",
+          "artists": [
+            "Charli xcx"
+          ],
+          "tier": "Safe",
+          "rank": 3,
+          "ranking_score": 0.8592475771903991,
+          "embedding_similarity": 0.8262006044387817,
+          "bridge_similarity": 0.9045357704162598,
+          "bridge_tags": [
+            "bubblegum bass",
+            "electronic",
+            "electropop",
+            "hyperpop",
+            "pop"
+          ],
+          "new_tags": [
+            "deconstructed club",
+            "pc music",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "e62dd650-9203-46cc-8d9e-9dcc4e12f136",
+          "title": "Wallsocket",
+          "artists": [
+            "underscores"
+          ],
+          "tier": "Explore",
+          "rank": 1,
+          "ranking_score": 0.8731599366664886,
+          "embedding_similarity": 0.839171290397644,
+          "bridge_similarity": 0.8205786347389221,
+          "bridge_tags": [
+            "electronic",
+            "electropop",
+            "pop"
+          ],
+          "new_tags": [
+            "alternative",
+            "alternative rock",
+            "indie pop",
+            "indie rock",
+            "indietronica",
+            "rock"
+          ]
+        },
+        {
+          "release_group_mbid": "59eda79b-6975-490e-873e-12790e4bda01",
+          "title": "fishmonger",
+          "artists": [
+            "underscores"
+          ],
+          "tier": "Explore",
+          "rank": 2,
+          "ranking_score": 0.8587035036087036,
+          "embedding_similarity": 0.8282821178436279,
+          "bridge_similarity": 0.7782416939735413,
+          "bridge_tags": [
+            "electronic",
+            "hyperpop",
+            "pop"
+          ],
+          "new_tags": [
+            "alternative",
+            "alternative rock",
+            "emo rock",
+            "indie pop",
+            "indie rock",
+            "rock"
+          ]
+        },
+        {
+          "release_group_mbid": "df7081e0-aa0f-408a-9ec4-57ab52d79d50",
+          "title": "Britpop",
+          "artists": [
+            "A. G. Cook"
+          ],
+          "tier": "Explore",
+          "rank": 3,
+          "ranking_score": 0.8584042972326279,
+          "embedding_similarity": 0.8156102299690247,
+          "bridge_similarity": 0.8115933537483215,
+          "bridge_tags": [
+            "bubblegum bass",
+            "electronic",
+            "pop"
+          ],
+          "new_tags": [
+            "alternative rock",
+            "dance",
+            "idm",
+            "pc music",
+            "rock",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "0b232453-8666-361f-b1db-2578fc4a9f97",
+          "title": "Solid State Survivor",
+          "artists": [
+            "Yellow Magic Orchestra"
+          ],
+          "tier": "Wildcard",
+          "rank": 1,
+          "ranking_score": 0.6691378504037858,
+          "embedding_similarity": 0.6757407188415527,
+          "bridge_similarity": 0.7152445912361145,
+          "bridge_tags": [
+            "electronic",
+            "electropop",
+            "pop"
+          ],
+          "new_tags": [
+            "70s",
+            "electro-disco",
+            "japanese",
+            "new wave",
+            "synth pop",
+            "synthpop"
+          ]
+        },
+        {
+          "release_group_mbid": "71c3eed6-466c-4aef-ad12-65a36d19467a",
+          "title": "THE TORTURED POETS DEPARTMENT",
+          "artists": [
+            "Taylor Swift"
+          ],
+          "tier": "Wildcard",
+          "rank": 2,
+          "ranking_score": 0.661606529355049,
+          "embedding_similarity": 0.6900418996810913,
+          "bridge_similarity": 0.7080424427986145,
+          "bridge_tags": [
+            "aoty",
+            "pop",
+            "singer-songwriter"
+          ],
+          "new_tags": [
+            "alternative",
+            "best of 2024",
+            "indie",
+            "synthpop",
+            "taylor swift",
+            "the tortured poets department: the anthology"
+          ]
+        },
+        {
+          "release_group_mbid": "8596171e-23b2-4bdd-8f1c-11960df0ecbe",
+          "title": "BEYONCÉ",
+          "artists": [
+            "Beyoncé"
+          ],
+          "tier": "Wildcard",
+          "rank": 3,
+          "ranking_score": 0.647420236468315,
+          "embedding_similarity": 0.7092271447181702,
+          "bridge_similarity": 0.6893075108528137,
+          "bridge_tags": [
+            "pop",
+            "rnb",
+            "soul"
+          ],
+          "new_tags": [
+            "alternative rnb",
+            "best of 2013",
+            "beyonce",
+            "hip hop",
+            "hip-hop",
+            "r&b"
+          ]
+        }
+      ]
+    }
+  }
+}

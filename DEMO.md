@@ -53,8 +53,8 @@ shown. Never display a secrets file on screen.
 5. **Limitations — 30 seconds**
    The 530-album catalogue has incomplete licensed-review coverage. Evaluation
    metrics describe list properties rather than user preference, and this guide
-   is still a V1 walkthrough. Public deployment and data persistence are not
-   configured; see `DEPLOYMENT_READINESS.md`.
+   is still a V1 walkthrough. The V2 candidate and Supabase integration have
+   not yet been published to the hosted app; see `DEPLOYMENT_READINESS.md`.
 
 ## If Gemini is unavailable
 

@@ -33,7 +33,8 @@ not yet claim recommendation accuracy or train from the collected behavior.
 - Last.fm: retained candidate community tags; optional for ingestion and not
   used by the app's default profile/recommendation path
 - CritiqueBrainz: review text and review metadata
-- SQLite: curated catalogue and anonymous behavior data
+- SQLite: curated catalogue and local behavior data
+- Supabase: opt-in hosted behavior analytics for the public Beta
 
 ## Technical approach
 
@@ -43,9 +44,11 @@ not use LangChain, LlamaIndex, agents, or a trained recommendation model.
 
 ## Current status and boundary
 
-The V2 features are implemented and tested locally. Public deployment is not
-configured: the SQLite database is intentionally excluded from Git, and a
-hosting provider with suitable data persistence has not been selected. See
-`DEPLOYMENT_READINESS.md` before sharing a public URL. Reviews carry declared
-licenses, but attribution and intended-use compatibility still require a
-deployment-focused review.
+The V2 candidate is implemented locally; the previously deployed Streamlit app
+is still the earlier version until this branch is published and redeployed. The
+530-album MusicBrainz-only catalogue is available as a separate GitHub Release
+asset, and the Supabase behavior schema has been applied and verified. Hosted
+Streamlit secrets are not configured yet, so V2 behavior collection has not
+started. See `DEPLOYMENT_READINESS.md` for the remaining release checks. Review
+attribution and intended-use compatibility still need a deployment-focused
+review.

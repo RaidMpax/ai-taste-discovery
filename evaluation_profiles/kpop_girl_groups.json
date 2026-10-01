@@ -1,0 +1,704 @@
+{
+  "generated_at": "2026-09-29T23:49+08:00",
+  "catalogue_size": 530,
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "profile": {
+    "favorite_titles": [
+      "<Club Icarus>",
+      "IVE EMPATHY",
+      "BORN PINK"
+    ],
+    "aggregation_method": "mean_of_l2_normalized_seed_vectors_then_l2_normalize"
+  },
+  "settings": {
+    "per_tier": 3,
+    "baseline_result_limit": 9
+  },
+  "quality_labels_available": false,
+  "interpretation_limit": "These are ranking diagnostics, not evidence of user preference or recommendation accuracy. Review the listed albums manually and use Taste Battle feedback for future exploratory analysis.",
+  "tier_separation": {
+    "mean_embedding_similarity_by_tier": {
+      "Safe": 0.8957819938659668,
+      "Explore": 0.8409866491953532,
+      "Wildcard": 0.6995750864346822
+    },
+    "safe_ge_explore_ge_wildcard": true
+  },
+  "methods": {
+    "embedding_only": {
+      "definition": "Rank all non-seed albums by cosine similarity to the Taste Profile.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 9,
+        "top_primary_artist_share": 0.1111111111111111,
+        "mean_profile_similarity": 0.8732805848121643,
+        "mean_pairwise_cosine_distance": 0.2096613281302982
+      },
+      "overlap_with_embedding_only": 1.0,
+      "items": [
+        {
+          "release_group_mbid": "4b721f14-89f3-42b1-a1cc-9662a601914e",
+          "title": "I’ve IVE",
+          "artists": [
+            "IVE"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.9288367629051208,
+          "embedding_similarity": 0.9288367629051208,
+          "bridge_similarity": 0.8369430899620056,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "2020s",
+            "4th gen",
+            "aoty",
+            "girl group",
+            "south korea"
+          ]
+        },
+        {
+          "release_group_mbid": "8240b45e-5e5c-4c47-a96c-0a0d2c556c08",
+          "title": "THE ALBUM",
+          "artists": [
+            "BLACKPINK"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.8820397257804871,
+          "embedding_similarity": 0.8820397257804871,
+          "bridge_similarity": 0.8897199034690857,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop",
+            "korean",
+            "kpop",
+            "pop",
+            "pop rap",
+            "trap"
+          ],
+          "new_tags": [
+            "contemporary rnb",
+            "electropop"
+          ]
+        },
+        {
+          "release_group_mbid": "36f4c763-a09f-4527-9bb3-ae425f8ee0aa",
+          "title": "MY WORLD",
+          "artists": [
+            "aespa"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.8815466165542603,
+          "embedding_similarity": 0.8815466165542603,
+          "bridge_similarity": 0.8608486652374268,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop"
+          ],
+          "new_tags": [
+            "electropop"
+          ]
+        },
+        {
+          "release_group_mbid": "1250f621-64df-4b3a-ac75-fad7db1123f3",
+          "title": "Born to be XX",
+          "artists": [
+            "KISS OF LIFE"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.8764694929122925,
+          "embedding_similarity": 0.8764694929122925,
+          "bridge_similarity": 0.8339170813560486,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "hip hop",
+            "s2 entertainment"
+          ]
+        },
+        {
+          "release_group_mbid": "b4de57ea-0970-4b54-9290-35b6d239ddaa",
+          "title": "SEQUENCE 01",
+          "artists": [
+            "f5ve"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.8715105056762695,
+          "embedding_similarity": 0.8715105056762695,
+          "bridge_similarity": 0.7693825364112854,
+          "bridge_tags": [
+            "dance-pop",
+            "pop"
+          ],
+          "new_tags": [
+            "aoty 2025",
+            "electropop",
+            "idol",
+            "j-pop",
+            "japan",
+            "japanese"
+          ]
+        },
+        {
+          "release_group_mbid": "c6c371d5-0214-4378-985b-1be9f9156b12",
+          "title": "To Anyone",
+          "artists": [
+            "2NE1"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.8561126589775085,
+          "embedding_similarity": 0.8561126589775085,
+          "bridge_similarity": 0.794510006904602,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop",
+            "pop"
+          ],
+          "new_tags": [
+            "2ne1",
+            "albums",
+            "best of 2010",
+            "dance",
+            "electronic"
+          ]
+        },
+        {
+          "release_group_mbid": "cfc67890-7a0a-465a-b817-d506f57b9058",
+          "title": "ANTIFRAGILE",
+          "artists": [
+            "LE SSERAFIM"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.8559665083885193,
+          "embedding_similarity": 0.8559665083885193,
+          "bridge_similarity": 0.8045685291290283,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "best of 2022",
+            "eletropop",
+            "girlgroup",
+            "latin pop",
+            "reggaeton",
+            "release day"
+          ]
+        },
+        {
+          "release_group_mbid": "f2ce706f-f28d-4062-95f8-f0104efcea2e",
+          "title": "I NEVER DIE",
+          "artists": [
+            "(G)I‐DLE"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.8546888828277588,
+          "embedding_similarity": 0.8546888828277588,
+          "bridge_similarity": 0.8308690786361694,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": []
+        },
+        {
+          "release_group_mbid": "ae268385-3eb9-45ea-8221-b5269750c8b0",
+          "title": "<Dall>",
+          "artists": [
+            "ARTMS"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.852354109287262,
+          "embedding_similarity": 0.852354109287262,
+          "bridge_similarity": 0.8827544450759888,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop",
+            "loona",
+            "synthpop"
+          ],
+          "new_tags": [
+            "best of 2024",
+            "contemporary rnb",
+            "future bass",
+            "rnb"
+          ]
+        }
+      ]
+    },
+    "embedding_plus_tags": {
+      "definition": "Rank all non-seed albums by the existing Safe score: 0.70 × profile similarity + 0.20 × bridge similarity + 0.10 × tag familiarity.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 9,
+        "top_primary_artist_share": 0.1111111111111111,
+        "mean_profile_similarity": 0.8705428110228645,
+        "mean_pairwise_cosine_distance": 0.21112299296591017
+      },
+      "overlap_with_embedding_only": 0.8888888888888888,
+      "items": [
+        {
+          "release_group_mbid": "4b721f14-89f3-42b1-a1cc-9662a601914e",
+          "title": "I’ve IVE",
+          "artists": [
+            "IVE"
+          ],
+          "tier": null,
+          "rank": 1,
+          "ranking_score": 0.9175743520259857,
+          "embedding_similarity": 0.9288367629051208,
+          "bridge_similarity": 0.8369430899620056,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "2020s",
+            "4th gen",
+            "aoty",
+            "girl group",
+            "south korea"
+          ]
+        },
+        {
+          "release_group_mbid": "8240b45e-5e5c-4c47-a96c-0a0d2c556c08",
+          "title": "THE ALBUM",
+          "artists": [
+            "BLACKPINK"
+          ],
+          "tier": null,
+          "rank": 2,
+          "ranking_score": 0.895371788740158,
+          "embedding_similarity": 0.8820397257804871,
+          "bridge_similarity": 0.8897199034690857,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop",
+            "korean",
+            "kpop",
+            "pop",
+            "pop rap",
+            "trap"
+          ],
+          "new_tags": [
+            "contemporary rnb",
+            "electropop"
+          ]
+        },
+        {
+          "release_group_mbid": "1250f621-64df-4b3a-ac75-fad7db1123f3",
+          "title": "Born to be XX",
+          "artists": [
+            "KISS OF LIFE"
+          ],
+          "tier": null,
+          "rank": 3,
+          "ranking_score": 0.8803120613098144,
+          "embedding_similarity": 0.8764694929122925,
+          "bridge_similarity": 0.8339170813560486,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "hip hop",
+            "s2 entertainment"
+          ]
+        },
+        {
+          "release_group_mbid": "ae268385-3eb9-45ea-8221-b5269750c8b0",
+          "title": "<Dall>",
+          "artists": [
+            "ARTMS"
+          ],
+          "tier": null,
+          "rank": 4,
+          "ranking_score": 0.8731987655162811,
+          "embedding_similarity": 0.852354109287262,
+          "bridge_similarity": 0.8827544450759888,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop",
+            "loona",
+            "synthpop"
+          ],
+          "new_tags": [
+            "best of 2024",
+            "contemporary rnb",
+            "future bass",
+            "rnb"
+          ]
+        },
+        {
+          "release_group_mbid": "f2ce706f-f28d-4062-95f8-f0104efcea2e",
+          "title": "I NEVER DIE",
+          "artists": [
+            "(G)I‐DLE"
+          ],
+          "tier": null,
+          "rank": 5,
+          "ranking_score": 0.864456033706665,
+          "embedding_similarity": 0.8546888828277588,
+          "bridge_similarity": 0.8308690786361694,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": []
+        },
+        {
+          "release_group_mbid": "cfc67890-7a0a-465a-b817-d506f57b9058",
+          "title": "ANTIFRAGILE",
+          "artists": [
+            "LE SSERAFIM"
+          ],
+          "tier": null,
+          "rank": 6,
+          "ranking_score": 0.8600902616977691,
+          "embedding_similarity": 0.8559665083885193,
+          "bridge_similarity": 0.8045685291290283,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "best of 2022",
+            "eletropop",
+            "girlgroup",
+            "latin pop",
+            "reggaeton",
+            "release day"
+          ]
+        },
+        {
+          "release_group_mbid": "c6c371d5-0214-4378-985b-1be9f9156b12",
+          "title": "To Anyone",
+          "artists": [
+            "2NE1"
+          ],
+          "tier": null,
+          "rank": 7,
+          "ranking_score": 0.8581808626651762,
+          "embedding_similarity": 0.8561126589775085,
+          "bridge_similarity": 0.794510006904602,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop",
+            "pop"
+          ],
+          "new_tags": [
+            "2ne1",
+            "albums",
+            "best of 2010",
+            "dance",
+            "electronic"
+          ]
+        },
+        {
+          "release_group_mbid": "36f4c763-a09f-4527-9bb3-ae425f8ee0aa",
+          "title": "MY WORLD",
+          "artists": [
+            "aespa"
+          ],
+          "tier": null,
+          "rank": 8,
+          "ranking_score": 0.8559190313021342,
+          "embedding_similarity": 0.8815466165542603,
+          "bridge_similarity": 0.8608486652374268,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop"
+          ],
+          "new_tags": [
+            "electropop"
+          ]
+        },
+        {
+          "release_group_mbid": "584fe437-9e6e-40f8-b61c-1f437139226b",
+          "title": "[12:00]",
+          "artists": [
+            "이달의 소녀"
+          ],
+          "tier": null,
+          "rank": 9,
+          "ranking_score": 0.8519774317741394,
+          "embedding_similarity": 0.8468705415725708,
+          "bridge_similarity": 0.7958402633666992,
+          "bridge_tags": [
+            "k-pop",
+            "kpop",
+            "loona",
+            "synthpop"
+          ],
+          "new_tags": [
+            "electronic pop",
+            "electropop",
+            "flop",
+            "life changing",
+            "perfection",
+            "show stopping"
+          ]
+        }
+      ]
+    },
+    "full_ranking": {
+      "definition": "Use the current Safe / Explore / Wildcard eligibility rules and tier-specific score; show up to the requested limit per tier.",
+      "metrics": {
+        "recommendation_count": 9,
+        "unique_album_count": 9,
+        "unique_primary_artist_count": 9,
+        "top_primary_artist_share": 0.1111111111111111,
+        "mean_profile_similarity": 0.8121145764986674,
+        "mean_pairwise_cosine_distance": 0.3160358907447921
+      },
+      "overlap_with_embedding_only": 0.4444444444444444,
+      "items": [
+        {
+          "release_group_mbid": "4b721f14-89f3-42b1-a1cc-9662a601914e",
+          "title": "I’ve IVE",
+          "artists": [
+            "IVE"
+          ],
+          "tier": "Safe",
+          "rank": 1,
+          "ranking_score": 0.9175743520259857,
+          "embedding_similarity": 0.9288367629051208,
+          "bridge_similarity": 0.8369430899620056,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "2020s",
+            "4th gen",
+            "aoty",
+            "girl group",
+            "south korea"
+          ]
+        },
+        {
+          "release_group_mbid": "8240b45e-5e5c-4c47-a96c-0a0d2c556c08",
+          "title": "THE ALBUM",
+          "artists": [
+            "BLACKPINK"
+          ],
+          "tier": "Safe",
+          "rank": 2,
+          "ranking_score": 0.895371788740158,
+          "embedding_similarity": 0.8820397257804871,
+          "bridge_similarity": 0.8897199034690857,
+          "bridge_tags": [
+            "dance-pop",
+            "k-pop",
+            "korean",
+            "kpop",
+            "pop",
+            "pop rap",
+            "trap"
+          ],
+          "new_tags": [
+            "contemporary rnb",
+            "electropop"
+          ]
+        },
+        {
+          "release_group_mbid": "1250f621-64df-4b3a-ac75-fad7db1123f3",
+          "title": "Born to be XX",
+          "artists": [
+            "KISS OF LIFE"
+          ],
+          "tier": "Safe",
+          "rank": 3,
+          "ranking_score": 0.8803120613098144,
+          "embedding_similarity": 0.8764694929122925,
+          "bridge_similarity": 0.8339170813560486,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "hip hop",
+            "s2 entertainment"
+          ]
+        },
+        {
+          "release_group_mbid": "cfc67890-7a0a-465a-b817-d506f57b9058",
+          "title": "ANTIFRAGILE",
+          "artists": [
+            "LE SSERAFIM"
+          ],
+          "tier": "Explore",
+          "rank": 1,
+          "ranking_score": 0.8791952854394912,
+          "embedding_similarity": 0.8559665083885193,
+          "bridge_similarity": 0.8045685291290283,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "best of 2022",
+            "eletropop",
+            "girlgroup",
+            "latin pop",
+            "reggaeton",
+            "release day"
+          ]
+        },
+        {
+          "release_group_mbid": "8409ea9b-5f9d-4954-88b7-a9ae77a1814c",
+          "title": "Palette",
+          "artists": [
+            "IU"
+          ],
+          "tier": "Explore",
+          "rank": 2,
+          "ranking_score": 0.8694178229570388,
+          "embedding_similarity": 0.8400940299034119,
+          "bridge_similarity": 0.7993305325508118,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "albumsiown",
+            "ballad",
+            "best of 2017",
+            "female vocalist",
+            "rnb",
+            "soul"
+          ]
+        },
+        {
+          "release_group_mbid": "964773ee-faec-4c35-a8fb-b2ac15617d91",
+          "title": "Pink Tape",
+          "artists": [
+            "f(x)"
+          ],
+          "tier": "Explore",
+          "rank": 3,
+          "ranking_score": 0.8624948108196259,
+          "embedding_similarity": 0.8268994092941284,
+          "bridge_similarity": 0.8072506785392761,
+          "bridge_tags": [
+            "k-pop",
+            "korean",
+            "kpop"
+          ],
+          "new_tags": [
+            "best of 2013",
+            "electronic",
+            "female vocalists",
+            "korean pop",
+            "pink bible"
+          ]
+        },
+        {
+          "release_group_mbid": "b88655ba-7469-48b8-a296-b9011ab73ef3",
+          "title": "DAMN.",
+          "artists": [
+            "Kendrick Lamar"
+          ],
+          "tier": "Wildcard",
+          "rank": 1,
+          "ranking_score": 0.6676699399948121,
+          "embedding_similarity": 0.6946097612380981,
+          "bridge_similarity": 0.7245619297027588,
+          "bridge_tags": [
+            "pop rap",
+            "trap",
+            "trap rap"
+          ],
+          "new_tags": [
+            "conscious hip hop",
+            "hip hop",
+            "hip-hop",
+            "political hip hop",
+            "rap",
+            "west coast hip hop"
+          ]
+        },
+        {
+          "release_group_mbid": "88e46272-f172-42ad-ae4a-6df5dbfb5ae0",
+          "title": "Hot Pink",
+          "artists": [
+            "Doja Cat"
+          ],
+          "tier": "Wildcard",
+          "rank": 2,
+          "ranking_score": 0.6405886858701706,
+          "embedding_similarity": 0.6904640793800354,
+          "bridge_similarity": 0.6616175770759583,
+          "bridge_tags": [
+            "pop",
+            "pop rap",
+            "trap"
+          ],
+          "new_tags": [
+            "2010s",
+            "best of 2019",
+            "hip hop",
+            "hip-hop",
+            "rap",
+            "rnb"
+          ]
+        },
+        {
+          "release_group_mbid": "bb3ec118-57df-4eb9-a8fe-a26a70a7dbe0",
+          "title": "LUX",
+          "artists": [
+            "ROSALÍA"
+          ],
+          "tier": "Wildcard",
+          "rank": 3,
+          "ranking_score": 0.5887902716795603,
+          "embedding_similarity": 0.7136514186859131,
+          "bridge_similarity": 0.7471534013748169,
+          "bridge_tags": [
+            "art pop",
+            "experimental"
+          ],
+          "new_tags": [
+            "avantgarde pop",
+            "classical",
+            "classical crossover",
+            "flamenco pop",
+            "latin",
+            "orchestral music"
+          ]
+        }
+      ]
+    }
+  }
+}
