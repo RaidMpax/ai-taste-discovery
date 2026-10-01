@@ -41,9 +41,11 @@ SHA-256 before using it. SQLite files are intentionally Git-ignored. Set
 `AI_TASTE_DATABASE_PATH` as an environment variable to use an existing local or
 host-mounted database instead.
 
-The ingestion and deployment-export scripts are for the curator workspace and
-require the accepted album manifest, which is not distributed with the public
-demo. The public app does not need a fresh API import to start.
+The ingestion and deployment-export scripts are curator tools and require the
+private working manifest `album_match_manifest.json`, which is not distributed
+with the public demo. The public app uses the checked-in
+`deployment/accepted_album_manifest.json` plus the pinned database snapshot; it
+does not need a fresh API import to start.
 
 In the curator workspace, a deployment preview can be rebuilt with:
 

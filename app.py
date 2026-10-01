@@ -838,8 +838,13 @@ def ensure_behavior_schema(database_path: str, schema_revision: int) -> str:
 
 @st.cache_resource(show_spinner="正在加载专辑与 Embedding…")
 def load_resources() -> dict:
-    """Load the static catalogue once; user-event writes share the same SQLite file."""
-    documents = load_album_documents(APP_DATABASE)
+    """Load the curated catalogue once; behavior events may use a separate store."""
+    deployment_manifest = (
+        Path(__file__).resolve().parent
+        / "deployment"
+        / "accepted_album_manifest.json"
+    )
+    documents = load_album_documents(APP_DATABASE, manifest_path=deployment_manifest)
     album_vectors = embed_documents(documents)
     review_chunks = load_review_chunks(APP_DATABASE)
     review_model, review_vectors = embed_chunks(review_chunks)

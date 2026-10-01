@@ -33,6 +33,9 @@ collected.
   missing. Downloads are checked against a SHA-256 digest before installation;
   the URL and expected digest can be overridden together if a new snapshot is
   published.
+- `deployment/accepted_album_manifest.json` contains the 530 public album IDs;
+  the app uses it to keep the loaded document set aligned with the published
+  catalogue rather than relying on the curator-only local selection manifest.
 
 ## Launch blockers and decisions
 
