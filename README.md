@@ -8,9 +8,9 @@ The current catalogue contains 530 accepted albums. V2 also includes an
 optional Gemini Taste Analysis, anonymous feedback, Taste Battle, and offline
 ranking diagnostics. The earlier V1 friends-and-family demo is live at
 https://ai-taste-discovery-irdp3eamhnzuofrm7tbkqr.streamlit.app/. The V2
-candidate is now published on the public GitHub `v2-beta` branch, but it has
-not yet been verified as running on that hosted app. The
-public catalogue snapshot excludes Last.fm-derived tags and CritiqueBrainz
+candidate is published on the public GitHub `v2-beta` branch and is now serving
+from that branch after a hosted restart. The public catalogue snapshot
+excludes Last.fm-derived tags and CritiqueBrainz
 reviews; see `DEPLOYMENT_READINESS.md` for the current release status.
 
 ## Quick start
@@ -76,11 +76,11 @@ it can take longer than later runs.
   falls back to structured metadata and tags and states that limitation.
 - There is no account system. The app offers an explicit opt-in before it
   records a random session ID, selected albums, recommendation lists, feedback,
-  or Taste Battle choices. The Supabase schema is ready, but the hosted app has
-  not yet been verified with the V2 branch and its secrets, so remote event
-  collection has not started. Set `AI_TASTE_BEHAVIOR_STORAGE = "supabase"`
-  and the Supabase secrets in Streamlit Community Cloud to retain these events
-  for analysis.
+  or Taste Battle choices. The V2 app now loads on Streamlit, but its hosted
+  Supabase/Gemini secrets have not yet been configured and no behavior events
+  have been collected remotely. Set `AI_TASTE_BEHAVIOR_STORAGE = "supabase"`
+  and the Supabase/Gemini secrets in Streamlit Community Cloud to enable
+  persistent analytics and AI explanations.
   The setup is documented in
   [docs/SUPABASE_BEHAVIOR_SETUP.md](docs/SUPABASE_BEHAVIOR_SETUP.md).
 - Recommendations still work without Gemini. Explanation generation depends
