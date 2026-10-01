@@ -1,4 +1,8 @@
-# V0.1 Demo Guide
+# Historical V1 Demo Guide
+
+The example rankings below were checked against the original 30-album V1
+sample. V2 now uses 530 selected albums, so titles and ranks can differ; inspect
+the live results rather than promising these exact outputs.
 
 Target length: 3–5 minutes. Use `OK Computer` and `Homogenic` as the favorite
 albums and display three recommendations per tier.
@@ -9,8 +13,9 @@ albums and display three recommendations per tier.
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Confirm that album covers load and that `.env` contains `GEMINI_API_KEY` if the
-live **Why This?** generation will be shown. Do not display `.env` on screen.
+Confirm that album covers load and that `GEMINI_API_KEY` is configured in the
+environment, local `.env`, or Streamlit secrets if live generation will be
+shown. Never display a secrets file on screen.
 
 ## Demo route
 
@@ -46,9 +51,10 @@ live **Why This?** generation will be shown. Do not display `.env` on screen.
    URLs and IDs come from the application, not from the model.
 
 5. **Limitations — 30 seconds**
-   The catalogue contains 30 curated albums, licensed reviews are sparse,
-   artist input is not implemented, and the evaluation is qualitative. These
-   are explicit V0.1 boundaries rather than claims of production readiness.
+   The 530-album catalogue has incomplete licensed-review coverage. Evaluation
+   metrics describe list properties rather than user preference, and this guide
+   is still a V1 walkthrough. Public deployment and data persistence are not
+   configured; see `DEPLOYMENT_READINESS.md`.
 
 ## If Gemini is unavailable
 

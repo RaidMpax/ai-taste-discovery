@@ -38,6 +38,31 @@ UNSUPPORTED_CONSENSUS_TERMS = (
     "广泛",
     "普遍",
 )
+
+
+def _resolve_gemini_api_key(api_key: str | None = None) -> str:
+    """Accept Streamlit secrets explicitly or fall back to env / local .env."""
+    if api_key and api_key.strip():
+        return api_key.strip()
+
+    load_dotenv()
+    environment_key = os.getenv("GEMINI_API_KEY", "").strip()
+    if not environment_key:
+        raise RuntimeError(
+            "GEMINI_API_KEY is not configured. Set it in the environment, "
+            "local .env, or Streamlit secrets."
+        )
+    return environment_key
+
+
+def _create_gemini_client(api_key: str | None = None):
+    return genai.Client(
+        api_key=_resolve_gemini_api_key(api_key),
+        http_options={
+            "timeout": GEMINI_TIMEOUT_MS,
+            "retry_options": {"attempts": 1},
+        },
+    )
 WHY_THIS_SCHEMA = {
     "type": "object",
     "properties": {
@@ -65,6 +90,37 @@ WHY_THIS_SCHEMA = {
         "why_this",
         "familiar_connection",
         "new_direction",
+        "evidence",
+        "limitations",
+    ],
+    "additionalProperties": False,
+}
+TASTE_ANALYSIS_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "overall_taste": {"type": "string"},
+        "core_tendencies": {"type": "array", "items": {"type": "string"}},
+        "interesting_contrasts": {"type": "array", "items": {"type": "string"}},
+        "exploration_directions": {"type": "array", "items": {"type": "string"}},
+        "evidence": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "claim": {"type": "string"},
+                    "source_ids": {"type": "array", "items": {"type": "string"}},
+                },
+                "required": ["claim", "source_ids"],
+                "additionalProperties": False,
+            },
+        },
+        "limitations": {"type": "string"},
+    },
+    "required": [
+        "overall_taste",
+        "core_tendencies",
+        "interesting_contrasts",
+        "exploration_directions",
         "evidence",
         "limitations",
     ],
@@ -136,7 +192,9 @@ def load_review_chunks(database_path: Path) -> list[dict]:
             r.language,
             r.source,
             r.source_url,
+            r.reviewer_name,
             r.license,
+            r.license_url,
             r.review_text
         FROM reviews AS r
         JOIN albums AS a
@@ -160,7 +218,9 @@ def load_review_chunks(database_path: Path) -> list[dict]:
                     "source": row["source"] or "CritiqueBrainz",
                     "source_url": row["source_url"]
                     or f'https://critiquebrainz.org/ws/1/review/{row["review_id"]}',
+                    "reviewer_name": row["reviewer_name"],
                     "license": row["license"],
+                    "license_url": row["license_url"],
                     "chunk_index": chunk_index,
                     "chunk_count": len(review_chunks),
                     "text": text,
@@ -182,12 +242,17 @@ def retrieve_chunks(
     query: str,
     album_title: str,
     top_k: int,
+    release_group_mbid: str | None = None,
 ) -> list[dict]:
-    """Retrieve only within one album so evidence cannot drift to another work."""
+    """Retrieve within one album, preferring its canonical ID when supplied."""
     eligible_indices = [
         index
         for index, chunk in enumerate(chunks)
-        if chunk["album_title"].casefold() == album_title.casefold()
+        if (
+            chunk["release_group_mbid"] == release_group_mbid
+            if release_group_mbid
+            else chunk["album_title"].casefold() == album_title.casefold()
+        )
     ]
     if not eligible_indices:
         return []
@@ -279,7 +344,9 @@ def build_context(
             "album_title": item["album_title"],
             "source": item["source"],
             "source_url": item["source_url"],
+            "reviewer_name": item.get("reviewer_name"),
             "license": item["license"],
+            "license_url": item.get("license_url"),
         }
         for item in evidence
     ]
@@ -292,6 +359,154 @@ def build_context(
         "context": "\n".join(context_lines),
         "sources": sources,
     }
+
+
+def build_taste_analysis_context(
+    profile: dict,
+    chunks: list[dict],
+    vectors: np.ndarray,
+    model: TextEmbedding,
+    top_k_per_seed: int = 1,
+) -> dict:
+    """Combine deterministic profile facts with licensed reviews of its seeds."""
+    if top_k_per_seed < 0:
+        raise ValueError("top_k_per_seed cannot be negative")
+
+    seed_lines = []
+    for album in profile["seed_albums"]:
+        seed_lines.append(
+            f'- {", ".join(album["artists"])} — {album["title"]} '
+            f'(year: {album["release_year"] or "unknown"}; '
+            f'tags: {", ".join(album["tags"]) or "none"})'
+        )
+    top_tags = ", ".join(
+        f"{tag} ({count}/{len(profile['seed_albums'])} seeds)"
+        for tag, count in profile["top_tags"]
+    ) or "none"
+    year_range = profile["release_year_range"] or "unknown"
+    lines = [
+        "[SELECTED ALBUMS]",
+        *seed_lines,
+        "",
+        f"Dominant tags (counted once per seed album): {top_tags}",
+        f"Shared tags: {', '.join(profile['shared_tags']) or 'none'}",
+        "Tags appearing on only one selected album: "
+        f"{', '.join(profile['distinctive_tags']) or 'none'}",
+        f"Release year range: {year_range}",
+        f"Embedding aggregation: {profile['aggregation_method']}",
+    ]
+
+    evidence = []
+    if top_k_per_seed and chunks and vectors.size:
+        for album in profile["seed_albums"]:
+            query = (
+                f"Musical characteristics, sound, mood, and style discussed in reviews "
+                f"of {album['title']} by {', '.join(album['artists'])}."
+            )
+            evidence.extend(
+                retrieve_chunks(
+                    chunks,
+                    vectors,
+                    model,
+                    query,
+                    album["title"],
+                    top_k_per_seed,
+                    release_group_mbid=album["release_group_mbid"],
+                )
+            )
+
+    if evidence:
+        lines.extend(["", "[LICENSED REVIEW EVIDENCE]"])
+        for item in evidence:
+            lines.extend(
+                [
+                    f"Source {item['review_id']}#{item['chunk_index']} "
+                    f"({item['album_title']}, license={item['license']})",
+                    item["text"],
+                ]
+            )
+    else:
+        lines.extend(["", "[LICENSED REVIEW EVIDENCE]", "None available."])
+
+    sources = [
+        {
+            "source_id": f"{item['review_id']}#{item['chunk_index']}",
+            "review_id": item["review_id"],
+            "album_title": item["album_title"],
+            "source": item["source"],
+            "source_url": item["source_url"],
+            "reviewer_name": item.get("reviewer_name"),
+            "license": item["license"],
+            "license_url": item.get("license_url"),
+        }
+        for item in evidence
+    ]
+    return {"context": "\n".join(lines), "sources": sources}
+
+
+def generate_taste_analysis(
+    context_result: dict, api_key: str | None = None
+) -> dict:
+    """Ask Gemini to describe the supplied profile without inventing user traits."""
+    allowed_source_ids = {
+        source["source_id"] for source in context_result["sources"]
+    }
+    source_instruction = ", ".join(sorted(allowed_source_ids)) or "none"
+    prompt = f"""
+You analyze music taste from selected albums and supplied profile signals.
+Write in clear Simplified Chinese; preserve album and tag names as given.
+Do not infer personality, identity, age, or life story. Do not recommend albums
+or assign Safe, Explore, or Wildcard tiers. Distinguish observed signals from
+interpretation, and lower certainty when the seed set or evidence is small.
+Treat each review as one review, not community consensus. Do not add musical
+facts absent from this context. If reviews are absent, rely only on the listed
+albums, years, tags, and deterministic profile signals. Keep each list concise.
+For review-based claims, cite only these source IDs: {source_instruction}
+For claims based only on structured profile facts, use an empty source_ids list.
+
+Return an overall taste summary, core tendencies, interesting contrasts,
+possible exploration directions, evidence claims, and limitations.
+
+{context_result['context']}
+""".strip()
+
+    client = _create_gemini_client(api_key)
+    interaction = None
+    last_transient_error = None
+    for model_name in GEMINI_MODELS:
+        try:
+            interaction = client.interactions.create(
+                model=model_name,
+                input=prompt,
+                response_format={
+                    "type": "text",
+                    "mime_type": "application/json",
+                    "schema": TASTE_ANALYSIS_SCHEMA,
+                },
+            )
+            break
+        except Exception as error:
+            error_text = str(error).casefold()
+            is_temporary = any(
+                marker in error_text
+                for marker in (
+                    "service_unavailable", "high demand", "error code: 503",
+                    "too_many_requests", "rate limit exceeded", "error code: 429",
+                    "timeout", "timed out",
+                )
+            )
+            if not is_temporary:
+                raise
+            last_transient_error = error
+
+    if interaction is None:
+        raise RuntimeError(
+            "Gemini free models are temporarily unavailable or rate-limited. "
+            "Please try again later."
+        ) from last_transient_error
+
+    result = json.loads(interaction.output_text)
+    return validate_generated_result(result, allowed_source_ids)
 
 
 def validate_generated_result(
@@ -328,12 +543,9 @@ def generate_why_this(
     rag_result: dict,
     tier: str | None = None,
     recommendation: dict | None = None,
+    api_key: str | None = None,
 ) -> dict:
     """Generate a grounded explanation and reject invented source IDs."""
-    load_dotenv()
-    if not os.getenv("GEMINI_API_KEY"):
-        raise RuntimeError("GEMINI_API_KEY is missing from .env")
-
     allowed_source_ids = {
         source["source_id"] for source in rag_result["sources"]
     }
@@ -387,12 +599,7 @@ If review evidence is missing or weak, say so honestly in limitations.
 {rag_result["context"]}
 """.strip()
 
-    client = genai.Client(
-        http_options={
-            "timeout": GEMINI_TIMEOUT_MS,
-            "retry_options": {"attempts": 1},
-        }
-    )
+    client = _create_gemini_client(api_key)
     interaction = None
     last_transient_error = None
     for model_name in GEMINI_MODELS:
