@@ -44,12 +44,12 @@ not use LangChain, LlamaIndex, agents, or a trained recommendation model.
 
 ## Current status and boundary
 
-The V2 candidate is published on the public GitHub `v2-beta` branch; the
-previously deployed Streamlit app has not yet been verified running that
-branch. The
-530-album MusicBrainz-only catalogue is available as a separate GitHub Release
-asset, and the Supabase behavior schema has been applied and verified. Hosted
-Streamlit secrets are not configured yet, so V2 behavior collection has not
-started. See `DEPLOYMENT_READINESS.md` for the remaining release checks. Review
+The V2 candidate is published on the public GitHub `v2-beta` branch and is now
+serving from that branch on Streamlit after a hosted restart. We verified the
+app loads its 530-album catalogue and reaches the favorite-album selection UI.
+The separate MusicBrainz-only catalogue release and Supabase schema are ready.
+Hosted Streamlit secrets are still pending, so remote behavior collection and
+Gemini features are not yet enabled. See `DEPLOYMENT_READINESS.md` for the
+remaining release checks. Review
 attribution and intended-use compatibility still need a deployment-focused
 review.
