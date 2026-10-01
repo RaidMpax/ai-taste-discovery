@@ -8,7 +8,8 @@ The current catalogue contains 530 accepted albums. V2 also includes an
 optional Gemini Taste Analysis, anonymous feedback, Taste Battle, and offline
 ranking diagnostics. The earlier V1 friends-and-family demo is live at
 https://ai-taste-discovery-irdp3eamhnzuofrm7tbkqr.streamlit.app/. The V2
-candidate in this branch has not yet been published to that hosted app. The
+candidate is now published on the public GitHub `v2-beta` branch, but it has
+not yet been verified as running on that hosted app. The
 public catalogue snapshot excludes Last.fm-derived tags and CritiqueBrainz
 reviews; see `DEPLOYMENT_READINESS.md` for the current release status.
 
@@ -75,10 +76,11 @@ it can take longer than later runs.
   falls back to structured metadata and tags and states that limitation.
 - There is no account system. The app offers an explicit opt-in before it
   records a random session ID, selected albums, recommendation lists, feedback,
-  or Taste Battle choices. The Supabase schema is ready, but the V2 app and its
-  secrets have not yet been deployed, so remote event collection has not
-  started. Set `AI_TASTE_BEHAVIOR_STORAGE = "supabase"` and the Supabase
-  secrets in Streamlit Community Cloud to retain these events for analysis.
+  or Taste Battle choices. The Supabase schema is ready, but the hosted app has
+  not yet been verified with the V2 branch and its secrets, so remote event
+  collection has not started. Set `AI_TASTE_BEHAVIOR_STORAGE = "supabase"`
+  and the Supabase secrets in Streamlit Community Cloud to retain these events
+  for analysis.
   The setup is documented in
   [docs/SUPABASE_BEHAVIOR_SETUP.md](docs/SUPABASE_BEHAVIOR_SETUP.md).
 - Recommendations still work without Gemini. Explanation generation depends
@@ -278,3 +280,4 @@ avoids invalidating the cache when anonymous behavior rows are written to the
 same SQLite file. Restart Streamlit after changing the catalogue. Recommendation
 tiers remain deterministic Python rules; Gemini only turns retrieved evidence
 into a structured explanation.
+
