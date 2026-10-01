@@ -21,6 +21,10 @@ DEFAULT_TIMEOUT_SECONDS = 8
 class SupabaseBehaviorError(RuntimeError):
     """Safe-to-display error without request bodies or credentials."""
 
+    def __init__(self, message: str, status_code: int | None = None) -> None:
+        super().__init__(message)
+        self.status_code = status_code
+
 
 def _require_uuid(value: str, field_name: str) -> str:
     try:
@@ -83,7 +87,8 @@ class SupabaseBehaviorStore:
                 response_body = response.read()
         except HTTPError as error:
             raise SupabaseBehaviorError(
-                f"Supabase returned HTTP {error.code} for behavior storage."
+                f"Supabase returned HTTP {error.code} for behavior storage.",
+                status_code=error.code,
             ) from None
         except (URLError, TimeoutError, OSError):
             raise SupabaseBehaviorError(
@@ -106,17 +111,26 @@ class SupabaseBehaviorStore:
         consent_version: str = "beta-2026-10-01",
     ) -> None:
         session_id = _require_uuid(session_id, "session_id")
-        self._request(
-            "POST",
-            "sessions",
-            {
-                "session_id": session_id,
-                "consent_version": consent_version,
-                "app_version": "v2-beta",
-            },
-            query={"on_conflict": "session_id"},
-            prefer="resolution=ignore-duplicates,return=minimal",
-        )
+        try:
+            # Keep this as a plain insert.  ON CONFLICT DO NOTHING also needs
+            # SELECT privilege on the conflict key, which is unnecessary for
+            # this write-only analytics role.
+            self._request(
+                "POST",
+                "sessions",
+                {
+                    "session_id": session_id,
+                    "consent_version": consent_version,
+                    "app_version": "v2-beta",
+                },
+                prefer="return=minimal",
+            )
+        except SupabaseBehaviorError as error:
+            # A Streamlit rerun can submit the same session twice.  The
+            # primary-key conflict means the session already exists, so it is
+            # safe to treat that specific response as success.
+            if error.status_code != 409:
+                raise
 
     def record_taste_profile_event(
         self,
@@ -274,3 +288,4 @@ class SupabaseBehaviorStore:
             },
             prefer="return=minimal",
         )
+
