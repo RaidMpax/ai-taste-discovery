@@ -2,8 +2,9 @@
 
 Audit date: 2026-10-01
 Status: **V2 is not yet ready for the public Beta.** Streamlit Community Cloud
-is the selected host and the earlier V1 demo was deployed there, but the V2
-candidate in this branch has not yet been published to that app. The
+is the selected host and the earlier V1 demo was deployed there. The V2
+candidate is now published on the public GitHub `v2-beta` branch, but has not
+yet been verified running on that hosted app. The
 MusicBrainz-only catalogue snapshot is published as a GitHub Release asset.
 The Supabase migration is applied and verified (five tables, RLS enabled); the
 hosted secrets are still pending, and no V2 behavior events have been
@@ -76,8 +77,9 @@ intended purpose.
 The V2 Beta uses the separate Supabase Postgres project for opt-in behavior
 events; the catalogue remains the read-only MusicBrainz-only SQLite snapshot.
 The migration has been run and verified in Supabase, including row-level
-security on all five tables. No events have been collected yet because the V2
-code is not deployed and Streamlit secrets are not configured.
+security on all five tables. No events have been collected yet because the
+hosted app has not been verified on the V2 branch and Streamlit secrets are
+not configured.
 
 Local development defaults to `persistent`, using SQLite. The app also
 supports `session` mode, which keeps interactions only for the current visit,
@@ -161,10 +163,10 @@ Last.fm tags, artwork, or reviews.
 
 - The Supabase writer has only been tested with mocked HTTP responses. The
   actual hosted connection cannot be verified until the app's secret key is
-  added in Streamlit Community Cloud and the V2 candidate is deployed.
+  added in Streamlit Community Cloud and the V2 candidate is confirmed live.
 
-Before inviting friends, publish the reviewed V2 candidate to the existing
-Streamlit app, add the required hosted secrets, then verify first startup,
-Gemini analysis/explanation, opt-in and opt-out behavior, a small-screen view,
-and that Supabase rows persist after a fresh app session. A local mocked test
-suite cannot replace that final hosted smoke test.
+Before inviting friends, confirm that the existing Streamlit app is using the
+published `v2-beta` branch, add the required hosted secrets, then verify first
+startup, Gemini analysis/explanation, opt-in and opt-out behavior, a small-screen
+view, and that Supabase rows persist after a fresh app session. A local mocked
+test suite cannot replace that final hosted smoke test.

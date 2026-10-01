@@ -41,8 +41,9 @@ You can inspect raw rows in **Table Editor** and run the analysis queries in
 The migration, analysis queries, and server-side event writer are prepared.
 On 2026-10-01 the migration was applied in the project dashboard and verified:
 all five tables exist with row-level security enabled. No behavior rows have
-been collected yet. The hosted app still needs the V2 code and these secrets
-before opted-in events can be written to Supabase:
+been collected yet. The V2 code is now published on the public GitHub
+`v2-beta` branch, but the hosted app has not yet been verified running it. The
+app also needs these secrets before opted-in events can be written to Supabase:
 
        AI_TASTE_BEHAVIOR_STORAGE = "supabase"
        SUPABASE_URL = "https://ogypwrsqoccdzvapways.supabase.co"
