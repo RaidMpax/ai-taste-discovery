@@ -56,7 +56,7 @@ class SupabaseBehaviorStoreTests(unittest.TestCase):
             {
                 "session_id": session_id,
                 "consent_version": "consent-test",
-                "app_version": "v2-beta",
+                "app_version": "v2.1-beta",
             },
         )
 

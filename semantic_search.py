@@ -150,15 +150,41 @@ def cosine_scores(vectors: np.ndarray, query_vector: np.ndarray) -> np.ndarray:
 
 
 def find_album_indices(documents: list[dict], titles: list[str]) -> list[int]:
-    """Resolve user-facing titles to vector-row indices."""
-    title_to_index = {
-        album["title"].casefold(): index for index, album in enumerate(documents)
+    """Resolve release-group MBIDs or unambiguous titles to vector rows."""
+    mbid_to_index = {
+        album["release_group_mbid"].casefold(): index
+        for index, album in enumerate(documents)
     }
-    missing = [title for title in titles if title.casefold() not in title_to_index]
+    title_to_indices: dict[str, list[int]] = {}
+    for index, album in enumerate(documents):
+        title_to_indices.setdefault(album["title"].casefold(), []).append(index)
+
+    resolved = []
+    missing = []
+    ambiguous = []
+    for title in titles:
+        key = title.casefold()
+        if key in mbid_to_index:
+            resolved.append(mbid_to_index[key])
+            continue
+
+        matches = title_to_indices.get(key, [])
+        if len(matches) == 1:
+            resolved.append(matches[0])
+        elif len(matches) > 1:
+            ambiguous.append(title)
+        else:
+            missing.append(title)
+
+    if ambiguous:
+        raise ValueError(
+            "Album title is ambiguous; use a release-group MBID: "
+            + ", ".join(ambiguous)
+        )
     if missing:
         available = ", ".join(album["title"] for album in documents)
         raise ValueError(f"Unknown album(s): {', '.join(missing)}. Available: {available}")
-    return [title_to_index[title.casefold()] for title in titles]
+    return resolved
 
 
 def is_taste_tag(tag: str) -> bool:
@@ -169,7 +195,7 @@ def is_taste_tag(tag: str) -> bool:
 def build_taste_profile(
     documents: list[dict], vectors: np.ndarray, favorite_titles: list[str]
 ) -> dict:
-    """Average normalized seed vectors and expose inspectable taste signals."""
+    """Average normalized seed vectors from titles or MBIDs and expose signals."""
     favorite_indices = find_album_indices(documents, favorite_titles)
     favorite_vectors = vectors[favorite_indices]
     norms = np.maximum(np.linalg.norm(favorite_vectors, axis=1, keepdims=True), 1e-12)

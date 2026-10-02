@@ -1,6 +1,7 @@
 import os
 import hashlib
 import io
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -90,6 +91,27 @@ class ApplicationDatabaseConfigTests(unittest.TestCase):
         )
         self.assertIn("GEMINI_API_KEY", message)
         self.assertIn("结构化品味档案和推荐仍可使用", message)
+
+    def test_invalid_json_from_gemini_has_a_specific_safe_message(self):
+        message = format_gemini_error(json.JSONDecodeError("invalid", "{", 1))
+        self.assertIn("结构化内容无法解析", message)
+        self.assertIn("结构化品味档案和推荐仍可使用", message)
+
+    def test_unknown_citation_from_gemini_has_a_specific_safe_message(self):
+        message = format_gemini_error(
+            ValueError("Gemini returned unknown source IDs: invented#1")
+        )
+        self.assertIn("来源校验已拦截", message)
+
+    def test_unsupported_consensus_language_has_a_specific_safe_message(self):
+        message = format_gemini_error(
+            ValueError("Gemini used unsupported consensus language: widely")
+        )
+        self.assertIn("概括性表述", message)
+
+    def test_value_error_has_a_safe_validation_fallback(self):
+        message = format_gemini_error(ValueError("unexpected analysis shape"))
+        self.assertIn("未通过结构化或来源校验", message)
 
     def test_taste_analysis_is_queued_once_without_running_in_the_ui_thread(self):
         state = {}

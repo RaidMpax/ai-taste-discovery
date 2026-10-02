@@ -5,6 +5,7 @@ from __future__ import annotations
 from concurrent.futures import ThreadPoolExecutor
 from html import escape
 import hashlib
+from json import JSONDecodeError
 import logging
 import os
 import sqlite3
@@ -53,26 +54,26 @@ from supabase_behavior import SupabaseBehaviorError, SupabaseBehaviorStore
 TIER_DETAILS = {
     "Safe": {
         "subtitle": "熟悉延伸",
-        "description": "从已经喜欢的声音继续向外走，连接清晰，变化克制。",
+        "description": "沿着熟悉的声音，再向外走一点。",
     },
     "Explore": {
         "subtitle": "相邻探索",
-        "description": "保留一部分熟悉感，同时打开一个新的审美方向。",
+        "description": "留住熟悉的线索，也试试新的方向。",
     },
     "Wildcard": {
         "subtitle": "大胆跳跃",
-        "description": "距离更远，但仍然保留一条可以说清楚的连接。",
+        "description": "走远一些，但仍能找到清楚的连接。",
     },
 }
 
 BATTLE_STRATEGIES = {
     "safe_vs_explore": {
-        "label": "Safe vs Explore",
-        "description": "比较熟悉延伸与相邻探索。",
+        "label": "熟悉延伸 vs 相邻探索",
+        "description": "一边更熟悉，一边多走半步。",
     },
     "explore_vs_wildcard": {
-        "label": "Explore vs Wildcard",
-        "description": "比较相邻探索与更远的审美跳跃。",
+        "label": "相邻探索 vs 大胆跳跃",
+        "description": "比较保留熟悉线索的探索，和更远一点的选择。",
     },
     "similarity_vs_tag_overlap": {
         "label": "相似度接近，标签连接不同",
@@ -240,34 +241,58 @@ def inject_styles() -> None:
             border-color: var(--fluorescent);
             box-shadow: 0 0 0 4px rgba(5, 165, 250, .13);
         }
-        [data-testid="stMultiSelect"] [data-baseweb="select"] {
-            position: relative;
-            border-radius: 16px;
+        .st-key-selection_panel [data-testid="stTextInput"] [data-baseweb="input"] > div,
+        .st-key-selection_panel [data-testid="stTextInput"] [data-baseweb="base-input"] {
+            border: 1px solid #91add2 !important;
+            border-radius: 15px;
+            background: #ffffff !important;
+            box-shadow: none !important;
+        }
+        .st-key-selection_panel [data-testid="stTextInput"] [data-baseweb="input"]:focus-within > div,
+        .st-key-selection_panel [data-testid="stTextInput"] [data-baseweb="base-input"]:focus-within {
+            border: 2px solid var(--fluorescent) !important;
+            box-shadow: 0 0 0 4px rgba(5, 165, 250, .13) !important;
+        }
+
+        [class*="st-key-selected_album_item_"] [data-testid="stVerticalBlockBorderWrapper"],
+        [class*="st-key-album_search_result_"] [data-testid="stVerticalBlockBorderWrapper"] {
+            padding: 10px 12px;
+            border-color: var(--line) !important;
+            border-radius: 16px !important;
             background: #ffffff !important;
         }
-        [data-testid="stMultiSelect"] [data-baseweb="select"]::after {
-            content: "";
-            position: absolute;
-            z-index: 3;
-            inset: 0;
-            pointer-events: none;
-            border: 1.5px solid #7f9fc9;
-            border-radius: 16px;
+        .selected-album-title,
+        .search-result-title {
+            color: var(--ink);
+            font-size: .94rem;
+            font-weight: 680;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
         }
-        [data-testid="stMultiSelect"] [data-baseweb="select"]:hover::after {
-            border-color: #557fb7;
+        .selected-album-artist,
+        .search-result-artist {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: .8rem;
+            line-height: 1.4;
+            overflow-wrap: anywhere;
         }
-        [data-testid="stMultiSelect"] [data-baseweb="select"]:focus-within::after {
-            border: 2px solid var(--fluorescent);
+        [class*="st-key-add_album_"] button {
+            min-height: 38px;
+            border-color: #9bb4d5 !important;
+            border-radius: 999px;
+            background: #f8fbff !important;
+            color: #244e87 !important;
         }
-        div[data-baseweb="tag"] {
-            background: #ddecff !important;
-            color: #204f8d !important;
-        }
-        div[data-baseweb="tag"] span,
-        div[data-baseweb="tag"] svg {
-            color: #204f8d !important;
-            fill: #204f8d !important;
+        [class*="st-key-remove_album_"] button {
+            min-height: 34px;
+            min-width: 78px;
+            padding: 0 10px !important;
+            border-color: #c5d3e5 !important;
+            border-radius: 999px;
+            background: #ffffff !important;
+            color: #476484 !important;
+            font-size: .82rem;
         }
 
         [data-testid="stPills"] button,
@@ -345,7 +370,7 @@ def inject_styles() -> None:
             line-height: 1.35;
         }
 
-        [data-testid="stFormSubmitButton"] button {
+        .st-key-profile_submit button {
             min-height: 46px;
             border-color: var(--harbor) !important;
             border-radius: 999px;
@@ -353,7 +378,7 @@ def inject_styles() -> None:
             color: #ffffff !important;
             font-weight: 680;
         }
-        [data-testid="stFormSubmitButton"] button:hover {
+        .st-key-profile_submit button:hover {
             border-color: #285b9f !important;
             background: #285b9f !important;
         }
@@ -374,10 +399,66 @@ def inject_styles() -> None:
             background: #ffffff;
             box-shadow: 0 12px 34px rgba(55, 112, 191, .06);
         }
+        .st-key-battle_panel [data-testid="stImage"] {
+            display: flex;
+            justify-content: center;
+        }
         .st-key-battle_panel [data-testid="stImage"] img {
+            display: block;
+            width: 100%;
+            max-width: 240px !important;
+            margin: 0 auto;
             aspect-ratio: 1 / 1;
             border-radius: 18px;
             object-fit: cover;
+        }
+        .st-key-battle_comparison [data-testid="stHorizontalBlock"] {
+            display: grid !important;
+            grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr);
+            align-items: center;
+            gap: 16px !important;
+        }
+        .st-key-battle_comparison [data-testid="stColumn"] {
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: none !important;
+            flex: none !important;
+        }
+        .st-key-battle_comparison .st-key-battle_album_a [data-testid="stVerticalBlockBorderWrapper"],
+        .st-key-battle_comparison .st-key-battle_album_b [data-testid="stVerticalBlockBorderWrapper"] {
+            padding: 16px;
+            border-color: var(--line) !important;
+            border-radius: 22px !important;
+            background: #ffffff !important;
+        }
+        .battle-album-title {
+            margin-top: 10px;
+            color: var(--ink);
+            font-size: clamp(1.08rem, 1.6vw, 1.45rem);
+            font-weight: 700;
+            line-height: 1.2;
+            overflow-wrap: anywhere;
+        }
+        .battle-album-artist {
+            min-height: 2.7em;
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: .86rem;
+            line-height: 1.45;
+            overflow-wrap: anywhere;
+        }
+        .battle-vs {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            border: 1px solid #d8e5c5;
+            border-radius: 50%;
+            background: #f5f9e9;
+            color: #426a82;
+            font-size: .76rem;
+            font-weight: 750;
+            letter-spacing: .04em;
         }
         .st-key-battle_panel [data-testid="stButton"] button {
             min-height: 44px;
@@ -571,25 +652,6 @@ def inject_styles() -> None:
             }
             .hero-note-main { margin-bottom: 16px !important; }
             .st-key-selection_panel { padding: 24px 20px; }
-            .st-key-favorite_album_picker_v2 [data-testid="stMultiSelectTagsContainer"] {
-                min-width: 0;
-            }
-            .st-key-favorite_album_picker_v2 [data-testid="stMultiSelectTagsContainer"] [data-tag] > span:first-child {
-                font-size: .78rem !important;
-            }
-            .st-key-favorite_album_picker_v2 [data-testid="stMultiSelectTagsContainer"] input {
-                min-width: 1.5rem !important;
-            }
-            .st-key-selection_panel [data-testid="stForm"] [data-testid="stHorizontalBlock"] {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-            .st-key-selection_panel [data-testid="stForm"] [data-testid="stColumn"] {
-                flex: 1 1 100% !important;
-                max-width: 100% !important;
-                min-width: 100% !important;
-                width: 100% !important;
-            }
             .st-key-per_tier_picker_v2,
             .st-key-per_tier_picker_v2 .stButtonGroup,
             .st-key-per_tier_picker_v2 [role="radiogroup"] {
@@ -626,6 +688,17 @@ def inject_styles() -> None:
             }
             .album-shelf-item { flex-basis: calc((100% - 14px) / 2); }
             .st-key-battle_panel { padding: 20px; }
+            .st-key-battle_comparison [data-testid="stHorizontalBlock"] {
+                grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+                gap: 6px !important;
+            }
+            .st-key-battle_comparison .st-key-battle_album_a [data-testid="stVerticalBlockBorderWrapper"],
+            .st-key-battle_comparison .st-key-battle_album_b [data-testid="stVerticalBlockBorderWrapper"] {
+                padding: 10px 8px;
+            }
+            .battle-album-title { font-size: 1rem; }
+            .battle-album-artist { font-size: .74rem; }
+            .battle-vs { width: 30px; height: 30px; font-size: .64rem; }
             .tier-intro { align-items: flex-start; flex-direction: column; }
         }
 
@@ -652,7 +725,7 @@ def render_hero() -> None:
           </div>
           <div class="hero-note">
             <p class="hero-note-main">Find the edge of your listening world.</p>
-            <p class="hero-note-sub">从熟悉的声音出发，找到你还没有遇见的下一张专辑。</p>
+            <p class="hero-note-sub">从熟悉的声音出发，找到还没听过、却可能会喜欢的下一张专辑。</p>
           </div>
         </section>
         """,
@@ -695,9 +768,41 @@ def render_album_shelf(albums: list[dict]) -> None:
     )
 
 
+def add_album_to_selection(release_group_mbid: str) -> None:
+    """Add one explicit search result without coupling it to the query text."""
+    selected = list(st.session_state.get("draft_favorite_mbids", []))
+    if release_group_mbid not in selected and len(selected) < 10:
+        selected.append(release_group_mbid)
+    st.session_state["draft_favorite_mbids"] = selected
+    st.session_state["album_search_query"] = ""
+
+
+def remove_album_from_selection(release_group_mbid: str) -> None:
+    """Remove a selected album only after its dedicated remove action."""
+    selected = list(st.session_state.get("draft_favorite_mbids", []))
+    st.session_state["draft_favorite_mbids"] = [
+        mbid for mbid in selected if mbid != release_group_mbid
+    ]
+
+
 def format_gemini_error(error: Exception) -> str:
     """Turn provider/network failures into safe, actionable UI copy."""
     message = str(error).casefold()
+    if isinstance(error, JSONDecodeError):
+        return (
+            "Gemini 返回的结构化内容无法解析，已安全跳过这次品味分析。"
+            "结构化品味档案和推荐仍可使用，可以稍后重试。"
+        )
+    if "unknown source ids" in message:
+        return (
+            "Gemini 返回了检索结果中不存在的引用，来源校验已拦截这次品味分析。"
+            "结构化品味档案和推荐仍可使用，可以稍后重试。"
+        )
+    if "unsupported consensus language" in message:
+        return (
+            "Gemini 使用了当前证据无法支持的概括性表述，内容校验已拦截这次品味分析。"
+            "结构化品味档案和推荐仍可使用，可以稍后重试。"
+        )
     if "winerror 10013" in message or "10013" in message:
         return (
             "当前运行环境的网络策略拒绝了 Gemini API 连接（WinError 10013）。"
@@ -713,6 +818,11 @@ def format_gemini_error(error: Exception) -> str:
         return "Gemini 免费额度或请求频率暂时受限。稍后可以重试；推荐仍可使用。"
     if "timeout" in message or "timed out" in message:
         return "连接 Gemini 超时。稍后重试即可；结构化品味档案和推荐仍可使用。"
+    if isinstance(error, ValueError):
+        return (
+            "Gemini 返回内容未通过结构化或来源校验，已安全跳过这次品味分析。"
+            "结构化品味档案和推荐仍可使用，可以稍后重试。"
+        )
     return (
         f"Gemini 暂时无法生成说明（{type(error).__name__}）。"
         "结构化品味档案和推荐仍可使用，可以稍后重试。"
@@ -866,15 +976,15 @@ def show_explanation(result: dict) -> None:
     st.markdown("**新的方向**")
     st.write(explanation["new_direction"])
 
-    st.markdown("**我们还不能确定的部分**")
+    st.markdown("**还不确定的地方**")
     st.write(explanation["limitations"])
 
     with st.expander("查看证据与来源"):
         st.markdown("**证据片段**")
         for item in explanation["evidence"]:
             st.write(item["claim"])
-            source_ids = ", ".join(item["source_ids"]) or "Structured tags"
-            st.caption(f"Source IDs: {source_ids}")
+            source_ids = ", ".join(item["source_ids"]) or "专辑与标签信号"
+            st.caption(f"引用编号：{source_ids}")
         st.markdown("**来源**")
         if not result["sources"]:
             st.caption("没有可用评论；本次解释仅使用结构化标签。")
@@ -899,19 +1009,10 @@ def show_explanation(result: dict) -> None:
 
 def show_taste_analysis(result: dict) -> None:
     analysis = result["analysis"]
-    st.markdown("**整体品味**")
     st.write(analysis["overall_taste"])
-    for field, heading in (
-        ("core_tendencies", "核心倾向"),
-        ("interesting_contrasts", "有趣的对照"),
-        ("exploration_directions", "可以继续探索的方向"),
-    ):
-        if analysis[field]:
-            st.markdown(f"**{heading}**")
-            for item in analysis[field]:
-                st.markdown(f"- {item}")
-    st.caption(f"分析边界：{analysis['limitations']}")
-    with st.expander("查看品味分析依据与来源"):
+    if analysis.get("limitations"):
+        st.caption(f"说明：{analysis['limitations']}")
+    with st.expander("查看分析依据与来源"):
         if not analysis["evidence"]:
             st.caption("本次没有单独列出的证据主张。")
         for item in analysis["evidence"]:
@@ -1014,9 +1115,9 @@ def render_taste_analysis_status(profile_signature: str) -> None:
 
     future = st.session_state.get(future_key)
     if future is None:
-        st.caption("AI 品味分析尚未开始；下方推荐可以先看。")
+        st.caption("品味观察还没开始；推荐已经可以先看。")
     elif not future.done():
-        st.caption("AI 品味分析正在整理中；推荐已经就绪，不必等待。")
+        st.caption("我在整理你的听歌偏好；推荐已经就绪，不用等。")
     else:
         try:
             st.session_state[analysis_key] = future.result()
@@ -1051,9 +1152,9 @@ def render_taste_battle(
 ) -> None:
     with st.container(key="battle_panel"):
         st.markdown("### Taste Battle / 品味对决")
-        st.caption("每轮从两张专辑中选一张，最多 7 场，最终决出一张最合你口味的作品。")
+        st.caption("两两比较，选完这一轮就进入下一场，最后会选出本轮冠军。")
         strategy = st.selectbox(
-            "对决路线",
+            "对决方式",
             options=list(BATTLE_STRATEGIES),
             format_func=lambda key: BATTLE_STRATEGIES[key]["label"],
             key=f"battle_strategy::{profile_signature}",
@@ -1061,7 +1162,7 @@ def render_taste_battle(
         st.caption(BATTLE_STRATEGIES[strategy]["description"])
         participants = build_battle_participants(candidates, strategy)
         if len(participants) < 2:
-            st.info("当前档位还没有足够候选完成对决；换一种路线或更新喜欢的专辑后再试。")
+            st.info("这组推荐还凑不齐一场对决。换一种对决方式，或调整喜欢的专辑再试。")
             return
 
         history_key = f"battle_choices::{profile_signature}::{strategy}"
@@ -1124,7 +1225,7 @@ def render_taste_battle(
                 else:
                     st.info("这张专辑暂时没有可用封面。")
             with winner_columns[1]:
-                st.caption("WINNER")
+                st.caption("本轮冠军")
                 st.subheader(winner["title"])
                 st.write(" / ".join(winner["artists"]))
                 st.caption(
@@ -1140,7 +1241,7 @@ def render_taste_battle(
             f"第 {battle_state['round_number']} 轮"
         )
         st.markdown(f"**{round_label} · 第 {completed_matches + 1} 场**")
-        st.caption("Which one fits your taste better?")
+        st.caption("哪张更合你口味？选完就进入下一场。")
         album_a = battle_state["left"]
         album_b = battle_state["right"]
         if completed_matches % 2:
@@ -1150,56 +1251,79 @@ def render_taste_battle(
             f"{min(album_a['release_group_mbid'], album_b['release_group_mbid'])}::"
             f"{max(album_a['release_group_mbid'], album_b['release_group_mbid'])}"
         )
-        columns = st.columns(2, gap="large")
-        for label, recommendation, column in (
-            ("A", album_a, columns[0]),
-            ("B", album_b, columns[1]),
-        ):
-            album = documents_by_mbid[recommendation["release_group_mbid"]]
-            with column:
-                with st.container(border=True):
-                    st.caption(f"专辑 {label}")
-                    if album["cover_url"]:
-                        st.image(album["cover_url"], width="stretch")
-                    else:
-                        st.info("暂时没有可用封面。")
-                    st.subheader(album["title"])
-                    st.caption(" / ".join(recommendation["artists"]))
-                    if st.button(
-                        f"选择 {label}，更合我口味",
-                        key=f"battle-choice::{battle_key}::{label}",
-                        width="stretch",
+        with st.container(key="battle_comparison"):
+            columns = st.columns([1, 0.16, 1], gap="small", vertical_alignment="center")
+            for label, recommendation, column in (
+                ("A", album_a, columns[0]),
+                ("B", album_b, columns[2]),
+            ):
+                album = documents_by_mbid[recommendation["release_group_mbid"]]
+                with column:
+                    with st.container(
+                        border=True, key=f"battle_album_{label.casefold()}"
                     ):
-                        chosen_mbid = recommendation["release_group_mbid"]
-                        if behavior_persistent and profile_event_id is not None:
-                            try:
-                                if behavior_store is not None:
-                                    behavior_store.record_battle_choice(
-                                        session_id,
-                                        profile_event_id,
-                                        album_a["release_group_mbid"],
-                                        album_b["release_group_mbid"],
-                                        chosen_mbid,
-                                        strategy,
+                        st.caption(f"专辑 {label}")
+                        if album["cover_url"]:
+                            st.image(album["cover_url"], width="stretch")
+                        else:
+                            st.caption("封面暂缺")
+                        title = escape(album["title"])
+                        artists = escape(" / ".join(recommendation["artists"]))
+                        st.markdown(
+                            f'<div class="battle-album-title">{title}</div>'
+                            f'<div class="battle-album-artist">{artists}</div>',
+                            unsafe_allow_html=True,
+                        )
+                        if st.button(
+                            "我选这张",
+                            key=f"battle-choice::{battle_key}::{label}",
+                            help=f"选择《{album['title']}》继续",
+                            width="stretch",
+                        ):
+                            chosen_mbid = recommendation["release_group_mbid"]
+                            if behavior_persistent and profile_event_id is not None:
+                                try:
+                                    if behavior_store is not None:
+                                        behavior_store.record_battle_choice(
+                                            session_id,
+                                            profile_event_id,
+                                            album_a["release_group_mbid"],
+                                            album_b["release_group_mbid"],
+                                            chosen_mbid,
+                                            strategy,
+                                        )
+                                    else:
+                                        record_battle_choice(
+                                            APP_DATABASE,
+                                            session_id,
+                                            profile_event_id,
+                                            album_a["release_group_mbid"],
+                                            album_b["release_group_mbid"],
+                                            chosen_mbid,
+                                            strategy,
+                                        )
+                                except (
+                                    ValueError,
+                                    sqlite3.Error,
+                                    SupabaseBehaviorError,
+                                ):
+                                    st.warning(
+                                        "这次选择暂时没有写入数据；你仍可继续对决。"
                                     )
-                                else:
-                                    record_battle_choice(
-                                        APP_DATABASE,
-                                        session_id,
-                                        profile_event_id,
-                                        album_a["release_group_mbid"],
-                                        album_b["release_group_mbid"],
-                                        chosen_mbid,
-                                        strategy,
+                                    session_choices = list(
+                                        st.session_state.get(history_key, [])
                                     )
-                            except (
-                                ValueError,
-                                sqlite3.Error,
-                                SupabaseBehaviorError,
-                            ) as error:
-                                st.warning(
-                                    "数据服务暂时不可用；这次选择只保留在当前访问中。"
-                                )
+                                    session_choices.append(
+                                        {
+                                            "album_a_mbid": album_a["release_group_mbid"],
+                                            "album_b_mbid": album_b["release_group_mbid"],
+                                            "chosen_album_mbid": chosen_mbid,
+                                            "generation_strategy": strategy,
+                                        }
+                                    )
+                                    st.session_state[history_key] = session_choices
+                                    st.rerun()
+                            else:
                                 session_choices = list(
                                     st.session_state.get(history_key, [])
                                 )
@@ -1212,21 +1336,10 @@ def render_taste_battle(
                                     }
                                 )
                                 st.session_state[history_key] = session_choices
-                                st.rerun()
-                        else:
-                            session_choices = list(
-                                st.session_state.get(history_key, [])
-                            )
-                            session_choices.append(
-                                {
-                                    "album_a_mbid": album_a["release_group_mbid"],
-                                    "album_b_mbid": album_b["release_group_mbid"],
-                                    "chosen_album_mbid": chosen_mbid,
-                                    "generation_strategy": strategy,
-                                }
-                            )
-                            st.session_state[history_key] = session_choices
-                        st.rerun()
+                            st.rerun()
+
+            with columns[1]:
+                st.markdown('<div class="battle-vs">VS</div>', unsafe_allow_html=True)
 
 
 def show_recommendation(
@@ -1234,7 +1347,7 @@ def show_recommendation(
     rank: int,
     recommendation: dict,
     resources: dict,
-    favorite_titles: list[str],
+    favorite_seed_mbids: list[str],
     session_id: str,
     profile_event_id: int | str | None,
     behavior_persistent: bool,
@@ -1245,7 +1358,7 @@ def show_recommendation(
     }
     album = documents_by_mbid[recommendation["release_group_mbid"]]
     state_key = "::".join(
-        [*favorite_titles, tier, str(rank), recommendation["title"]]
+        [*favorite_seed_mbids, tier, str(rank), recommendation["title"]]
     )
 
     container_key = f"recommendation_{tier.lower()}_{rank}"
@@ -1269,8 +1382,8 @@ def show_recommendation(
             unsafe_allow_html=True,
         )
         st.markdown(
-            f'<div class="bridge-copy">连接自你喜欢的 '
-            f"<strong>{escape(recommendation['bridge_favorite'])}</strong></div>",
+            f'<div class="bridge-copy">和你喜欢的 '
+            f"<strong>{escape(recommendation['bridge_favorite'])}</strong> 有一条连接</div>",
             unsafe_allow_html=True,
         )
 
@@ -1436,9 +1549,10 @@ def main() -> None:
             behavior_persistent = True
         except (SupabaseBehaviorError, ValueError) as error:
             behavior_store = None
+            detail = str(error).strip() or type(error).__name__
             st.warning(
                 "匿名数据存储暂不可用；推荐仍可使用，本次反馈不会保存。"
-                f"（{type(error).__name__}）"
+                f"（{detail}）"
             )
     elif consent_given and behavior_mode == "session":
         st.info(
@@ -1469,53 +1583,151 @@ def main() -> None:
         )
         st.caption(f"诊断类型：{type(error).__name__}")
         st.stop()
-    album_titles = [album["title"] for album in resources["documents"]]
-    documents_by_title = {
-        document["title"]: document for document in resources["documents"]
+    documents_by_mbid = {
+        document["release_group_mbid"]: document
+        for document in resources["documents"]
     }
     if "confirmed_favorite_titles" not in st.session_state:
         st.session_state["confirmed_favorite_titles"] = []
+    if "confirmed_favorite_mbids" not in st.session_state:
+        legacy_titles = st.session_state["confirmed_favorite_titles"]
+        documents_by_title = {}
+        for document in resources["documents"]:
+            documents_by_title.setdefault(document["title"], document)
+        st.session_state["confirmed_favorite_mbids"] = [
+            documents_by_title[title]["release_group_mbid"]
+            for title in legacy_titles
+            if title in documents_by_title
+        ]
+    if "draft_favorite_mbids" not in st.session_state:
+        st.session_state["draft_favorite_mbids"] = list(
+            st.session_state["confirmed_favorite_mbids"]
+        )
 
     with st.container(key="selection_panel"):
         st.markdown(
-            '<h2 class="section-heading">从你真正喜欢的专辑开始。</h2>'
-            '<p class="section-copy">搜索并选择 1–10 张专辑；确认后先查看推荐，AI 品味分析会在后台继续整理。</p>',
+            '<h2 class="section-heading">先选几张你真心喜欢的专辑。</h2>'
+            '<p class="section-copy">最多选 10 张。确认后先看推荐，品味分析会在后台继续生成。</p>',
             unsafe_allow_html=True,
         )
-        with st.form("favorite_profile_form", clear_on_submit=False):
-            selection_column, count_column = st.columns([2.2, 1], gap="large")
-            with selection_column:
-                favorite_draft = st.multiselect(
-                    "喜欢的专辑",
-                    album_titles,
-                    default=st.session_state["confirmed_favorite_titles"],
-                    max_selections=10,
-                    key="favorite_album_picker_v2",
-                    placeholder="搜索并选择你喜欢的专辑",
+        st.markdown("**搜索曲库**")
+        st.text_input(
+            "搜索专辑名或艺人名",
+            key="album_search_query",
+            placeholder="例如：BRAT、Charli xcx",
+            help="删除或修改搜索文字不会影响已选专辑。",
+        )
+        st.caption("搜索结果里的“加入”会把专辑放到下方；只有点 × 才会移除。")
+
+        draft_favorite_mbids = list(
+            st.session_state.get("draft_favorite_mbids", [])
+        )
+        st.markdown(f"**已选专辑 · {len(draft_favorite_mbids)} / 10**")
+        if draft_favorite_mbids:
+            selected_columns = st.columns(2, gap="small")
+            for index, release_group_mbid in enumerate(draft_favorite_mbids):
+                album = documents_by_mbid[release_group_mbid]
+                with selected_columns[index % 2]:
+                    with st.container(
+                        border=True,
+                        key=f"selected_album_item_{release_group_mbid}",
+                    ):
+                        title = escape(album["title"])
+                        artists = escape(" / ".join(album["artists"]))
+                        st.markdown(
+                            f'<div class="selected-album-title">{title}</div>'
+                            f'<div class="selected-album-artist">{artists}</div>',
+                            unsafe_allow_html=True,
+                        )
+                        st.button(
+                            "× 移除",
+                            key=f"remove_album_{release_group_mbid}",
+                            help=f"移除《{album['title']}》",
+                            on_click=remove_album_from_selection,
+                            args=(release_group_mbid,),
+                            width="content",
+                        )
+        else:
+            st.caption("还没有选专辑。搜索后点“加入”，选错了可以在这里移除。")
+        if len(draft_favorite_mbids) >= 10:
+            st.caption("已经选满 10 张；移除一张后可以继续添加。")
+
+        search_query = str(st.session_state.get("album_search_query", "")).strip()
+        if search_query:
+            query = search_query.casefold()
+            matches = [
+                album
+                for album in resources["documents"]
+                if query in album["title"].casefold()
+                or any(query in artist.casefold() for artist in album["artists"])
+            ]
+            if matches:
+                for album in matches[:8]:
+                    release_group_mbid = album["release_group_mbid"]
+                    already_selected = release_group_mbid in draft_favorite_mbids
+                    selection_full = len(draft_favorite_mbids) >= 10
+                    with st.container(
+                        border=True,
+                        key=f"album_search_result_{release_group_mbid}",
+                    ):
+                        result_column, action_column = st.columns(
+                            [5, 1.1], vertical_alignment="center"
+                        )
+                        with result_column:
+                            title = escape(album["title"])
+                            artists = escape(" / ".join(album["artists"]))
+                            year = album.get("release_year")
+                            year_text = f" · {year}" if year else ""
+                            st.markdown(
+                                f'<div class="search-result-title">{title}</div>'
+                                f'<div class="search-result-artist">{artists}{year_text}</div>',
+                                unsafe_allow_html=True,
+                            )
+                        with action_column:
+                            st.button(
+                                "已加入" if already_selected else "加入",
+                                key=f"add_album_{release_group_mbid}",
+                                disabled=already_selected or selection_full,
+                                on_click=add_album_to_selection,
+                                args=(release_group_mbid,),
+                                width="stretch",
+                            )
+                if len(matches) > 8:
+                    st.caption("先显示前 8 项；再多输入几个字可以缩小范围。")
+            else:
+                st.info(
+                    f"曲库目前收录约 {len(resources['documents'])} 张专辑，"
+                    "以欧美流行音乐和部分 K-pop 为主，更多作品会逐步补充。"
+                    "暂时没找到匹配项；可以换个专辑名或艺人名再试。"
                 )
-            with count_column:
-                per_tier_draft = st.pills(
-                    "每档最多显示",
-                    options=list(range(1, 9)),
-                    default=st.session_state.get("confirmed_per_tier", 2),
-                    selection_mode="single",
-                    key="per_tier_picker_v2",
-                )
-            submitted = st.form_submit_button(
-                "完成选择，开始推荐",
-                type="primary",
-                width="stretch",
-            )
+        favorite_draft_signature = "|".join(draft_favorite_mbids)
+        old_signature = st.session_state.get("confirmed_profile_signature", "")
+        if favorite_draft_signature != old_signature:
+            st.caption("选择有改动；点击下方按钮后，品味档案和推荐会一起更新。")
+        confirmed_mbids = list(
+            st.session_state.get("confirmed_favorite_mbids", [])
+        )
+        submit_label = (
+            "完成选择，开始推荐"
+            if draft_favorite_mbids
+            else "清空已确认的选择"
+        )
+        submitted = st.button(
+            submit_label,
+            key="profile_submit",
+            type="primary",
+            width="stretch",
+            disabled=not draft_favorite_mbids and not confirmed_mbids,
+        )
 
         if submitted:
-            favorite_draft = favorite_draft or []
-            new_signature = "|".join(
-                documents_by_title[title]["release_group_mbid"]
-                for title in favorite_draft
-            )
+            favorite_draft = list(draft_favorite_mbids)
+            new_signature = "|".join(favorite_draft)
             old_signature = st.session_state.get("confirmed_profile_signature")
-            st.session_state["confirmed_favorite_titles"] = favorite_draft
-            st.session_state["confirmed_per_tier"] = per_tier_draft or 2
+            st.session_state["confirmed_favorite_mbids"] = favorite_draft
+            st.session_state["confirmed_favorite_titles"] = [
+                documents_by_mbid[mbid]["title"] for mbid in favorite_draft
+            ]
             st.session_state["confirmed_profile_signature"] = new_signature
             if new_signature and (
                 new_signature != old_signature
@@ -1530,16 +1742,20 @@ def main() -> None:
                 st.session_state["active_profile_mbids"] = None
                 st.session_state["profile_event_id"] = None
 
-        favorite_titles = st.session_state["confirmed_favorite_titles"]
-        per_tier = st.session_state.get("confirmed_per_tier", 2)
+        favorite_mbids = list(
+            st.session_state.get("confirmed_favorite_mbids", [])
+        )
+        favorite_titles = [
+            documents_by_mbid[mbid]["title"] for mbid in favorite_mbids
+        ]
         if favorite_titles:
-            selected_albums = [documents_by_title[title] for title in favorite_titles]
+            selected_albums = [documents_by_mbid[mbid] for mbid in favorite_mbids]
             render_album_shelf(selected_albums)
             try:
                 profile = build_taste_profile(
                     resources["documents"],
                     resources["album_vectors"],
-                    favorite_titles,
+                    favorite_mbids,
                 )
             except ValueError as error:
                 st.error(str(error))
@@ -1568,9 +1784,10 @@ def main() -> None:
                     except (sqlite3.Error, SupabaseBehaviorError) as error:
                         behavior_persistent = False
                         profile_event_id = None
+                        detail = str(error).strip() or type(error).__name__
                         st.warning(
                             "无法保存本次专辑选择；推荐仍可使用，后续交互只暂存在本次访问。"
-                            f"（{type(error).__name__}）"
+                            f"（{detail}）"
                         )
             else:
                 profile_event_id = None
@@ -1578,7 +1795,7 @@ def main() -> None:
             profile_tags = [tag for tag, _count in profile["top_tags"][:8]]
             with st.container(key="profile_panel"):
                 st.markdown(
-                    '<div class="profile-title">你的 Taste Profile</div>',
+                    '<div class="profile-title">你的听歌品味</div>',
                     unsafe_allow_html=True,
                 )
                 render_tags(profile_tags)
@@ -1596,7 +1813,10 @@ def main() -> None:
             st.session_state["profile_event_id"] = None
 
     if not favorite_titles:
-        st.info("选择 1–10 张喜欢的专辑，并点击“完成选择，开始推荐”后开始。")
+        if st.session_state.get("draft_favorite_mbids"):
+            st.info("已选好专辑；点上方“完成选择，开始推荐”后继续。")
+        else:
+            st.info("先搜索并加入至少一张喜欢的专辑，再点上方按钮。")
         st.stop()
 
     candidates = candidate_features(
@@ -1604,7 +1824,6 @@ def main() -> None:
         resources["album_vectors"],
         profile,
     )
-    recommendations = choose_recommendations(candidates, per_tier)
 
     recommendation_tab, battle_tab = st.tabs(
         ["推荐探索", "Taste Battle / 品味对决"]
@@ -1612,7 +1831,7 @@ def main() -> None:
     with recommendation_tab:
         st.markdown(
             '<h2 class="section-heading">今天想走多远？</h2>'
-            '<p class="section-copy">选择一种探索距离。档位来自透明的相似度与标签规则，不由语言模型决定。</p>',
+            '<p class="section-copy">先选一个探索距离。推荐由专辑相似度和标签线索决定，AI 不会替你挑选。</p>',
             unsafe_allow_html=True,
         )
         tier_options = list(TIER_DETAILS)
@@ -1627,6 +1846,16 @@ def main() -> None:
                 width="stretch",
             )
         selected_tier = selected_tier or "Explore"
+        per_tier = st.pills(
+            "每档想看几张？",
+            options=list(range(1, 9)),
+            default=st.session_state.get("confirmed_per_tier", 2),
+            selection_mode="single",
+            key="per_tier_picker_v2",
+        )
+        per_tier = int(per_tier or 2)
+        st.session_state["confirmed_per_tier"] = per_tier
+        recommendations = choose_recommendations(candidates, per_tier)
         selected_detail = TIER_DETAILS[selected_tier]
         items = recommendations[selected_tier]
 
@@ -1671,7 +1900,7 @@ def main() -> None:
         )
 
         if not items:
-            st.info("当前没有候选满足这一档的证据规则。换一张喜欢的专辑，或选择另一种探索距离。")
+            st.info("这一档暂时没有合适的专辑。换个探索距离，或调整喜欢的专辑再试。")
         else:
             with st.container(key=f"recommendation_grid_{selected_tier.lower()}"):
                 card_columns = st.columns(3, gap="large")
@@ -1682,7 +1911,7 @@ def main() -> None:
                             rank,
                             recommendation,
                             resources,
-                            favorite_titles,
+                            favorite_mbids,
                             session_id,
                             profile_event_id,
                             behavior_persistent,

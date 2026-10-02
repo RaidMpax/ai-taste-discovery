@@ -121,7 +121,7 @@ class SupabaseBehaviorStore:
                 {
                     "session_id": session_id,
                     "consent_version": consent_version,
-                    "app_version": "v2-beta",
+                    "app_version": "v2.1-beta",
                 },
                 prefer="return=minimal",
             )

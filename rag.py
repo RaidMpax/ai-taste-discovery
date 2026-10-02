@@ -99,9 +99,6 @@ TASTE_ANALYSIS_SCHEMA = {
     "type": "object",
     "properties": {
         "overall_taste": {"type": "string"},
-        "core_tendencies": {"type": "array", "items": {"type": "string"}},
-        "interesting_contrasts": {"type": "array", "items": {"type": "string"}},
-        "exploration_directions": {"type": "array", "items": {"type": "string"}},
         "evidence": {
             "type": "array",
             "items": {
@@ -118,9 +115,6 @@ TASTE_ANALYSIS_SCHEMA = {
     },
     "required": [
         "overall_taste",
-        "core_tendencies",
-        "interesting_contrasts",
-        "exploration_directions",
         "evidence",
         "limitations",
     ],
@@ -452,38 +446,57 @@ def generate_taste_analysis(
         source["source_id"] for source in context_result["sources"]
     }
     source_instruction = ", ".join(sorted(allowed_source_ids)) or "none"
+    if allowed_source_ids:
+        evidence_instruction = (
+            "For review-based claims, cite only the allowed source IDs. For claims "
+            "based only on structured profile facts, use an empty source_ids list."
+        )
+    else:
+        evidence_instruction = (
+            "No licensed review evidence was retrieved. Return an empty evidence "
+            "array. Do not cite or describe any reviews or reviewers."
+        )
     prompt = f"""
-You analyze music taste from selected albums and supplied profile signals.
-Write in clear Simplified Chinese; preserve album and tag names as given.
-Do not infer personality, identity, age, or life story. Do not recommend albums
-or assign Safe, Explore, or Wildcard tiers. Distinguish observed signals from
-interpretation, and lower certainty when the seed set or evidence is small.
-Treat each review as one review, not community consensus. Do not add musical
-facts absent from this context. If reviews are absent, rely only on the listed
-albums, years, tags, and deterministic profile signals. Keep each list concise.
-For review-based claims, cite only these source IDs: {source_instruction}
-For claims based only on structured profile facts, use an empty source_ids list.
+你是一位写给普通听众看的中文音乐编辑。请根据所给专辑、年份、标签、结构化品味信号和可用评论证据，写一段关于这组音乐品味的观察。
 
-Return an overall taste summary, core tendencies, interesting contrasts,
-possible exploration directions, evidence claims, and limitations.
+写作要求：
+- `overall_taste` 只写一段完整短评，约 150–250 个中文字；自然、具体、有音乐观察，不要像 AI 报告。
+- 不写标题、分点、编号或固定模板；不要逐张介绍专辑，也不要机械罗列流派和标签。
+- 多张种子专辑要写出它们之间的共同线索与有意思的反差；选了 7–10 张时，提炼最明显的 2–4 条审美主线，不要逐张点名。
+- 只有 1 张种子专辑时，集中描述这张作品中有依据的声音特点，并说明由单张作品能推断的范围有限；不要假装找到了跨专辑联系。
+- 可以观察声音质感、制作方式、情绪、时代感和流派交界，但每个判断都必须能从输入信号或评论中找到依据。
+- 使用简体中文；避免“首先、其次、总的来说”“你可能喜欢……”等套话。不要模仿任何具体作者或刊物的句式。
+- 不推测用户的性格、身份、年龄或人生经历；不写推荐结果，不决定 Safe / Explore / Wildcard 档位。
+- 不添加上下文没有提供的音乐事实。不要声称听众、乐评人普遍如何评价，也不要推断流行度、影响力或共识。避免使用 often、widely、commonly、常被、经常、广泛、普遍。
+- 证据有限时降低确定性；每篇评论只能作为一篇评论，不能当作群体共识。
+- 没有授权评论时，只能结合所选专辑、年份、标签与结构化信号写作；不要把这组小样本推广成普遍规律。
+- `limitations` 用简短中文说明本次分析的主要限制；`evidence` 只列评论文本直接支持的主张。
+
+允许引用的评论来源 ID：{source_instruction}
+{evidence_instruction}
+
+只返回符合 JSON schema 的对象，不要在 JSON 之外补充说明。
 
 {context_result['context']}
 """.strip()
 
     client = _create_gemini_client(api_key)
+    response_format = {
+        "type": "text",
+        "mime_type": "application/json",
+        "schema": TASTE_ANALYSIS_SCHEMA,
+    }
     interaction = None
+    active_model = None
     last_transient_error = None
     for model_name in GEMINI_MODELS:
         try:
             interaction = client.interactions.create(
                 model=model_name,
                 input=prompt,
-                response_format={
-                    "type": "text",
-                    "mime_type": "application/json",
-                    "schema": TASTE_ANALYSIS_SCHEMA,
-                },
+                response_format=response_format,
             )
+            active_model = model_name
             break
         except Exception as error:
             error_text = str(error).casefold()
@@ -505,8 +518,34 @@ possible exploration directions, evidence claims, and limitations.
             "Please try again later."
         ) from last_transient_error
 
-    result = json.loads(interaction.output_text)
-    return validate_generated_result(result, allowed_source_ids)
+    try:
+        result = json.loads(interaction.output_text)
+        return validate_generated_result(result, allowed_source_ids)
+    except (json.JSONDecodeError, ValueError) as first_error:
+        repair_prompt = f"""
+The previous JSON draft failed validation and must be rewritten. Return only a
+new JSON object matching the schema. Write overall_taste as one natural
+Simplified Chinese paragraph of about 150–250 Chinese characters, with no
+heading, list, or album-by-album summary. Do not reuse unsupported consensus
+wording, popularity claims, or generalizations about listeners or critics.
+Every claim must be grounded in the supplied album, year, tag, deterministic
+profile, or explicitly cited review evidence. If no licensed review evidence is
+available, set evidence to []. Keep limitations explicit.
+
+{prompt}
+""".strip()
+        repaired_interaction = client.interactions.create(
+            model=active_model or GEMINI_MODELS[0],
+            input=repair_prompt,
+            response_format=response_format,
+        )
+        try:
+            repaired_result = json.loads(repaired_interaction.output_text)
+            return validate_generated_result(repaired_result, allowed_source_ids)
+        except (json.JSONDecodeError, ValueError) as second_error:
+            raise ValueError(
+                "Gemini failed structured/content validation after one repair attempt."
+            ) from second_error
 
 
 def validate_generated_result(
