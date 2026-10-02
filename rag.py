@@ -460,7 +460,7 @@ def generate_taste_analysis(
 你是一位写给普通听众看的中文音乐编辑。请根据所给专辑、年份、标签、结构化品味信号和可用评论证据，写一段关于这组音乐品味的观察。
 
 写作要求：
-- `overall_taste` 只写一段完整短评，约 150–250 个中文字；自然、具体、有音乐观察，不要像 AI 报告。
+- `overall_taste` 只写一段完整短评，约 220–320 个中文字；比简短摘要更充分，但仍要自然、具体、有音乐观察，不要写成 AI 报告。
 - 不写标题、分点、编号或固定模板；不要逐张介绍专辑，也不要机械罗列流派和标签。
 - 多张种子专辑要写出它们之间的共同线索与有意思的反差；选了 7–10 张时，提炼最明显的 2–4 条审美主线，不要逐张点名。
 - 只有 1 张种子专辑时，集中描述这张作品中有依据的声音特点，并说明由单张作品能推断的范围有限；不要假装找到了跨专辑联系。
@@ -525,7 +525,7 @@ def generate_taste_analysis(
         repair_prompt = f"""
 The previous JSON draft failed validation and must be rewritten. Return only a
 new JSON object matching the schema. Write overall_taste as one natural
-Simplified Chinese paragraph of about 150–250 Chinese characters, with no
+Simplified Chinese paragraph of about 220–320 Chinese characters, with no
 heading, list, or album-by-album summary. Do not reuse unsupported consensus
 wording, popularity claims, or generalizations about listeners or critics.
 Every claim must be grounded in the supplied album, year, tag, deterministic

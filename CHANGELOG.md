@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-02 — V2.1 Taste Profile length refinement
+
+- Expanded the target length of the Gemini Taste Analysis paragraph to approximately 220–320 Chinese characters so the profile reads as a fuller editorial observation while keeping the same evidence and citation constraints.
+
 ## 2026-10-02 — V2.1 product iteration
 
 Small usability pass based on the first opted-in beta sessions and friend feedback.
